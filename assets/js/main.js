@@ -10,14 +10,14 @@
 
   /* ---------- Sample run log ---------- */
   var RUNS = [
-    ["lead_router", "new enquiry → CRM + Slack", "1.2s"],
-    ["invoice_chaser", "3 overdue reminders sent", "0.8s"],
-    ["support_agent", "ticket answered from help docs", "4.6s"],
-    ["receipt_reader", "14 receipts coded in Xero", "6.1s"],
-    ["weekly_report", "KPI summary sent to #ops", "2.3s"],
-    ["contract_parser", "renewal dates added to CRM", "3.4s"],
-    ["meeting_notes", "actions logged to Notion", "1.9s"],
-    ["lead_router", "demo booked in calendar", "1.1s"]
+    ["voice_agent", "missed call answered → booked Tue 10:30", "38s"],
+    ["speed_to_lead", "Meta lead texted back", "41s"],
+    ["chatbot", "Instagram DM → consultation booked", "1m 12s"],
+    ["review_request", "5★ review request sent", "2s"],
+    ["reactivation", "old lead replied \"yes, still interested\"", "6s"],
+    ["google_ads_sync", "new search lead added to pipeline", "3s"],
+    ["reminder", "no-show reminder sent via WhatsApp", "1s"],
+    ["voice_agent", "after-hours call qualified and routed", "52s"]
   ];
   var log = document.getElementById("runlog");
   var runIndex = 0;
@@ -68,17 +68,15 @@
     });
   }
 
-  /* ---------- ROI calculator ---------- */
-  var WEEKS = 46;
-  var FTE_HOURS = 37.5 * WEEKS;
+  /* ---------- Missed-lead calculator ---------- */
   var gbp = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 });
   var num = new Intl.NumberFormat("en-GB", { maximumFractionDigits: 0 });
 
   var roi = {
-    people: document.getElementById("roi-people"),
-    hours: document.getElementById("roi-hours"),
-    rate: document.getElementById("roi-rate"),
-    share: document.getElementById("roi-share")
+    leads: document.getElementById("roi-leads"),
+    missed: document.getElementById("roi-missed"),
+    close: document.getElementById("roi-close"),
+    value: document.getElementById("roi-value")
   };
 
   function fill(input) {
@@ -87,29 +85,59 @@
   }
 
   function calc() {
-    var people = +roi.people.value;
-    var hours = +roi.hours.value;
-    var rate = +roi.rate.value;
-    var share = +roi.share.value / 100;
-    var saved = people * hours * share * WEEKS;
+    var leads = +roi.leads.value;
+    var missed = +roi.missed.value / 100;
+    var close = +roi.close.value / 100;
+    var value = +roi.value.value;
 
-    document.getElementById("roi-people-out").textContent = people;
-    document.getElementById("roi-hours-out").textContent = hours;
-    document.getElementById("roi-rate-out").textContent = gbp.format(rate);
-    document.getElementById("roi-share-out").textContent = Math.round(share * 100) + "%";
+    var lost = leads * missed;
+    var customers = lost * close;
 
-    document.getElementById("roi-hours-saved").textContent = num.format(saved);
-    document.getElementById("roi-value").textContent = gbp.format(saved * rate);
-    document.getElementById("roi-fte").textContent = (saved / FTE_HOURS).toFixed(1) + " FTE";
+    document.getElementById("roi-leads-out").textContent = num.format(leads);
+    document.getElementById("roi-missed-out").textContent = Math.round(missed * 100) + "%";
+    document.getElementById("roi-close-out").textContent = Math.round(close * 100) + "%";
+    document.getElementById("roi-value-out").textContent = gbp.format(value);
+
+    document.getElementById("roi-lost-leads").textContent = num.format(lost);
+    document.getElementById("roi-customers").textContent = num.format(customers) + " / month";
+    document.getElementById("roi-revenue").textContent = gbp.format(customers * value * 12);
 
     Object.keys(roi).forEach(function (k) { fill(roi[k]); });
   }
 
-  if (roi.people) {
+  if (roi.leads) {
     Object.keys(roi).forEach(function (k) { roi[k].addEventListener("input", calc); });
     document.getElementById("roi-form").addEventListener("submit", function (e) { e.preventDefault(); });
     calc();
   }
+
+  /* ---------- Service filters ---------- */
+  var chips = document.querySelectorAll(".chip[data-filter]");
+  var serviceCards = document.querySelectorAll(".cards .card[data-cat]");
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var f = chip.getAttribute("data-filter");
+      chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
+      serviceCards.forEach(function (card) {
+        var show = f === "all" || card.getAttribute("data-cat") === f;
+        var wasHidden = card.hidden;
+        card.hidden = !show;
+        if (show && wasHidden && !reduceMotion) {
+          card.classList.remove("is-entering");
+          void card.offsetWidth;
+          card.classList.add("is-entering");
+        }
+      });
+    });
+  });
+
+  /* ---------- Audience buttons preselect the form ---------- */
+  document.querySelectorAll("[data-audience]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var select = document.getElementById("cf-type");
+      if (select) select.value = btn.getAttribute("data-audience");
+    });
+  });
 
   /* ---------- Copy email ---------- */
   var copyBtn = document.getElementById("copy-email");

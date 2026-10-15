@@ -1,7 +1,7 @@
 /*
  * Hero 3D scene: a workflow graph.
- * App nodes (CRM, Inbox, Invoices...) send data packets into a central AI core;
- * the core processes them and sends results (amber) back out to other apps.
+ * Channel nodes (calls, ads, WhatsApp, reviews...) send leads into a central AI core;
+ * the core handles them and sends actions (amber) back out: bookings, replies, follow-ups.
  * Requires Three.js r128 loaded as the global THREE.
  */
 (function () {
@@ -20,7 +20,7 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var COLORS = { ink: 0x0a0f14, amber: 0xffb04a, steel: 0x7fa7d9, fg: 0xe6ebef, panel: 0x16212c };
-  var APPS = ["CRM", "Inbox", "Invoices", "Slack", "Helpdesk", "Sheets", "Calendar", "Docs"];
+  var APPS = ["GoHighLevel", "Calls", "WhatsApp", "Google Ads", "Meta Ads", "Reviews", "Calendar", "SMS", "Website"];
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setClearColor(0x000000, 0);
@@ -243,7 +243,7 @@
   })();
 
   /* ---------- Layout, pointer, scroll ---------- */
-  var layout = { x: 5.2, y: 0.2, scale: 1, z: 15 };
+  var layout = { x: 4.8, y: 0.2, scale: 0.95, z: 15 };
   var pointer = { x: 0, y: 0, tx: 0, ty: 0 };
   var scrollP = 0;
 
@@ -254,7 +254,7 @@
     camera.updateProjectionMatrix();
 
     if (w >= 980) {
-      layout = { x: 5.2, y: 0.2, scale: 1, z: 15 };
+      layout = { x: 4.8, y: 0.2, scale: 0.95, z: 15 };
     } else if (w >= 640) {
       layout = { x: 3, y: 0.6, scale: 0.8, z: 16 };
     } else {

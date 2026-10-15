@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ariyan AI Automation</title>
+<title>Omni AI Builders</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Ariyan designs, builds and runs AI agents and workflow automations for growing teams.">
+<meta name="description" content="Omni AI Builders sets up AI voice agents, chatbots, GoHighLevel CRM automation and paid ads for local businesses, and white-label fulfilment for agencies.">
 <meta name="theme-color" content="#0A0F14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,19 +17,36 @@
 <canvas id="scene" aria-hidden="true"></canvas>
 <div class="scrim" aria-hidden="true"></div>
 
+<!-- Reusable line icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-voice" viewBox="0 0 24 24"><path d="M5 3.5h3.5l2 5-2.4 1.6a11 11 0 0 0 5.8 5.8l1.6-2.4 5 2V19a2 2 0 0 1-2 2A17.5 17.5 0 0 1 3 5.5a2 2 0 0 1 2-2z"/><path class="accent" d="M15 3.5a5.5 5.5 0 0 1 5.5 5.5M15 7a2 2 0 0 1 2 2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 4.5h16v11.5H10l-6 4.5z"/><path class="accent" d="M8.5 10.2h.01M12 10.2h.01M15.5 10.2h.01"/></symbol>
+    <symbol id="i-crm" viewBox="0 0 24 24"><rect x="3" y="4" width="5" height="16" rx="1.2"/><rect x="9.5" y="4" width="5" height="11" rx="1.2"/><rect class="accent" x="16" y="4" width="5" height="7" rx="1.2"/></symbol>
+    <symbol id="i-followup" viewBox="0 0 24 24"><path d="M3 11.5 21 3l-8.5 18-2.2-7.3z"/><path class="accent" d="m10.3 13.7 4.2-4.2"/></symbol>
+    <symbol id="i-google" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/><path class="accent" d="M8 12.5v-2M10.5 12.5v-4M13 12.5V10"/></symbol>
+    <symbol id="i-meta" viewBox="0 0 24 24"><path d="M3 9.5v5h3.5l8 5v-15l-8 5z"/><path class="accent" d="M18 8.5a5 5 0 0 1 0 7"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/><path class="accent" d="M7 7.5h10"/></symbol>
+    <symbol id="i-reviews" viewBox="0 0 24 24"><path class="accent" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+    <symbol id="i-whitelabel" viewBox="0 0 24 24"><path d="M3 12.5V3.5h9l9 9-9 9z"/><circle class="accent" cx="8" cy="8.5" r="1.6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  </defs>
+</svg>
+
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#top" aria-label="Ariyan home">
+    <a class="brand" href="#top" aria-label="Omni AI Builders home">
       <span class="brand-mark" aria-hidden="true"></span>
-      <span>Ariyan</span>
+      <span>Omni <span class="brand-sub">AI Builders</span></span>
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#services">Services</a>
+      <a href="#who">Who we help</a>
       <a href="#process">Process</a>
-      <a href="#roi">ROI</a>
+      <a href="#calculator">Calculator</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-small" href="#contact">Book an audit</a>
+    <a class="btn btn-small" href="#contact">Book a call</a>
   </div>
 </header>
 
@@ -39,19 +56,20 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow">AI automation studio · United Kingdom</p>
-        <h1>Put your busywork on <em>autopilot</em>.</h1>
-        <p class="lede">We design, build and run AI agents and workflow automations for growing teams. We connect the tools you already use, so leads get followed up, invoices get chased and tickets get answered without anyone copying and pasting.</p>
+        <p class="eyebrow">AI automation · Ads · GoHighLevel</p>
+        <h1>Automate <em>whatever</em> you want.</h1>
+        <p class="lede">We build AI voice agents, chatbots, CRM automations and ad campaigns that answer every lead, follow up on autopilot and fill your calendar. For local businesses, and as white-label fulfilment for agencies.</p>
         <div class="cta-row">
-          <a class="btn" href="#contact">Book a free automation audit</a>
-          <a class="btn btn-ghost" href="#services">See what we automate</a>
+          <a class="btn" href="#contact">Book a free strategy call</a>
+          <a class="btn btn-ghost" href="#services">Explore services</a>
         </div>
+        <p class="trust"><span class="trust-num">200+</span> agency owners and business owners work with us</p>
       </div>
 
-      <aside class="runlog" aria-label="Sample run log">
+      <aside class="runlog" aria-label="Sample automation log">
         <div class="runlog-head">
           <span class="dot" aria-hidden="true"></span>
-          <span>workflow runs</span>
+          <span>automations running</span>
           <span class="runlog-tag">sample</span>
         </div>
         <ol class="runlog-list" id="runlog"></ol>
@@ -60,14 +78,14 @@
   </section>
 
   <!-- TOOLS -->
-  <section class="tools" aria-label="Tools we connect">
-    <p class="wrap tools-label">Connects to the stack you already run</p>
+  <section class="tools" aria-label="Platforms we work with">
+    <p class="wrap tools-label">Built on the platforms you already use</p>
     <div class="marquee">
       <ul class="marquee-track">
-        <li>Gmail</li><li>Outlook</li><li>Slack</li><li>Microsoft Teams</li><li>HubSpot</li><li>Salesforce</li><li>Xero</li><li>QuickBooks</li><li>Shopify</li><li>Notion</li><li>Airtable</li><li>Google Sheets</li><li>WhatsApp</li><li>Zendesk</li><li>Claude</li><li>OpenAI</li><li>n8n</li><li>Make</li>
+        <li>GoHighLevel</li><li>Google Ads</li><li>Meta Ads</li><li>Instagram</li><li>WhatsApp</li><li>Facebook</li><li>Google Business Profile</li><li>Stripe</li><li>Calendly</li><li>Twilio</li><li>Zapier</li><li>Make</li><li>n8n</li><li>OpenAI</li><li>Claude</li><li>Shopify</li>
       </ul>
       <ul class="marquee-track" aria-hidden="true">
-        <li>Gmail</li><li>Outlook</li><li>Slack</li><li>Microsoft Teams</li><li>HubSpot</li><li>Salesforce</li><li>Xero</li><li>QuickBooks</li><li>Shopify</li><li>Notion</li><li>Airtable</li><li>Google Sheets</li><li>WhatsApp</li><li>Zendesk</li><li>Claude</li><li>OpenAI</li><li>n8n</li><li>Make</li>
+        <li>GoHighLevel</li><li>Google Ads</li><li>Meta Ads</li><li>Instagram</li><li>WhatsApp</li><li>Facebook</li><li>Google Business Profile</li><li>Stripe</li><li>Calendly</li><li>Twilio</li><li>Zapier</li><li>Make</li><li>n8n</li><li>OpenAI</li><li>Claude</li><li>Shopify</li>
       </ul>
     </div>
   </section>
@@ -76,47 +94,108 @@
   <section class="section" id="services">
     <div class="wrap">
       <header class="section-head">
-        <p class="eyebrow">What we automate</p>
-        <h2>Six workflows that give teams their week back.</h2>
-        <p class="section-sub">Most of our work falls into these areas. Each one runs inside your existing tools, with a person kept in the loop wherever judgement matters.</p>
+        <p class="eyebrow">Services</p>
+        <h2>Everything you need to win, answer and keep more customers.</h2>
+        <p class="section-sub">Pick one service or let us run the whole system. Every piece connects to the same CRM, so no lead slips through.</p>
       </header>
 
+      <div class="filters" role="group" aria-label="Filter services">
+        <button type="button" class="chip" data-filter="all" aria-pressed="true">All <span>9</span></button>
+        <button type="button" class="chip" data-filter="ai" aria-pressed="false">AI agents <span>3</span></button>
+        <button type="button" class="chip" data-filter="growth" aria-pressed="false">Ads and funnels <span>3</span></button>
+        <button type="button" class="chip" data-filter="crm" aria-pressed="false">CRM and automation <span>2</span></button>
+        <button type="button" class="chip" data-filter="agency" aria-pressed="false">For agencies <span>1</span></button>
+      </div>
+
       <div class="cards">
-        <article class="card tilt">
-          <div class="card-icon" data-icon="lead" aria-hidden="true"></div>
-          <h3>Lead capture and follow-up</h3>
-          <p>Every enquiry from your site, inbox or ads is qualified, logged in your CRM and answered within minutes, day or night.</p>
-          <p class="card-meta"><span>Replaces</span> manual CRM entry, slow first replies</p>
+        <article class="card tilt" data-cat="ai">
+          <div class="card-top"><svg class="card-icon"><use href="#i-voice"/></svg><span class="card-cat">AI agents</span></div>
+          <h3>AI voice agents</h3>
+          <p>A natural-sounding AI receptionist answers every call 24/7, qualifies the caller, answers questions and books straight into your calendar.</p>
+          <p class="card-meta"><span>Includes</span> inbound and outbound calls, missed-call text back</p>
         </article>
-        <article class="card tilt">
-          <div class="card-icon" data-icon="support" aria-hidden="true"></div>
-          <h3>Customer support agents</h3>
-          <p>An AI agent trained on your help docs answers routine tickets and hands the tricky ones to a person with the full context attached.</p>
-          <p class="card-meta"><span>Replaces</span> copy-paste answers, ticket triage</p>
+        <article class="card tilt" data-cat="ai">
+          <div class="card-top"><svg class="card-icon"><use href="#i-chat"/></svg><span class="card-cat">AI agents</span></div>
+          <h3>AI chatbots</h3>
+          <p>Conversation AI on your website, WhatsApp, Instagram, Facebook and SMS that replies in seconds and turns enquiries into bookings.</p>
+          <p class="card-meta"><span>Includes</span> trained on your FAQs, live hand-off to staff</p>
         </article>
-        <article class="card tilt">
-          <div class="card-icon" data-icon="finance" aria-hidden="true"></div>
-          <h3>Finance and back office</h3>
-          <p>Invoices raised, matched and chased. Receipts read, coded and filed in Xero or QuickBooks before month end arrives.</p>
-          <p class="card-meta"><span>Replaces</span> reconciliation, payment chasing</p>
+        <article class="card tilt" data-cat="ai">
+          <div class="card-top"><svg class="card-icon"><use href="#i-reviews"/></svg><span class="card-cat">AI agents</span></div>
+          <h3>Reputation management</h3>
+          <p>Automatic review requests after every job, AI replies to new reviews, and alerts before a bad one goes public.</p>
+          <p class="card-meta"><span>Includes</span> Google and Facebook reviews, review widgets</p>
         </article>
-        <article class="card tilt">
-          <div class="card-icon" data-icon="docs" aria-hidden="true"></div>
-          <h3>Document processing</h3>
-          <p>Contracts, forms and PDFs read by AI, with the key fields pulled out and pushed into the systems that need them.</p>
-          <p class="card-meta"><span>Replaces</span> retyping data from PDFs</p>
+        <article class="card tilt" data-cat="growth">
+          <div class="card-top"><svg class="card-icon"><use href="#i-google"/></svg><span class="card-cat">Ads and funnels</span></div>
+          <h3>Google Ads management</h3>
+          <p>Search, Local Services and Performance Max campaigns built around buyers who are ready now, with every lead tracked back to the keyword.</p>
+          <p class="card-meta"><span>Includes</span> setup, copy, conversion tracking, monthly reporting</p>
         </article>
-        <article class="card tilt">
-          <div class="card-icon" data-icon="knowledge" aria-hidden="true"></div>
-          <h3>Internal knowledge assistant</h3>
-          <p>Ask a question in Slack or Teams and get an answer drawn from your own policies, SOPs and past projects, with sources linked.</p>
-          <p class="card-meta"><span>Replaces</span> hunting through shared drives</p>
+        <article class="card tilt" data-cat="growth">
+          <div class="card-top"><svg class="card-icon"><use href="#i-meta"/></svg><span class="card-cat">Ads and funnels</span></div>
+          <h3>Meta ads management</h3>
+          <p>Facebook and Instagram campaigns with scroll-stopping creative and instant-form leads that land in your CRM and get a reply in under a minute.</p>
+          <p class="card-meta"><span>Includes</span> creative, audiences, retargeting, A/B testing</p>
         </article>
-        <article class="card tilt">
-          <div class="card-icon" data-icon="report" aria-hidden="true"></div>
-          <h3>Reporting and ops alerts</h3>
-          <p>Weekly numbers compiled and sent automatically, with an alert the moment something moves outside its normal range.</p>
-          <p class="card-meta"><span>Replaces</span> Monday-morning spreadsheets</p>
+        <article class="card tilt" data-cat="growth">
+          <div class="card-top"><svg class="card-icon"><use href="#i-funnel"/></svg><span class="card-cat">Ads and funnels</span></div>
+          <h3>Funnels and websites</h3>
+          <p>Fast landing pages, booking funnels and websites built to convert ad traffic, with forms and calendars wired into your automations.</p>
+          <p class="card-meta"><span>Includes</span> copy, design, hosting, analytics</p>
+        </article>
+        <article class="card tilt" data-cat="crm">
+          <div class="card-top"><svg class="card-icon"><use href="#i-crm"/></svg><span class="card-cat">CRM and automation</span></div>
+          <h3>GoHighLevel CRM setup</h3>
+          <p>Pipelines, calendars, workflows and dashboards configured for how you sell, so your team sees every lead and what to do next.</p>
+          <p class="card-meta"><span>Includes</span> migration, workflows, team training</p>
+        </article>
+        <article class="card tilt" data-cat="crm">
+          <div class="card-top"><svg class="card-icon"><use href="#i-followup"/></svg><span class="card-cat">CRM and automation</span></div>
+          <h3>Lead follow-up and reactivation</h3>
+          <p>Speed-to-lead SMS and email within seconds, nurture sequences that run for months, and campaigns that wake up your old customer list.</p>
+          <p class="card-meta"><span>Includes</span> SMS, email, WhatsApp, appointment reminders</p>
+        </article>
+        <article class="card tilt card-agency" data-cat="agency">
+          <div class="card-top"><svg class="card-icon"><use href="#i-whitelabel"/></svg><span class="card-cat">For agencies</span></div>
+          <h3>White-label fulfilment</h3>
+          <p>We deliver AI agents, GoHighLevel builds, funnels and ad campaigns under your brand. You keep the client and the margin; we do the work.</p>
+          <p class="card-meta"><span>Includes</span> snapshots, SaaS setup, client onboarding</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE HELP -->
+  <section class="section" id="who">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">Who we help</p>
+        <h2>Two kinds of clients, one system behind both.</h2>
+      </header>
+
+      <div class="audiences">
+        <article class="audience">
+          <p class="plan-tag">Local businesses</p>
+          <h3>More booked customers from the leads you already pay for.</h3>
+          <p>Clinics, dentists, opticians, trades, salons, gyms, estate agents and restaurants. We run your ads, answer every call and message, follow up every lead and fill your diary.</p>
+          <ul class="ticks">
+            <li><svg><use href="#i-check"/></svg>Never miss a call or enquiry again</li>
+            <li><svg><use href="#i-check"/></svg>Leads replied to in under a minute, day or night</li>
+            <li><svg><use href="#i-check"/></svg>One dashboard from ad spend to booked revenue</li>
+          </ul>
+          <a class="btn" href="#contact" data-audience="Local business">I run a business</a>
+        </article>
+        <article class="audience audience-agency">
+          <p class="plan-tag">Agencies</p>
+          <h3>Sell AI and automation without hiring a build team.</h3>
+          <p>Marketing agencies, consultants and GoHighLevel SaaS owners. We build and maintain everything under your brand so you can sign more clients without growing your payroll.</p>
+          <ul class="ticks">
+            <li><svg><use href="#i-check"/></svg>Your logo, your domain, your pricing</li>
+            <li><svg><use href="#i-check"/></svg>AI agents, snapshots and funnels delivered for you</li>
+            <li><svg><use href="#i-check"/></svg>We stay behind the scenes; you own the relationship</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact" data-audience="Agency">I run an agency</a>
         </article>
       </div>
     </div>
@@ -126,128 +205,84 @@
   <section class="section" id="process">
     <div class="wrap">
       <header class="section-head">
-        <p class="eyebrow">How an engagement runs</p>
-        <h2>From audit to live workflow in about five weeks.</h2>
+        <p class="eyebrow">How it works</p>
+        <h2>From first call to live system in about three weeks.</h2>
       </header>
 
       <ol class="pipeline">
         <li class="stage">
-          <p class="stage-num">01 <span>Week 1</span></p>
-          <h3>Audit</h3>
-          <p>We map how work actually moves through your team and rank every task by hours saved against effort to automate.</p>
-          <p class="stage-out">Output: automation roadmap</p>
+          <p class="stage-num">01 <span>Day 1</span></p>
+          <h3>Strategy call</h3>
+          <p>We look at where your leads come from, where they drop off and which automations will bring in the most revenue first.</p>
+          <p class="stage-out">Output: growth plan</p>
         </li>
         <li class="stage">
-          <p class="stage-num">02 <span>Week 2</span></p>
-          <h3>Blueprint</h3>
-          <p>You sign off a written spec for the first workflow: triggers, tools, edge cases and where a person stays in the loop.</p>
-          <p class="stage-out">Output: workflow spec</p>
+          <p class="stage-num">02 <span>Weeks 1–2</span></p>
+          <h3>Build</h3>
+          <p>We set up your CRM, train your AI agents on your business, build funnels and prepare ad campaigns. You review everything before launch.</p>
+          <p class="stage-out">Output: system ready to test</p>
         </li>
         <li class="stage">
-          <p class="stage-num">03 <span>Weeks 3–5</span></p>
-          <h3>Build and test</h3>
-          <p>We build inside your accounts, test against real past data and run it alongside your team before switching it on.</p>
-          <p class="stage-out">Output: live workflow</p>
+          <p class="stage-num">03 <span>Week 3</span></p>
+          <h3>Launch</h3>
+          <p>Ads go live, agents start answering and follow-up sequences switch on. We watch every conversation closely in the first days.</p>
+          <p class="stage-out">Output: live campaigns and agents</p>
         </li>
         <li class="stage">
           <p class="stage-num">04 <span>Ongoing</span></p>
-          <h3>Run and improve</h3>
-          <p>We monitor every run, fix failures fast and send a monthly report on hours saved and what to automate next.</p>
-          <p class="stage-out">Output: monthly report</p>
+          <h3>Optimise</h3>
+          <p>We tune scripts, ads and workflows every week and report on leads, bookings and cost per customer.</p>
+          <p class="stage-out">Output: weekly report</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ROI -->
-  <section class="section" id="roi">
-    <div class="wrap roi">
-      <header class="section-head roi-head">
-        <p class="eyebrow">Estimate your return</p>
-        <h2>How many hours is repetitive work costing you?</h2>
-        <p class="section-sub">Move the sliders to match your team. The audit replaces these estimates with real figures from your own data.</p>
+  <!-- CALCULATOR -->
+  <section class="section" id="calculator">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">Missed-lead calculator</p>
+        <h2>How much are slow replies costing you?</h2>
+        <p class="section-sub">Most businesses lose enquiries to missed calls and late follow-up. Move the sliders to see what those leads are worth.</p>
       </header>
 
-      <form class="roi-panel" id="roi-form" aria-label="ROI calculator">
+      <form class="roi-panel" id="roi-form" aria-label="Missed-lead calculator">
         <div class="roi-inputs">
-          <label class="field-range" for="roi-people">
-            <span class="range-label">People doing repetitive work <output id="roi-people-out" for="roi-people">6</output></span>
-            <input type="range" id="roi-people" min="1" max="50" step="1" value="6">
+          <label class="field-range" for="roi-leads">
+            <span class="range-label">Leads per month <output id="roi-leads-out" for="roi-leads">120</output></span>
+            <input type="range" id="roi-leads" min="10" max="1000" step="10" value="120">
           </label>
-          <label class="field-range" for="roi-hours">
-            <span class="range-label">Hours each, per week <output id="roi-hours-out" for="roi-hours">8</output></span>
-            <input type="range" id="roi-hours" min="1" max="30" step="1" value="8">
+          <label class="field-range" for="roi-missed">
+            <span class="range-label">Missed or answered late <output id="roi-missed-out" for="roi-missed">35%</output></span>
+            <input type="range" id="roi-missed" min="5" max="70" step="5" value="35">
           </label>
-          <label class="field-range" for="roi-rate">
-            <span class="range-label">Hourly cost per person <output id="roi-rate-out" for="roi-rate">£32</output></span>
-            <input type="range" id="roi-rate" min="15" max="120" step="1" value="32">
+          <label class="field-range" for="roi-close">
+            <span class="range-label">Your close rate <output id="roi-close-out" for="roi-close">20%</output></span>
+            <input type="range" id="roi-close" min="5" max="60" step="5" value="20">
           </label>
-          <label class="field-range" for="roi-share">
-            <span class="range-label">Share we can automate <output id="roi-share-out" for="roi-share">55%</output></span>
-            <input type="range" id="roi-share" min="20" max="80" step="5" value="55">
+          <label class="field-range" for="roi-value">
+            <span class="range-label">Average customer value <output id="roi-value-out" for="roi-value">£400</output></span>
+            <input type="range" id="roi-value" min="50" max="5000" step="50" value="400">
           </label>
         </div>
 
         <dl class="roi-results" aria-live="polite">
           <div>
-            <dt>Hours back per year</dt>
-            <dd id="roi-hours-saved">1,214</dd>
+            <dt>Leads slipping away each month</dt>
+            <dd id="roi-lost-leads">42</dd>
           </div>
           <div>
-            <dt>Annual value</dt>
-            <dd id="roi-value">£38,861</dd>
+            <dt>Customers you could win back</dt>
+            <dd id="roi-customers">8 / month</dd>
           </div>
           <div>
-            <dt>Full-time equivalent</dt>
-            <dd id="roi-fte">0.7 FTE</dd>
+            <dt>Revenue recovered per year</dt>
+            <dd id="roi-revenue">£40,320</dd>
           </div>
-          <p class="roi-note">Based on 46 working weeks and a 37.5-hour week.</p>
+          <p class="roi-note">Assumes recovered leads convert at your normal close rate. Your strategy call gives you real figures.</p>
         </dl>
       </form>
-    </div>
-  </section>
-
-  <!-- ENGAGEMENTS -->
-  <section class="section" id="engagements">
-    <div class="wrap">
-      <header class="section-head">
-        <p class="eyebrow">Ways to work with us</p>
-        <h2>Start small, then scale what works.</h2>
-      </header>
-
-      <div class="plans">
-        <article class="plan plan-featured">
-          <p class="plan-tag">Start here</p>
-          <h3>Pilot</h3>
-          <p>One workflow, live in about four weeks. The low-risk way to prove the value before committing further.</p>
-          <ul>
-            <li>Automation audit and roadmap</li>
-            <li>One production workflow</li>
-            <li>30 days of monitoring</li>
-          </ul>
-        </article>
-        <article class="plan">
-          <p class="plan-tag">Scale up</p>
-          <h3>Build</h3>
-          <p>A programme of three to six automations from your roadmap, delivered one after another.</p>
-          <ul>
-            <li>Everything in Pilot</li>
-            <li>Shared dashboard of every run</li>
-            <li>Team training and handover docs</li>
-          </ul>
-        </article>
-        <article class="plan">
-          <p class="plan-tag">Ongoing</p>
-          <h3>Run</h3>
-          <p>A monthly retainer covering monitoring, fixes, model updates and new automations as you grow.</p>
-          <ul>
-            <li>Same-day failure response</li>
-            <li>Monthly savings report</li>
-            <li>New workflow hours each month</li>
-          </ul>
-        </article>
-      </div>
-      <p class="plans-note">Every engagement gets a fixed quote after the audit call.</p>
     </div>
   </section>
 
@@ -256,28 +291,32 @@
     <div class="wrap faq">
       <header class="section-head">
         <p class="eyebrow">Questions</p>
-        <h2>What teams ask before they start.</h2>
+        <h2>What clients ask before they start.</h2>
       </header>
       <div class="faq-list">
         <details>
-          <summary>Is our data safe?</summary>
-          <p>We build inside your own accounts wherever we can, use AI providers that do not train on your data, and sign an NDA and data processing agreement before we see anything. Access is limited to what each workflow needs.</p>
+          <summary>Do I need GoHighLevel already?</summary>
+          <p>No. We can set up a new account for you, move your contacts and pipelines over from another CRM, or work inside the account you already have.</p>
         </details>
         <details>
-          <summary>Do we have to change the tools we use?</summary>
-          <p>No. We connect the software you already pay for. If a tool has no API we will tell you during the audit and suggest the simplest workaround.</p>
+          <summary>Will the AI agents sound robotic?</summary>
+          <p>We train every agent on your services, prices and tone of voice, and test it on real calls and messages before it goes live. Anything it can't handle is passed to your team.</p>
         </details>
         <details>
-          <summary>What happens when an automation fails?</summary>
-          <p>Every workflow retries on its own, logs what happened and alerts us. Anything it cannot handle is passed to a named person on your team with the context they need.</p>
+          <summary>Can you work under my agency's brand?</summary>
+          <p>Yes. White-label clients get everything delivered under their own logo and domain. We never contact your clients unless you ask us to.</p>
         </details>
         <details>
-          <summary>Will this replace my staff?</summary>
-          <p>It replaces tasks, not people. Our clients use the hours they get back for sales, service and the work they hired those people to do.</p>
+          <summary>Do you manage the ad spend too?</summary>
+          <p>We manage the campaigns. Ad spend is paid directly to Google or Meta from your own account, so you always keep control of the budget and the data.</p>
         </details>
         <details>
-          <summary>How soon will something be live?</summary>
-          <p>A pilot workflow is usually running in production about four weeks after the audit call.</p>
+          <summary>How soon will I see results?</summary>
+          <p>AI agents and follow-up automations work from the day they go live. Ad campaigns usually need two to four weeks of data to settle.</p>
+        </details>
+        <details>
+          <summary>Is my customer data safe?</summary>
+          <p>Your data stays in your own accounts. We only use the access each automation needs, and we're happy to sign an NDA before we start.</p>
         </details>
       </div>
     </div>
@@ -287,10 +326,10 @@
   <section class="section" id="contact">
     <div class="wrap contact">
       <div class="contact-copy">
-        <p class="eyebrow">Free automation audit</p>
-        <h2>Tell us what eats your team's week.</h2>
-        <p class="section-sub">A 30-minute call. You leave with a ranked list of the tasks worth automating first, whether or not you work with us.</p>
-        <p class="contact-direct">Prefer email? <span class="selectable" id="contact-email">hello@ariyan.agency</span> <button type="button" class="copy-btn" id="copy-email">Copy</button></p>
+        <p class="eyebrow">Free strategy call</p>
+        <h2>Tell us what you want to automate.</h2>
+        <p class="section-sub">A 30-minute call. You leave with a clear plan for the automations that will bring in the most revenue first, whether or not you work with us.</p>
+        <p class="contact-direct">Prefer email? <span class="selectable" id="contact-email">hello@omniaibuilders.com</span> <button type="button" class="copy-btn" id="copy-email">Copy</button></p>
       </div>
 
       <form class="contact-form" id="contact-form" novalidate>
@@ -299,28 +338,42 @@
           <input id="cf-name" name="name" type="text" autocomplete="name" required>
         </div>
         <div class="field">
-          <label for="cf-email">Work email</label>
+          <label for="cf-email">Email</label>
           <input id="cf-email" name="email" type="email" autocomplete="email" required>
         </div>
         <div class="field">
-          <label for="cf-company">Company</label>
-          <input id="cf-company" name="company" type="text" autocomplete="organization">
+          <label for="cf-phone">Phone</label>
+          <input id="cf-phone" name="phone" type="tel" autocomplete="tel">
         </div>
         <div class="field">
-          <label for="cf-size">Team size</label>
-          <select id="cf-size" name="size">
-            <option>1–10</option>
-            <option selected>11–50</option>
-            <option>51–200</option>
-            <option>200+</option>
+          <label for="cf-type">I run a</label>
+          <select id="cf-type" name="type">
+            <option>Local business</option>
+            <option>Agency</option>
+            <option>Other</option>
           </select>
         </div>
         <div class="field field-wide">
-          <label for="cf-task">What would you automate first?</label>
-          <textarea id="cf-task" name="task" rows="4" placeholder="e.g. We spend two days a month matching invoices to bank transactions."></textarea>
+          <label for="cf-service">Most interested in</label>
+          <select id="cf-service" name="service">
+            <option>Not sure yet, help me decide</option>
+            <option>AI voice agents</option>
+            <option>AI chatbots</option>
+            <option>Reputation management</option>
+            <option>Google Ads management</option>
+            <option>Meta ads management</option>
+            <option>Funnels and websites</option>
+            <option>GoHighLevel CRM setup</option>
+            <option>Lead follow-up and reactivation</option>
+            <option>White-label fulfilment</option>
+          </select>
+        </div>
+        <div class="field field-wide">
+          <label for="cf-task">What would you like to automate?</label>
+          <textarea id="cf-task" name="task" rows="4" placeholder="e.g. We miss calls when the front desk is busy and our Facebook leads go cold."></textarea>
         </div>
         <div class="field-wide form-foot">
-          <button class="btn" type="submit">Request my audit</button>
+          <button class="btn" type="submit">Book my strategy call</button>
           <p class="form-status" id="form-status" role="status"></p>
         </div>
       </form>
@@ -330,9 +383,9 @@
 
 <footer class="footer">
   <div class="wrap footer-inner">
-    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>Ariyan</span></a>
-    <p>AI agents and workflow automation for growing teams.</p>
-    <p class="footer-legal">© <span id="year">2026</span> Ariyan. All rights reserved.</p>
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>Omni <span class="brand-sub">AI Builders</span></span></a>
+    <p>Automate whatever you want.</p>
+    <p class="footer-legal">© <span id="year">2026</span> Omni AI Builders. All rights reserved.</p>
   </div>
 </footer>
 
