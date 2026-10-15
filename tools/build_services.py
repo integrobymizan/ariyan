@@ -69,6 +69,19 @@ def related(s):
     return "\n".join(out)
 
 
+LOGOS = {
+    "ghl": '<img class="logo-ghl" src="../assets/img/ghl-logo.png" alt="HighLevel" width="800" height="180">',
+    "knock-knock": '<img class="logo-kk" src="../assets/img/knock-knock-logo.png" alt="Knock Knock" width="394" height="219">',
+}
+
+
+def runs_on(s):
+    if not s.get("runsOn"):
+        return ""
+    logos = "".join(LOGOS[k] for k in s["runsOn"])
+    return f'\n        <p class="svc-runs-on"><span>Runs on</span>{logos}</p>'
+
+
 def page(s):
     name = e(s["name"])
     good = "".join(f"<li>{e(g)}</li>" for g in s["goodFor"])
@@ -125,7 +138,7 @@ def page(s):
           <a class="btn" href="../index.html#contact" data-pick="{s["slug"]}">Book a call about this</a>
           <a class="btn btn-ghost" href="#included">See what's included</a>
         </div>
-        <p class="trust">Includes: {e(s["includes"])}</p>
+        <p class="trust">Includes: {e(s["includes"])}</p>{runs_on(s)}
       </div>
     </div>
   </section>

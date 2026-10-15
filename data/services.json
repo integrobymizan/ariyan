@@ -585,6 +585,9 @@
       "lead-follow-up",
       "white-label-fulfilment",
       "funnels-websites"
+    ],
+    "runsOn": [
+      "ghl"
     ]
   },
   {
@@ -669,6 +672,9 @@
       "ai-voice-agents",
       "ai-chatbots",
       "gohighlevel-crm"
+    ],
+    "runsOn": [
+      "ghl"
     ]
   },
   {
@@ -753,6 +759,9 @@
       "white-label-paid-ads",
       "knock-knock-ai",
       "gohighlevel-crm"
+    ],
+    "runsOn": [
+      "ghl"
     ]
   },
   {
@@ -837,6 +846,9 @@
       "white-label-fulfilment",
       "google-ads",
       "meta-ads"
+    ],
+    "runsOn": [
+      "ghl"
     ]
   },
   {
@@ -921,6 +933,10 @@
       "white-label-fulfilment",
       "ai-chatbots",
       "ai-voice-agents"
+    ],
+    "runsOn": [
+      "knock-knock",
+      "ghl"
     ]
   }
 ]

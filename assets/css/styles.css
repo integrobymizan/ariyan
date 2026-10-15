@@ -870,6 +870,23 @@ body.omni-hover { cursor: pointer; }
 .svc-related p { color: var(--muted); }
 .svc-related .card-icon { transform: none; }
 
+/* ---------- Partner logos (HighLevel, Knock Knock) ---------- */
+.logo-ghl, .logo-kk { display: block; width: auto; max-width: none; }
+.marquee-logo { display: flex; align-items: center; }
+.marquee-logo .logo-ghl { height: 24px; opacity: 0.85; }
+.marquee-logo .logo-kk { height: 34px; opacity: 0.8; }
+.partner-pill .logo-kk { height: 32px; }
+.kk-badge .logo-kk { height: 34px; }
+.contact-crm { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; color: var(--muted); font-size: 0.92rem; }
+.contact-crm .logo-ghl { height: 20px; }
+.svc-runs-on {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.svc-runs-on .logo-ghl { height: 24px; }
+.svc-runs-on .logo-kk { height: 36px; }
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
