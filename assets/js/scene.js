@@ -282,6 +282,10 @@
     poke: "That tickles! Book a call and I'll get to work."
   };
   var POSE = { core: "wave", finale: "wave", services: "present", audiences: "present", kk: "present", process: "present", calculator: "think", faq: "think", contact: "present" };
+  // Service detail pages reuse the home page spots
+  LAYOUT.svc = LAYOUT.core; POSE.svc = "wave";
+  LAYOUT["svc-features"] = LAYOUT.services; POSE["svc-features"] = "present";
+  LAYOUT["svc-steps"] = LAYOUT.process; POSE["svc-steps"] = "present";
 
   var sections = Array.prototype.slice.call(document.querySelectorAll("[data-agent]"));
 
@@ -312,7 +316,9 @@
   var blink = { next: 2, t: -1 };
   var wave = { until: 2.6 };
   var spin = { t: -1 };
-  var current = { key: "", pose: "wave" };
+  var current = { el: null, key: "", pose: "wave" };
+  var dock = { fn: null, last: null, blend: 0 };
+  var intro = { t: reduceMotion ? 1 : 0 };
   var v3 = new THREE.Vector3(), hL = new THREE.Vector3(), hR = new THREE.Vector3();
 
   /* ---------- Speech bubble ---------- */
@@ -320,8 +326,8 @@
   var bubbleText = document.getElementById("agent-text");
   var said = "", typing = { text: "", shown: 0, clock: 0 }, talkUntil = 0, pokeTimer = 0;
 
-  function say(keyName) {
-    var line = LINES[keyName] || "";
+  function say(keyName, el) {
+    var line = (el && el.getAttribute("data-agent-line")) || LINES[keyName] || "";
     if (line === said) return;
     said = line;
     typing.text = line;
@@ -339,13 +345,63 @@
     var la = (LAYOUT[a] || LAYOUT.core)[small ? "m" : "d"], lb = (LAYOUT[b] || LAYOUT.core)[small ? "m" : "d"];
     function mix(k) { return la[k] + (lb[k] - la[k]) * t; }
     var near = t < 0.5 ? la : lb;
-    return { x: mix(0), y: mix(1), s: mix(2), f: mix(3), side: near[4], key: t < 0.5 ? a : b, moving: t > 0.04 && t < 0.96 };
+    return {
+      x: mix(0), y: mix(1), s: mix(2), f: mix(3), side: near[4],
+      key: t < 0.5 ? a : b, el: t < 0.5 ? sections[i] : sections[j],
+      moving: t > 0.04 && t < 0.96
+    };
+  }
+
+  // Where to stand when the chat panel is open: beside it on desktop, on top of it on phones.
+  function dockTarget() {
+    if (!dock.fn) return null;
+    var r = dock.fn();
+    if (!r || !r.width) return null;
+    var w = window.innerWidth, h = window.innerHeight, u = h / (2 * Math.tan(Math.PI / 8) * 10);
+    var sc, sx, sy, f;
+    if (r.left > 320) {
+      sc = 0.55;
+      sx = r.left - 1.45 * sc * u;
+      sy = Math.max(r.top + 150, 80 + 2.1 * sc * u);
+      f = 0.35;
+    } else {
+      sc = 0.3;
+      sx = r.right - 1.3 * sc * u;
+      sy = r.top - 2.1 * sc * u;
+      f = -0.2;
+    }
+    return { x: (sx - w / 2) / u, y: (h / 2 - sy) / u, s: sc, f: f };
   }
 
   function update(dt) {
     elapsed += dt;
     if (sections.length) pos += (scrollTarget() - pos) * Math.min(1, dt * 3.2);
-    var pl = sections.length ? placement(pos) : { x: 3.2, y: 0, s: 1, f: -0.3, side: 1, key: "core", moving: false };
+    var pl = sections.length ? placement(pos) : { x: 3.2, y: 0, s: 1, f: -0.3, side: 1, key: "core", el: null, moving: false };
+
+    // Docked beside the chat panel
+    var dt2 = dockTarget();
+    if (dt2) dock.last = dt2;
+    dock.blend += ((dt2 ? 1 : 0) - dock.blend) * (reduceMotion ? 1 : Math.min(1, dt * 3.5));
+    if (dock.blend > 0.001 && dock.last) {
+      var bl = dock.blend, d = dock.last;
+      pl.x += (d.x - pl.x) * bl;
+      pl.y += (d.y - pl.y) * bl;
+      pl.s += (d.s - pl.s) * bl;
+      pl.f += (d.f - pl.f) * bl;
+      if (bl > 0.02) pl.side = 0;
+    }
+
+    // Entrance: fly in from the right with a spin, then wave
+    var introSpin = 0;
+    if (intro.t < 1) {
+      intro.t = Math.min(1, intro.t + dt / 1.8);
+      var ie = 1 - Math.pow(1 - intro.t, 3);
+      pl.x += (1 - ie) * 9;
+      pl.y += (1 - ie) * 1.5;
+      introSpin = (1 - ie) * Math.PI * 2;
+      pl.moving = true;
+      if (intro.t >= 1) wave.until = elapsed + 2.6;
+    }
 
     // Flight: lean into the direction of travel
     if (lastX !== null && dt > 0) lean += (((pl.x - lastX) / dt) * -0.04 - lean) * Math.min(1, dt * 4);
@@ -356,11 +412,12 @@
     rig.position.y = reduceMotion ? 0 : Math.sin(elapsed * 1.6) * 0.08;
     rig.rotation.z = Math.max(-0.35, Math.min(0.35, lean)) + (reduceMotion ? 0 : Math.sin(elapsed * 0.9) * 0.025);
 
-    if (pl.key !== current.key) {
+    if (pl.el !== current.el) {
+      current.el = pl.el;
       current.key = pl.key;
       current.pose = POSE[pl.key] || "idle";
-      if (current.pose === "wave") wave.until = elapsed + 2.6;
-      if (!pokeTimer) say(pl.key);
+      if (current.pose === "wave" && intro.t >= 1) wave.until = elapsed + 2.6;
+      if (!pokeTimer) say(pl.key, pl.el);
     }
 
     // Facing, plus a spin when clicked
@@ -371,7 +428,7 @@
       spinAngle = Math.PI * 2 * (1 - Math.pow(1 - k, 3));
       if (k >= 1) spin.t = -1;
     }
-    agent.rotation.y = pl.f + spinAngle;
+    agent.rotation.y = pl.f + spinAngle + introSpin;
 
     // Head follows the cursor, relative to where the agent is on screen
     head.localToWorld(v3.set(0, 0, 0));
@@ -495,16 +552,17 @@
 
   var raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2();
   window.addEventListener("click", function (e) {
-    if (e.target.closest && e.target.closest("a, button, input, select, textarea, summary, label, .card, .carousel-stage, .kk-card, .audience")) return;
+    if (e.target.closest && e.target.closest("a, button, input, select, textarea, summary, label, .card, .carousel-stage, .kk-card, .audience, .omni-chat, .omni-launch")) return;
     ndc.set((e.clientX / window.innerWidth) * 2 - 1, -((e.clientY / window.innerHeight) * 2 - 1));
     raycaster.setFromCamera(ndc, camera);
     if (!raycaster.intersectObjects(pickables, false).length) return;
     wave.until = elapsed + 2.2;
     if (!reduceMotion) spin.t = 0;
+    if (window.OmniChat) { window.OmniChat.open(true); if (reduceMotion) { update(0); render(); } return; }
     said = "";
     say("poke");
     clearTimeout(pokeTimer);
-    pokeTimer = setTimeout(function () { pokeTimer = 0; said = ""; say(current.key); }, 3200);
+    pokeTimer = setTimeout(function () { pokeTimer = 0; said = ""; say(current.key, current.el); }, 3200);
     if (reduceMotion) { update(0); render(); }
   });
 
@@ -517,6 +575,14 @@
     render();
     rafId = requestAnimationFrame(frame);
   }
+
+  // Used by chat.js: dock beside the chat panel, talk, wave.
+  window.OmniAgent = {
+    dock: function (fn) { dock.fn = fn; if (reduceMotion) { update(0); render(); } },
+    undock: function () { dock.fn = null; if (reduceMotion) { update(0); render(); } },
+    talk: function (seconds) { talkUntil = seconds > 0 ? elapsed + seconds : 0; },
+    wave: function () { wave.until = elapsed + 2.4; }
+  };
 
   resize();
 

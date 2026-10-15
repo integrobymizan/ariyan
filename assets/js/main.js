@@ -276,6 +276,30 @@
     cursor.remove();
   }
 
+  /* ---------- Remember the chosen service and prefill the form ---------- */
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (err) { /* ignore */ } }
+  function read(k) { try { return localStorage.getItem(k); } catch (err) { return null; } }
+
+  document.querySelectorAll("[data-pick]").forEach(function (a) {
+    a.addEventListener("click", function () { store("omni-service", a.getAttribute("data-pick")); });
+  });
+
+  window.OmniPrefill = function () {
+    var slug = read("omni-service");
+    var list = window.OMNI_SERVICES || [];
+    var s = list.filter(function (x) { return x.slug === slug; })[0];
+    if (!s) return;
+    var service = document.getElementById("cf-service");
+    var type = document.getElementById("cf-type");
+    if (service) {
+      for (var i = 0; i < service.options.length; i++) {
+        if (service.options[i].text === s.name) { service.selectedIndex = i; break; }
+      }
+    }
+    if (type && s.audience === "agency") type.value = "Agency";
+  };
+  window.OmniPrefill();
+
   /* ---------- Audience buttons preselect the form ---------- */
   document.querySelectorAll("[data-audience]").forEach(function (btn) {
     btn.addEventListener("click", function () {
