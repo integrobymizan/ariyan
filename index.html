@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ariyan AI Automation</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ariyan designs, builds and runs AI agents and workflow automations for growing teams.">
+<meta name="theme-color" content="#0A0F14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="scrim" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Ariyan home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Ariyan</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#roi">ROI</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-small" href="#contact">Book an audit</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">AI automation studio · United Kingdom</p>
+        <h1>Put your busywork on <em>autopilot</em>.</h1>
+        <p class="lede">We design, build and run AI agents and workflow automations for growing teams. We connect the tools you already use, so leads get followed up, invoices get chased and tickets get answered without anyone copying and pasting.</p>
+        <div class="cta-row">
+          <a class="btn" href="#contact">Book a free automation audit</a>
+          <a class="btn btn-ghost" href="#services">See what we automate</a>
+        </div>
+      </div>
+
+      <aside class="runlog" aria-label="Sample run log">
+        <div class="runlog-head">
+          <span class="dot" aria-hidden="true"></span>
+          <span>workflow runs</span>
+          <span class="runlog-tag">sample</span>
+        </div>
+        <ol class="runlog-list" id="runlog"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="tools" aria-label="Tools we connect">
+    <p class="wrap tools-label">Connects to the stack you already run</p>
+    <div class="marquee">
+      <ul class="marquee-track">
+        <li>Gmail</li><li>Outlook</li><li>Slack</li><li>Microsoft Teams</li><li>HubSpot</li><li>Salesforce</li><li>Xero</li><li>QuickBooks</li><li>Shopify</li><li>Notion</li><li>Airtable</li><li>Google Sheets</li><li>WhatsApp</li><li>Zendesk</li><li>Claude</li><li>OpenAI</li><li>n8n</li><li>Make</li>
+      </ul>
+      <ul class="marquee-track" aria-hidden="true">
+        <li>Gmail</li><li>Outlook</li><li>Slack</li><li>Microsoft Teams</li><li>HubSpot</li><li>Salesforce</li><li>Xero</li><li>QuickBooks</li><li>Shopify</li><li>Notion</li><li>Airtable</li><li>Google Sheets</li><li>WhatsApp</li><li>Zendesk</li><li>Claude</li><li>OpenAI</li><li>n8n</li><li>Make</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">What we automate</p>
+        <h2>Six workflows that give teams their week back.</h2>
+        <p class="section-sub">Most of our work falls into these areas. Each one runs inside your existing tools, with a person kept in the loop wherever judgement matters.</p>
+      </header>
+
+      <div class="cards">
+        <article class="card tilt">
+          <div class="card-icon" data-icon="lead" aria-hidden="true"></div>
+          <h3>Lead capture and follow-up</h3>
+          <p>Every enquiry from your site, inbox or ads is qualified, logged in your CRM and answered within minutes, day or night.</p>
+          <p class="card-meta"><span>Replaces</span> manual CRM entry, slow first replies</p>
+        </article>
+        <article class="card tilt">
+          <div class="card-icon" data-icon="support" aria-hidden="true"></div>
+          <h3>Customer support agents</h3>
+          <p>An AI agent trained on your help docs answers routine tickets and hands the tricky ones to a person with the full context attached.</p>
+          <p class="card-meta"><span>Replaces</span> copy-paste answers, ticket triage</p>
+        </article>
+        <article class="card tilt">
+          <div class="card-icon" data-icon="finance" aria-hidden="true"></div>
+          <h3>Finance and back office</h3>
+          <p>Invoices raised, matched and chased. Receipts read, coded and filed in Xero or QuickBooks before month end arrives.</p>
+          <p class="card-meta"><span>Replaces</span> reconciliation, payment chasing</p>
+        </article>
+        <article class="card tilt">
+          <div class="card-icon" data-icon="docs" aria-hidden="true"></div>
+          <h3>Document processing</h3>
+          <p>Contracts, forms and PDFs read by AI, with the key fields pulled out and pushed into the systems that need them.</p>
+          <p class="card-meta"><span>Replaces</span> retyping data from PDFs</p>
+        </article>
+        <article class="card tilt">
+          <div class="card-icon" data-icon="knowledge" aria-hidden="true"></div>
+          <h3>Internal knowledge assistant</h3>
+          <p>Ask a question in Slack or Teams and get an answer drawn from your own policies, SOPs and past projects, with sources linked.</p>
+          <p class="card-meta"><span>Replaces</span> hunting through shared drives</p>
+        </article>
+        <article class="card tilt">
+          <div class="card-icon" data-icon="report" aria-hidden="true"></div>
+          <h3>Reporting and ops alerts</h3>
+          <p>Weekly numbers compiled and sent automatically, with an alert the moment something moves outside its normal range.</p>
+          <p class="card-meta"><span>Replaces</span> Monday-morning spreadsheets</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" id="process">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">How an engagement runs</p>
+        <h2>From audit to live workflow in about five weeks.</h2>
+      </header>
+
+      <ol class="pipeline">
+        <li class="stage">
+          <p class="stage-num">01 <span>Week 1</span></p>
+          <h3>Audit</h3>
+          <p>We map how work actually moves through your team and rank every task by hours saved against effort to automate.</p>
+          <p class="stage-out">Output: automation roadmap</p>
+        </li>
+        <li class="stage">
+          <p class="stage-num">02 <span>Week 2</span></p>
+          <h3>Blueprint</h3>
+          <p>You sign off a written spec for the first workflow: triggers, tools, edge cases and where a person stays in the loop.</p>
+          <p class="stage-out">Output: workflow spec</p>
+        </li>
+        <li class="stage">
+          <p class="stage-num">03 <span>Weeks 3–5</span></p>
+          <h3>Build and test</h3>
+          <p>We build inside your accounts, test against real past data and run it alongside your team before switching it on.</p>
+          <p class="stage-out">Output: live workflow</p>
+        </li>
+        <li class="stage">
+          <p class="stage-num">04 <span>Ongoing</span></p>
+          <h3>Run and improve</h3>
+          <p>We monitor every run, fix failures fast and send a monthly report on hours saved and what to automate next.</p>
+          <p class="stage-out">Output: monthly report</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="section" id="roi">
+    <div class="wrap roi">
+      <header class="section-head roi-head">
+        <p class="eyebrow">Estimate your return</p>
+        <h2>How many hours is repetitive work costing you?</h2>
+        <p class="section-sub">Move the sliders to match your team. The audit replaces these estimates with real figures from your own data.</p>
+      </header>
+
+      <form class="roi-panel" id="roi-form" aria-label="ROI calculator">
+        <div class="roi-inputs">
+          <label class="field-range" for="roi-people">
+            <span class="range-label">People doing repetitive work <output id="roi-people-out" for="roi-people">6</output></span>
+            <input type="range" id="roi-people" min="1" max="50" step="1" value="6">
+          </label>
+          <label class="field-range" for="roi-hours">
+            <span class="range-label">Hours each, per week <output id="roi-hours-out" for="roi-hours">8</output></span>
+            <input type="range" id="roi-hours" min="1" max="30" step="1" value="8">
+          </label>
+          <label class="field-range" for="roi-rate">
+            <span class="range-label">Hourly cost per person <output id="roi-rate-out" for="roi-rate">£32</output></span>
+            <input type="range" id="roi-rate" min="15" max="120" step="1" value="32">
+          </label>
+          <label class="field-range" for="roi-share">
+            <span class="range-label">Share we can automate <output id="roi-share-out" for="roi-share">55%</output></span>
+            <input type="range" id="roi-share" min="20" max="80" step="5" value="55">
+          </label>
+        </div>
+
+        <dl class="roi-results" aria-live="polite">
+          <div>
+            <dt>Hours back per year</dt>
+            <dd id="roi-hours-saved">1,214</dd>
+          </div>
+          <div>
+            <dt>Annual value</dt>
+            <dd id="roi-value">£38,861</dd>
+          </div>
+          <div>
+            <dt>Full-time equivalent</dt>
+            <dd id="roi-fte">0.7 FTE</dd>
+          </div>
+          <p class="roi-note">Based on 46 working weeks and a 37.5-hour week.</p>
+        </dl>
+      </form>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENTS -->
+  <section class="section" id="engagements">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">Ways to work with us</p>
+        <h2>Start small, then scale what works.</h2>
+      </header>
+
+      <div class="plans">
+        <article class="plan plan-featured">
+          <p class="plan-tag">Start here</p>
+          <h3>Pilot</h3>
+          <p>One workflow, live in about four weeks. The low-risk way to prove the value before committing further.</p>
+          <ul>
+            <li>Automation audit and roadmap</li>
+            <li>One production workflow</li>
+            <li>30 days of monitoring</li>
+          </ul>
+        </article>
+        <article class="plan">
+          <p class="plan-tag">Scale up</p>
+          <h3>Build</h3>
+          <p>A programme of three to six automations from your roadmap, delivered one after another.</p>
+          <ul>
+            <li>Everything in Pilot</li>
+            <li>Shared dashboard of every run</li>
+            <li>Team training and handover docs</li>
+          </ul>
+        </article>
+        <article class="plan">
+          <p class="plan-tag">Ongoing</p>
+          <h3>Run</h3>
+          <p>A monthly retainer covering monitoring, fixes, model updates and new automations as you grow.</p>
+          <ul>
+            <li>Same-day failure response</li>
+            <li>Monthly savings report</li>
+            <li>New workflow hours each month</li>
+          </ul>
+        </article>
+      </div>
+      <p class="plans-note">Every engagement gets a fixed quote after the audit call.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap faq">
+      <header class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>What teams ask before they start.</h2>
+      </header>
+      <div class="faq-list">
+        <details>
+          <summary>Is our data safe?</summary>
+          <p>We build inside your own accounts wherever we can, use AI providers that do not train on your data, and sign an NDA and data processing agreement before we see anything. Access is limited to what each workflow needs.</p>
+        </details>
+        <details>
+          <summary>Do we have to change the tools we use?</summary>
+          <p>No. We connect the software you already pay for. If a tool has no API we will tell you during the audit and suggest the simplest workaround.</p>
+        </details>
+        <details>
+          <summary>What happens when an automation fails?</summary>
+          <p>Every workflow retries on its own, logs what happened and alerts us. Anything it cannot handle is passed to a named person on your team with the context they need.</p>
+        </details>
+        <details>
+          <summary>Will this replace my staff?</summary>
+          <p>It replaces tasks, not people. Our clients use the hours they get back for sales, service and the work they hired those people to do.</p>
+        </details>
+        <details>
+          <summary>How soon will something be live?</summary>
+          <p>A pilot workflow is usually running in production about four weeks after the audit call.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap contact">
+      <div class="contact-copy">
+        <p class="eyebrow">Free automation audit</p>
+        <h2>Tell us what eats your team's week.</h2>
+        <p class="section-sub">A 30-minute call. You leave with a ranked list of the tasks worth automating first, whether or not you work with us.</p>
+        <p class="contact-direct">Prefer email? <span class="selectable" id="contact-email">hello@ariyan.agency</span> <button type="button" class="copy-btn" id="copy-email">Copy</button></p>
+      </div>
+
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-email">Work email</label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-company">Company</label>
+          <input id="cf-company" name="company" type="text" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="cf-size">Team size</label>
+          <select id="cf-size" name="size">
+            <option>1–10</option>
+            <option selected>11–50</option>
+            <option>51–200</option>
+            <option>200+</option>
+          </select>
+        </div>
+        <div class="field field-wide">
+          <label for="cf-task">What would you automate first?</label>
+          <textarea id="cf-task" name="task" rows="4" placeholder="e.g. We spend two days a month matching invoices to bank transactions."></textarea>
+        </div>
+        <div class="field-wide form-foot">
+          <button class="btn" type="submit">Request my audit</button>
+          <p class="form-status" id="form-status" role="status"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>Ariyan</span></a>
+    <p>AI agents and workflow automation for growing teams.</p>
+    <p class="footer-legal">© <span id="year">2026</span> Ariyan. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/js/scene.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
