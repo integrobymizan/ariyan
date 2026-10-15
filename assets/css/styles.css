@@ -873,6 +873,8 @@ body.omni-hover { cursor: pointer; }
 /* ---------- Partner logos (HighLevel, Knock Knock) ---------- */
 .logo-ghl, .logo-kk { display: block; width: auto; max-width: none; }
 .marquee-logo { display: flex; align-items: center; }
+.marquee-track li.marquee-brand { display: flex; align-items: center; gap: 10px; }
+.marquee-brand img { width: 24px; height: 24px; flex: none; }
 .marquee-logo .logo-ghl { height: 24px; opacity: 0.85; }
 .marquee-logo .logo-kk { height: 34px; opacity: 0.8; }
 .partner-pill .logo-kk { height: 32px; }
