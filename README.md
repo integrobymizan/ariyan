@@ -1,6 +1,10 @@
 # Omni AI Builders website
 
-A single-page marketing site for Omni AI Builders with a live 3D hero: a graph where lead channels (calls, WhatsApp, Google Ads, Meta Ads, reviews…) feed a central AI core, which sends bookings, replies and follow-ups back out.
+A single-page 3D marketing site for Omni AI Builders.
+
+- **Scroll-driven particle morph:** 18,000 GPU particles (9,000 on phones) change into a new 3D form for each section: an AI orb, a ring of nine service clusters, two linked orbs, a double helix, a data wave, a galaxy, and finally the word OMNI. They scatter between shapes and push away from the cursor.
+- **3D services carousel:** nine service cards on a rotating ring you can drag, step through, filter or use with the keyboard. It becomes a plain grid below 900px.
+- Cursor glow, scroll progress bar, 3D tilt panels, missed-lead calculator.
 
 Plain HTML, CSS and JavaScript. No build step. [Three.js](https://threejs.org/) r128 loads from cdnjs.
 
@@ -19,8 +23,8 @@ python3 -m http.server 8080
 ```
 index.html              Page content and sections
 assets/css/styles.css   Design tokens (top of file) and all styles
-assets/js/scene.js      Three.js workflow graph (hero background)
-assets/js/main.js       Run log, card tilt, service filters, missed-lead calculator, contact form
+assets/js/scene.js      Three.js particle system that morphs per section
+assets/js/main.js       Run log, 3D carousel, filters, calculator, cursor, contact form
 ```
 
 ## Customise
@@ -29,7 +33,8 @@ assets/js/main.js       Run log, card tilt, service filters, missed-lead calcula
 | --- | --- |
 | Brand name, copy, services, sections | `index.html` |
 | Colours and fonts | `:root` tokens at the top of `assets/css/styles.css` |
-| Channels shown in the 3D graph | `APPS` array in `assets/js/scene.js` |
+| Shape and position per section | `data-shape` on each section, `LAYOUT` in `assets/js/scene.js` |
+| Word the particles spell | `shapeText("OMNI")` in `assets/js/scene.js` |
 | Sample run log lines | `RUNS` array in `assets/js/main.js` |
 | Missed-lead calculator maths | `calc()` in `assets/js/main.js` |
 | Contact email | `#contact-email` in `index.html` |

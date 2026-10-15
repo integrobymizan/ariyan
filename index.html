@@ -48,12 +48,14 @@
     </nav>
     <a class="btn btn-small" href="#contact">Book a call</a>
   </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 </header>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" data-shape="core">
     <div class="wrap hero-inner">
       <div class="hero-copy">
         <p class="eyebrow">AI automation · Ads · GoHighLevel</p>
@@ -91,7 +93,7 @@
   </section>
 
   <!-- SERVICES -->
-  <section class="section" id="services">
+  <section class="section" id="services" data-shape="services">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">Services</p>
@@ -107,67 +109,76 @@
         <button type="button" class="chip" data-filter="agency" aria-pressed="false">For agencies <span>1</span></button>
       </div>
 
-      <div class="cards">
-        <article class="card tilt" data-cat="ai">
+      <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Services">
+        <div class="carousel-stage" id="carousel-stage">
+          <div class="cards carousel-ring" id="carousel-ring">
+        <article class="card" tabindex="0" style="--i:0" data-cat="ai">
           <div class="card-top"><svg class="card-icon"><use href="#i-voice"/></svg><span class="card-cat">AI agents</span></div>
           <h3>AI voice agents</h3>
           <p>A natural-sounding AI receptionist answers every call 24/7, qualifies the caller, answers questions and books straight into your calendar.</p>
           <p class="card-meta"><span>Includes</span> inbound and outbound calls, missed-call text back</p>
         </article>
-        <article class="card tilt" data-cat="ai">
+        <article class="card" tabindex="0" style="--i:1" data-cat="ai">
           <div class="card-top"><svg class="card-icon"><use href="#i-chat"/></svg><span class="card-cat">AI agents</span></div>
           <h3>AI chatbots</h3>
           <p>Conversation AI on your website, WhatsApp, Instagram, Facebook and SMS that replies in seconds and turns enquiries into bookings.</p>
           <p class="card-meta"><span>Includes</span> trained on your FAQs, live hand-off to staff</p>
         </article>
-        <article class="card tilt" data-cat="ai">
+        <article class="card" tabindex="0" style="--i:2" data-cat="ai">
           <div class="card-top"><svg class="card-icon"><use href="#i-reviews"/></svg><span class="card-cat">AI agents</span></div>
           <h3>Reputation management</h3>
           <p>Automatic review requests after every job, AI replies to new reviews, and alerts before a bad one goes public.</p>
           <p class="card-meta"><span>Includes</span> Google and Facebook reviews, review widgets</p>
         </article>
-        <article class="card tilt" data-cat="growth">
+        <article class="card" tabindex="0" style="--i:3" data-cat="growth">
           <div class="card-top"><svg class="card-icon"><use href="#i-google"/></svg><span class="card-cat">Ads and funnels</span></div>
           <h3>Google Ads management</h3>
           <p>Search, Local Services and Performance Max campaigns built around buyers who are ready now, with every lead tracked back to the keyword.</p>
           <p class="card-meta"><span>Includes</span> setup, copy, conversion tracking, monthly reporting</p>
         </article>
-        <article class="card tilt" data-cat="growth">
+        <article class="card" tabindex="0" style="--i:4" data-cat="growth">
           <div class="card-top"><svg class="card-icon"><use href="#i-meta"/></svg><span class="card-cat">Ads and funnels</span></div>
           <h3>Meta ads management</h3>
           <p>Facebook and Instagram campaigns with scroll-stopping creative and instant-form leads that land in your CRM and get a reply in under a minute.</p>
           <p class="card-meta"><span>Includes</span> creative, audiences, retargeting, A/B testing</p>
         </article>
-        <article class="card tilt" data-cat="growth">
+        <article class="card" tabindex="0" style="--i:5" data-cat="growth">
           <div class="card-top"><svg class="card-icon"><use href="#i-funnel"/></svg><span class="card-cat">Ads and funnels</span></div>
           <h3>Funnels and websites</h3>
           <p>Fast landing pages, booking funnels and websites built to convert ad traffic, with forms and calendars wired into your automations.</p>
           <p class="card-meta"><span>Includes</span> copy, design, hosting, analytics</p>
         </article>
-        <article class="card tilt" data-cat="crm">
+        <article class="card" tabindex="0" style="--i:6" data-cat="crm">
           <div class="card-top"><svg class="card-icon"><use href="#i-crm"/></svg><span class="card-cat">CRM and automation</span></div>
           <h3>GoHighLevel CRM setup</h3>
           <p>Pipelines, calendars, workflows and dashboards configured for how you sell, so your team sees every lead and what to do next.</p>
           <p class="card-meta"><span>Includes</span> migration, workflows, team training</p>
         </article>
-        <article class="card tilt" data-cat="crm">
+        <article class="card" tabindex="0" style="--i:7" data-cat="crm">
           <div class="card-top"><svg class="card-icon"><use href="#i-followup"/></svg><span class="card-cat">CRM and automation</span></div>
           <h3>Lead follow-up and reactivation</h3>
           <p>Speed-to-lead SMS and email within seconds, nurture sequences that run for months, and campaigns that wake up your old customer list.</p>
           <p class="card-meta"><span>Includes</span> SMS, email, WhatsApp, appointment reminders</p>
         </article>
-        <article class="card tilt card-agency" data-cat="agency">
+        <article class="card card-agency" tabindex="0" style="--i:8" data-cat="agency">
           <div class="card-top"><svg class="card-icon"><use href="#i-whitelabel"/></svg><span class="card-cat">For agencies</span></div>
           <h3>White-label fulfilment</h3>
           <p>We deliver AI agents, GoHighLevel builds, funnels and ad campaigns under your brand. You keep the client and the margin; we do the work.</p>
           <p class="card-meta"><span>Includes</span> snapshots, SaaS setup, client onboarding</p>
         </article>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button type="button" class="round-btn" id="car-prev" aria-label="Previous service"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <p class="carousel-count" id="car-count" aria-live="polite">01 / 09 · AI voice agents</p>
+          <button type="button" class="round-btn" id="car-next" aria-label="Next service"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- WHO WE HELP -->
-  <section class="section" id="who">
+  <section class="section" id="who" data-shape="audiences">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">Who we help</p>
@@ -175,7 +186,7 @@
       </header>
 
       <div class="audiences">
-        <article class="audience">
+        <article class="audience tilt">
           <p class="plan-tag">Local businesses</p>
           <h3>More booked customers from the leads you already pay for.</h3>
           <p>Clinics, dentists, opticians, trades, salons, gyms, estate agents and restaurants. We run your ads, answer every call and message, follow up every lead and fill your diary.</p>
@@ -186,7 +197,7 @@
           </ul>
           <a class="btn" href="#contact" data-audience="Local business">I run a business</a>
         </article>
-        <article class="audience audience-agency">
+        <article class="audience audience-agency tilt">
           <p class="plan-tag">Agencies</p>
           <h3>Sell AI and automation without hiring a build team.</h3>
           <p>Marketing agencies, consultants and GoHighLevel SaaS owners. We build and maintain everything under your brand so you can sign more clients without growing your payroll.</p>
@@ -202,7 +213,7 @@
   </section>
 
   <!-- PROCESS -->
-  <section class="section" id="process">
+  <section class="section" id="process" data-shape="process">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">How it works</p>
@@ -239,7 +250,7 @@
   </section>
 
   <!-- CALCULATOR -->
-  <section class="section" id="calculator">
+  <section class="section" id="calculator" data-shape="calculator">
     <div class="wrap">
       <header class="section-head">
         <p class="eyebrow">Missed-lead calculator</p>
@@ -287,7 +298,7 @@
   </section>
 
   <!-- FAQ -->
-  <section class="section" id="faq">
+  <section class="section" id="faq" data-shape="faq">
     <div class="wrap faq">
       <header class="section-head">
         <p class="eyebrow">Questions</p>
@@ -322,8 +333,18 @@
     </div>
   </section>
 
+  <!-- FINALE: particles spell OMNI above this -->
+  <section class="finale" data-shape="finale" aria-labelledby="finale-title">
+    <div class="wrap finale-inner">
+      <p class="eyebrow">Omni AI Builders</p>
+      <h2 id="finale-title">Your AI workforce, live in three weeks.</h2>
+      <p class="section-sub">Voice agents, chatbots, ads and follow-up, all working together in one system.</p>
+      <div class="cta-row"><a class="btn" href="#contact">Book a free strategy call</a></div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
-  <section class="section" id="contact">
+  <section class="section" id="contact" data-shape="contact">
     <div class="wrap contact">
       <div class="contact-copy">
         <p class="eyebrow">Free strategy call</p>

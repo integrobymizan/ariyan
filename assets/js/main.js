@@ -111,25 +111,169 @@
     calc();
   }
 
-  /* ---------- Service filters ---------- */
+  /* ---------- Services: 3D carousel with category filters ---------- */
+  var carousel = document.getElementById("carousel");
+  var stage = document.getElementById("carousel-stage");
+  var ring = document.getElementById("carousel-ring");
+  var serviceCards = Array.prototype.slice.call(document.querySelectorAll(".cards .card[data-cat]"));
   var chips = document.querySelectorAll(".chip[data-filter]");
-  var serviceCards = document.querySelectorAll(".cards .card[data-cat]");
+  var countEl = document.getElementById("car-count");
+  var STEP = 360 / serviceCards.length;
+  var wide = window.matchMedia("(min-width: 900px)");
+  var car = { angle: 0, target: 0, dragging: false, startX: 0, startAngle: 0, lastInput: 0, hover: false, raf: 0 };
+  var activeFilter = "all";
+
+  function is3d() { return carousel && carousel.classList.contains("is-3d"); }
+  function frontIndex() {
+    var n = serviceCards.length;
+    return ((Math.round(-car.target / STEP) % n) + n) % n;
+  }
+  function goTo(i) {
+    // Shortest rotation to bring card i to the front
+    var cur = car.target, want = -i * STEP;
+    var diff = ((want - cur) % 360 + 540) % 360 - 180;
+    car.target = cur + diff;
+    car.lastInput = performance.now();
+    kick();
+  }
+  function step(dir) { car.target -= dir * STEP; car.lastInput = performance.now(); kick(); }
+
+  function paint() {
+    ring.style.setProperty("--angle", car.angle + "deg");
+    var front = frontIndex();
+    serviceCards.forEach(function (card, i) {
+      var rel = ((i * STEP + car.angle) % 360 + 540) % 360 - 180;
+      var facing = Math.cos(rel * Math.PI / 180);
+      card.style.opacity = String(Math.max(0, 0.15 + 0.85 * Math.pow(Math.max(0, facing), 1.4)));
+      card.style.pointerEvents = facing > 0.6 ? "auto" : "none";
+      card.classList.toggle("is-front", i === front);
+      card.setAttribute("aria-hidden", facing > 0.6 ? "false" : "true");
+    });
+    if (countEl) {
+      var title = serviceCards[front].querySelector("h3").textContent;
+      countEl.textContent = String(front + 1).padStart(2, "0") + " / " + String(serviceCards.length).padStart(2, "0") + " · " + title;
+    }
+  }
+
+  function tick() {
+    car.raf = 0;
+    if (!is3d()) return;
+    var now = performance.now();
+    if (!car.dragging && !car.hover && !reduceMotion && now - car.lastInput > 4500) {
+      car.target -= STEP;
+      car.lastInput = now;
+    }
+    var k = reduceMotion ? 1 : 0.12;
+    if (!car.dragging) car.angle += (car.target - car.angle) * k;
+    paint();
+    if (!reduceMotion || Math.abs(car.target - car.angle) > 0.05 || car.dragging) car.raf = requestAnimationFrame(tick);
+  }
+  function kick() { if (!car.raf && is3d()) car.raf = requestAnimationFrame(tick); }
+
+  function setMode() {
+    if (!carousel) return;
+    var on = wide.matches;
+    carousel.classList.toggle("is-3d", on);
+    serviceCards.forEach(function (card) {
+      card.style.opacity = "";
+      card.style.pointerEvents = "";
+      card.removeAttribute("aria-hidden");
+      card.classList.remove("is-front");
+      card.hidden = !on && activeFilter !== "all" && card.getAttribute("data-cat") !== activeFilter;
+      card.classList.toggle("is-dim", on && activeFilter !== "all" && card.getAttribute("data-cat") !== activeFilter);
+    });
+    if (on) { car.lastInput = performance.now(); paint(); kick(); }
+  }
+
+  if (carousel && ring) {
+    car.lastInput = performance.now();
+    if (wide.addEventListener) wide.addEventListener("change", setMode); else wide.addListener(setMode);
+    setMode();
+
+    document.getElementById("car-prev").addEventListener("click", function () { step(-1); });
+    document.getElementById("car-next").addEventListener("click", function () { step(1); });
+
+    carousel.addEventListener("mouseenter", function () { car.hover = true; });
+    carousel.addEventListener("mouseleave", function () { car.hover = false; car.lastInput = performance.now(); });
+    carousel.addEventListener("keydown", function (e) {
+      if (!is3d()) return;
+      if (e.key === "ArrowRight") { e.preventDefault(); step(1); serviceCards[frontIndex()].focus({ preventScroll: true }); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); serviceCards[frontIndex()].focus({ preventScroll: true }); }
+    });
+    serviceCards.forEach(function (card, i) {
+      card.addEventListener("focus", function () { if (is3d() && frontIndex() !== i) goTo(i); });
+    });
+
+    stage.addEventListener("pointerdown", function (e) {
+      if (!is3d() || e.button !== 0) return;
+      car.dragging = true;
+      car.startX = e.clientX;
+      car.startAngle = car.angle;
+      stage.classList.add("is-dragging");
+      stage.setPointerCapture(e.pointerId);
+      kick();
+    });
+    stage.addEventListener("pointermove", function (e) {
+      if (!car.dragging) return;
+      car.angle = car.startAngle + (e.clientX - car.startX) * 0.3;
+    });
+    function endDrag() {
+      if (!car.dragging) return;
+      car.dragging = false;
+      stage.classList.remove("is-dragging");
+      car.target = Math.round(car.angle / STEP) * STEP;
+      car.lastInput = performance.now();
+      kick();
+    }
+    stage.addEventListener("pointerup", endDrag);
+    stage.addEventListener("pointercancel", endDrag);
+  }
+
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
-      var f = chip.getAttribute("data-filter");
+      activeFilter = chip.getAttribute("data-filter");
       chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
-      serviceCards.forEach(function (card) {
-        var show = f === "all" || card.getAttribute("data-cat") === f;
-        var wasHidden = card.hidden;
-        card.hidden = !show;
-        if (show && wasHidden && !reduceMotion) {
-          card.classList.remove("is-entering");
-          void card.offsetWidth;
-          card.classList.add("is-entering");
+      setMode();
+      if (is3d() && activeFilter !== "all") {
+        for (var i = 0; i < serviceCards.length; i++) {
+          if (serviceCards[i].getAttribute("data-cat") === activeFilter) { goTo(i); break; }
         }
-      });
+      }
     });
   });
+
+  /* ---------- Scroll progress ---------- */
+  var bar = document.getElementById("progress-bar");
+  if (bar) {
+    var onScroll = function () {
+      var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      bar.style.transform = "scaleX(" + Math.min(1, window.scrollY / max) + ")";
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* ---------- Cursor glow ---------- */
+  var cursor = document.getElementById("cursor");
+  if (cursor && finePointer && !reduceMotion) {
+    var cx = 0, cy = 0, tx = 0, ty = 0, moving = false;
+    window.addEventListener("pointermove", function (e) {
+      if (e.pointerType !== "mouse") return;
+      tx = e.clientX; ty = e.clientY;
+      if (!moving) { cx = tx; cy = ty; moving = true; cursor.classList.add("is-on"); requestAnimationFrame(follow); }
+      var hot = e.target.closest && e.target.closest("a, button, .card, summary, input, select, textarea, .carousel-stage");
+      cursor.classList.toggle("is-hover", !!hot);
+    }, { passive: true });
+    document.addEventListener("pointerleave", function () { cursor.classList.remove("is-on"); });
+    function follow() {
+      cx += (tx - cx) * 0.2;
+      cy += (ty - cy) * 0.2;
+      cursor.style.transform = "translate(" + cx + "px," + cy + "px)";
+      requestAnimationFrame(follow);
+    }
+  } else if (cursor) {
+    cursor.remove();
+  }
 
   /* ---------- Audience buttons preselect the form ---------- */
   document.querySelectorAll("[data-audience]").forEach(function (btn) {

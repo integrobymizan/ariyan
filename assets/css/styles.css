@@ -499,9 +499,99 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius
 .footer-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; padding-block: 36px; color: var(--muted); font-size: 0.92rem; }
 .footer-legal { margin-left: auto; font-family: var(--font-mono); font-size: 0.78rem; }
 
+/* ---------- Scroll progress and cursor glow ---------- */
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; overflow: hidden; }
+.progress span { display: block; height: 100%; background: linear-gradient(to right, var(--steel), var(--amber)); transform-origin: 0 50%; transform: scaleX(0); }
+.cursor {
+  position: fixed; left: 0; top: 0; z-index: 50;
+  width: 36px; height: 36px; margin: -18px 0 0 -18px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--amber) 70%, transparent);
+  box-shadow: 0 0 24px 2px color-mix(in srgb, var(--amber) 25%, transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: width 0.25s, height 0.25s, margin 0.25s, opacity 0.3s, background 0.25s;
+}
+.cursor.is-on { opacity: 1; }
+.cursor.is-hover { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: color-mix(in srgb, var(--amber) 10%, transparent); }
+
+/* ---------- 3D services carousel ---------- */
+.carousel { position: relative; }
+.carousel-controls { display: none; }
+.round-btn {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: inline-grid; place-items: center;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 85%, transparent);
+  color: var(--fg); cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.round-btn:hover { border-color: var(--amber); transform: scale(1.06); }
+.round-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.carousel-count { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); min-width: 0; text-align: center; font-variant-numeric: tabular-nums; }
+
+@media (min-width: 900px) {
+  .carousel.is-3d .carousel-stage {
+    position: relative;
+    height: 470px;
+    perspective: 1500px;
+    perspective-origin: 50% 35%;
+    cursor: grab;
+    touch-action: pan-y;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  }
+  .carousel.is-3d .carousel-stage.is-dragging { cursor: grabbing; }
+  .carousel.is-3d .carousel-ring {
+    position: absolute;
+    left: 50%; top: 40px;
+    width: 290px; height: 380px;
+    margin-left: -145px;
+    display: block;
+    transform-style: preserve-3d;
+    transform: translateZ(calc(var(--ring-r) * -1)) rotateY(var(--angle, 0deg));
+    perspective: none;
+  }
+  .carousel.is-3d .card {
+    position: absolute; inset: 0;
+    transform: rotateY(calc(var(--i) * 40deg)) translateZ(var(--ring-r));
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: opacity 0.3s, border-color 0.3s, box-shadow 0.3s;
+    background: linear-gradient(160deg, var(--panel), var(--ink));
+    user-select: none;
+  }
+  .carousel.is-3d .card > *, .carousel.is-3d .card-icon { transform: none; }
+  .carousel.is-3d .card.is-front {
+    border-color: color-mix(in srgb, var(--amber) 60%, var(--line));
+    box-shadow: 0 40px 80px -40px color-mix(in srgb, var(--amber) 55%, transparent);
+  }
+  .carousel.is-3d .card.is-dim { filter: grayscale(0.8) brightness(0.6); }
+  .carousel.is-3d .carousel-controls {
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+    padding-top: 12px;
+  }
+  .carousel { --ring-r: 420px; }
+}
+
+/* ---------- Finale ---------- */
+.finale {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  padding-block: 0 clamp(64px, 12vh, 140px);
+  text-align: center;
+}
+.finale-inner { display: grid; justify-items: center; gap: 18px; }
+.finale h2 { font-size: var(--step-3); max-width: 20ch; }
+.finale .section-sub { max-width: 52ch; }
+.finale .cta-row { justify-content: center; }
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   .marquee-track { animation: none; }
+  .cursor { display: none; }
   .pipeline::after { display: none; }
 }
