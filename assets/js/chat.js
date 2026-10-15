@@ -49,7 +49,7 @@
 
   var launcher = document.createElement("button");
   launcher.type = "button";
-  launcher.className = "omni-launch";
+  launcher.className = "omni-launch omni-launch-sr";
   launcher.id = "omni-launch";
   launcher.innerHTML = '<span class="oc-avatar" aria-hidden="true"><i></i><i></i></span><span>Talk to Omni</span>';
   launcher.hidden = true;
@@ -148,6 +148,7 @@
 
   function choices(list, opts) {
     var id = runId;
+    if (trail.length > 1) list = list.concat([{ label: "← Back", say: "Back", run: back, back: true }]);
     choicesEl.innerHTML = "";
     queue = queue.then(function () {
       if (id !== runId) return;
@@ -163,7 +164,7 @@
         }
         var b = document.createElement("button");
         b.type = "button";
-        b.className = "oc-choice" + (c.primary ? " is-primary" : "");
+        b.className = "oc-choice" + (c.primary ? " is-primary" : "") + (c.back ? " is-back" : "");
         b.textContent = c.label;
         b.addEventListener("click", function () {
           choicesEl.innerHTML = "";
@@ -206,40 +207,48 @@
   }
 
   /* ---------- Conversation ---------- */
+  // Each step re-asks its own question, so "Back" just replays the previous step.
+  var trail = [];
+  function go(step) { trail.push(step); step(); }
+  function back() {
+    if (trail.length > 1) trail.pop();
+    trail[trail.length - 1]();
+  }
+
   function startHome() {
     bot("Hi, I'm Omni, the helper for this website.");
     bot("I can show you everything Omni AI Builders automates. Which describes you best?");
     choices([
-      { label: "I run a local business", run: forBusiness, primary: true },
-      { label: "I run an agency", run: forAgency, primary: true },
-      { label: "Show me all services", run: showAll },
+      { label: "I run a local business", run: function () { go(forBusiness); }, primary: true },
+      { label: "I run an agency", run: function () { go(forAgency); }, primary: true },
+      { label: "Show me all services", run: function () { go(showAll); } },
       { label: "Just looking around", run: browse }
     ]);
   }
 
-  function painChoices(audience, back) {
+  function painChoices(audience) {
     var seen = {}, list = [];
     SERVICES.forEach(function (s) {
       if (s.audience !== audience || seen[s.chatPain]) return;
       seen[s.chatPain] = true;
-      list.push({ label: s.chatPain, run: function () { recommend(s.chatPain, back); } });
+      list.push({ label: s.chatPain, run: function () { go(function () { recommend(s.chatPain); }); } });
     });
-    list.push({ label: "Show me all services", run: showAll });
+    list.push({ label: "Show me all services", run: function () { go(showAll); } });
     return list;
   }
 
   function forBusiness() {
     bot("Nice. What's costing you the most right now?");
-    choices(painChoices("business", forBusiness));
+    choices(painChoices("business"));
   }
 
   function forAgency() {
     bot("Great. We help agencies deliver AI and automation under their own brand.");
     bot("What would you like to offer your clients?");
-    choices(painChoices("agency", forAgency));
+    choices(painChoices("agency"));
   }
 
-  function recommend(pain, back) {
+  function recommend(pain) {
     var recs = SERVICES.filter(function (s) { return s.chatPain === pain; });
     if (recs.length === 1) {
       bot("Then I'd start with " + recs[0].name + ".");
@@ -251,8 +260,7 @@
     var list = recs.map(function (r) {
       return { label: "Show me " + r.name + " →", say: "Show me " + r.name, run: function () { openService(r.slug); }, primary: true };
     });
-    list.push({ label: "Something else", run: back });
-    list.push({ label: "Show me all services", run: showAll });
+    list.push({ label: "Show me all services", run: function () { go(showAll); } });
     choices(list);
   }
 
@@ -284,7 +292,7 @@
     }
     choices([
       { label: "Book a call about this", run: function () { bookCall(s.slug); }, primary: true },
-      { label: "Show me other services", run: showAll },
+      { label: "Show me other services", run: function () { go(showAll); } },
       { label: "Back to the home page", run: function () { window.location.href = base + "index.html"; } }
     ]);
   }
@@ -292,7 +300,15 @@
   /* ---------- Open, close, dock ---------- */
   var started = false;
 
+  // An automatic greeting stays up for 5 seconds after it finishes typing, then
+  // tucks away. Hovering, tapping or focusing the chat keeps it open.
+  var AUTO_HIDE_MS = 5000, autoHideTimer = 0, engaged = false;
+  function engage() { engaged = true; clearTimeout(autoHideTimer); }
+  ["pointerenter", "pointerdown", "focusin"].forEach(function (ev) { panel.addEventListener(ev, engage); });
+
   function open(byUser) {
+    engaged = !!byUser;
+    clearTimeout(autoHideTimer);
     panel.hidden = false;
     launcher.hidden = true;
     requestAnimationFrame(function () { panel.classList.add("is-open"); });
@@ -300,18 +316,28 @@
     if (!started) {
       started = true;
       var from = get("sessionStorage", "omni-from-chat");
-      if (page === "service" && pageService) startService(pageService, from === pageService.slug);
-      else startHome();
+      if (page === "service" && pageService) {
+        var fromChat = from === pageService.slug;
+        go(function () { startService(pageService, fromChat); });
+        fromChat = false; // going back to this step later shouldn't repeat "Here it is"
+      } else {
+        go(startHome);
+      }
     }
     if (byUser) {
       queue.then(function () {
         var first = choicesEl.querySelector("button");
         (first || closeBtn).focus({ preventScroll: true });
       });
+    } else {
+      queue.then(function () {
+        autoHideTimer = setTimeout(function () { if (!engaged) close(); }, AUTO_HIDE_MS);
+      });
     }
   }
 
   function close() {
+    clearTimeout(autoHideTimer);
     panel.classList.remove("is-open");
     if (synth) { try { synth.cancel(); } catch (err) { /* ignore */ } }
     if (window.OmniAgent) { window.OmniAgent.undock(); window.OmniAgent.talk(0); }

@@ -270,7 +270,7 @@
     contact:    { d: [-4.5, -1.6, 0.6, 0.45, -1], m: CORNER }
   };
   var LINES = {
-    core: "Hi, I'm Omni, your guide to this website. Ask me about any of our services.",
+    core: "Hi, I'm Omni, your guide to this website. Click me any time to chat.",
     services: "Eleven services, one system. Drag the ring to explore them.",
     audiences: "Local business or agency? Omni AI Builders helps both.",
     kk: "Run an agency? Knock Knock AI puts sales agents on your clients' websites.",
@@ -544,11 +544,25 @@
   document.addEventListener("pointerleave", function () { pointer.active = false; });
 
   var raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2();
-  window.addEventListener("click", function (e) {
-    if (e.target.closest && e.target.closest("a, button, input, select, textarea, summary, label, .card, .carousel-stage, .kk-card, .audience, .omni-chat, .omni-launch")) return;
+  var INTERACTIVE = "a, button, input, select, textarea, summary, label, .card, .carousel-stage, .kk-card, .audience, .omni-chat, .omni-launch";
+  function overAgent(e) {
+    if (e.target.closest && e.target.closest(INTERACTIVE)) return false;
     ndc.set((e.clientX / window.innerWidth) * 2 - 1, -((e.clientY / window.innerHeight) * 2 - 1));
     raycaster.setFromCamera(ndc, camera);
-    if (!raycaster.intersectObjects(pickables, false).length) return;
+    return raycaster.intersectObjects(pickables, false).length > 0;
+  }
+
+  // Show a hand cursor over the robot so people know they can click it.
+  var lastHover = 0;
+  window.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "mouse") return;
+    var now = performance.now();
+    if (now - lastHover < 80) return;
+    lastHover = now;
+    document.body.classList.toggle("omni-hover", overAgent(e));
+  }, { passive: true });
+
+  function poked() {
     wave.until = elapsed + 2.2;
     if (!reduceMotion) spin.t = 0;
     if (window.OmniChat) { window.OmniChat.open(true); if (reduceMotion) { update(0); render(); } return; }
@@ -557,7 +571,11 @@
     clearTimeout(pokeTimer);
     pokeTimer = setTimeout(function () { pokeTimer = 0; said = ""; say(current.key, current.el); }, 3200);
     if (reduceMotion) { update(0); render(); }
-  });
+  }
+
+  // Clicking the floating robot, or its speech bubble, opens the chat.
+  window.addEventListener("click", function (e) { if (overAgent(e)) poked(); });
+  if (bubble) bubble.addEventListener("click", poked);
 
   /* ---------- Loop ---------- */
   var last = performance.now(), rafId = 0;
