@@ -96,7 +96,7 @@ def svc_price(s):
 
 def price_card(s):
     p = s["price"]
-    market = f'\n            <p class="price-market">Typical UK agency: {e(p["market"])}</p>' if p["market"] else ""
+    market = f'\n            <p class="price-market">Typical agency price: {e(p["market"])}</p>' if p["market"] else ""
     return f'''          <article class="price-card" data-audience="{s["audience"]}">
             <div class="card-top"><svg class="card-icon"><use href="#{s["icon"]}"/></svg><span class="card-cat">{e(s["catLabel"])}</span></div>
             <h3>{e(s["name"])}</h3>
@@ -128,7 +128,7 @@ def pricing_section():
       <div class="price-grid">
 {cards}
       </div>
-      <p class="price-note">Prices in GBP, excluding VAT. Ad spend and usage (calls, SMS, AI credits) are paid at cost. Using three or more services? Ask about a bundle on your call. Typical UK agency prices are from published 2026 UK pricing guides.</p>
+      <p class="price-note">Prices in US dollars, plus VAT where it applies. Ad spend and usage (calls, SMS, AI credits) are paid at cost. Using three or more services? Ask about a bundle on your call. Typical agency prices come from published 2026 agency pricing guides, converted to US dollars.</p>
     </div>
   </section>
   <!-- PRICING:END -->'''

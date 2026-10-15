@@ -83,10 +83,10 @@
       "gohighlevel-crm"
     ],
     "price": {
-      "from": "£197",
+      "from": "$197",
       "per": "/mo",
-      "setup": "+ £497 setup",
-      "market": "£150–£500/mo + £250–£750 setup"
+      "setup": "+ $497 setup",
+      "market": "$200–$650/mo + $325–$1,000 setup"
     }
   },
   {
@@ -173,10 +173,10 @@
       "lead-follow-up"
     ],
     "price": {
-      "from": "£97",
+      "from": "$97",
       "per": "/mo",
-      "setup": "+ £297 setup",
-      "market": "£60–£800/mo"
+      "setup": "+ $297 setup",
+      "market": "$75–$1,050/mo"
     }
   },
   {
@@ -263,10 +263,10 @@
       "funnels-websites"
     ],
     "price": {
-      "from": "£97",
+      "from": "$97",
       "per": "/mo",
       "setup": "No setup fee",
-      "market": "£75–£250/mo for review software alone"
+      "market": "$100–$325/mo for review software alone"
     }
   },
   {
@@ -353,10 +353,10 @@
       "lead-follow-up"
     ],
     "price": {
-      "from": "£397",
+      "from": "$397",
       "per": "/mo",
-      "setup": "+ £297 setup · ad spend paid to Google",
-      "market": "£500–£3,000/mo or 10–20% of spend"
+      "setup": "+ $297 setup · ad spend paid to Google",
+      "market": "$650–$3,900/mo or 10–20% of spend"
     }
   },
   {
@@ -443,10 +443,10 @@
       "funnels-websites"
     ],
     "price": {
-      "from": "£397",
+      "from": "$397",
       "per": "/mo",
-      "setup": "+ £297 setup · ad spend paid to Meta",
-      "market": "£1,500+/mo for full service"
+      "setup": "+ $297 setup · ad spend paid to Meta",
+      "market": "$2,000+/mo for full service"
     }
   },
   {
@@ -533,10 +533,10 @@
       "gohighlevel-crm"
     ],
     "price": {
-      "from": "£997",
+      "from": "$997",
       "per": " one-off",
       "setup": "Hosting included on our CRM plans",
-      "market": "£1,500–£10,000 per site"
+      "market": "$2,000–$13,000 per site"
     }
   },
   {
@@ -626,10 +626,10 @@
       "ghl"
     ],
     "price": {
-      "from": "£797",
+      "from": "$797",
       "per": " one-off",
       "setup": "HighLevel subscription billed separately",
-      "market": "£1,100–£3,800 done-for-you"
+      "market": "$1,500–$5,000 done-for-you"
     }
   },
   {
@@ -719,10 +719,10 @@
       "ghl"
     ],
     "price": {
-      "from": "£197",
+      "from": "$197",
       "per": "/mo",
-      "setup": "+ £397 setup",
-      "market": "£200–£400/mo, or retainers from £2,300/mo"
+      "setup": "+ $397 setup",
+      "market": "$250–$350/mo, or retainers from $3,000/mo"
     }
   },
   {
@@ -812,10 +812,10 @@
       "ghl"
     ],
     "price": {
-      "from": "£397",
+      "from": "$397",
       "per": "/mo",
       "setup": "Builds quoted per project",
-      "market": "£3,800+ for a one-off SaaS build"
+      "market": "$5,000 for a one-off SaaS build"
     }
   },
   {
@@ -905,10 +905,10 @@
       "ghl"
     ],
     "price": {
-      "from": "£247",
+      "from": "$247",
       "per": "/mo per account",
       "setup": "Google or Meta, your branded reports",
-      "market": "£260–£600 per account"
+      "market": "$350–$800 per account"
     }
   },
   {
@@ -985,6 +985,10 @@
         "a": "Setup and branding, client onboarding, CRM connection, day-to-day support and training for your team, all behind your brand."
       },
       {
+        "q": "How is it billed?",
+        "a": "Your client pays their Knock Knock subscription directly to Knock Knock. We charge $97 a month for each client we set up and support, covering setup, branding, CRM connection and day-to-day support."
+      },
+      {
         "q": "Does it work with GoHighLevel?",
         "a": "Yes. It installs through the GoHighLevel marketplace, and leads, conversations and scores flow into the CRM."
       }
@@ -999,9 +1003,9 @@
       "ghl"
     ],
     "price": {
-      "from": "£147",
-      "per": "/mo",
-      "setup": "Knock Knock licence from $197/mo, paid to Knock Knock",
+      "from": "$97",
+      "per": "/mo per client",
+      "setup": "Your client pays Knock Knock directly",
       "market": ""
     }
   }

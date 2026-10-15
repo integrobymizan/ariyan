@@ -49,12 +49,12 @@ This rewrites `services/*.html`, `assets/js/services-data.js` and the pricing se
 Each service has a `price` object in `data/services.json`:
 
 ```json
-"price": { "from": "£197", "per": "/mo", "setup": "+ £497 setup", "market": "£150–£500/mo + £250–£750 setup" }
+"price": { "from": "$197", "per": "/mo", "setup": "+ $497 setup", "market": "$200–$650/mo + $325–$1,000 setup" }
 ```
 
-- `from` and `per` make the big price ("From £197/mo").
-- `setup` is the line under it. Start it with `+ ` and Omni will read it out in the chat ("plus £497 setup").
-- `market` is the "Typical UK agency" comparison. Leave it empty (`""`) to hide it.
+- `from` and `per` make the big price ("From $197/mo").
+- `setup` is the line under it. Start it with `+ ` and Omni will read it out in the chat ("plus $497 setup").
+- `market` is the "Typical agency price" comparison. Leave it empty (`""`) to hide it.
 
 The price shows on the pricing section, on each service page, and in Omni's recommendations.
 

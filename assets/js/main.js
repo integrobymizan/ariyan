@@ -69,8 +69,8 @@
   }
 
   /* ---------- Missed-lead calculator ---------- */
-  var gbp = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 });
-  var num = new Intl.NumberFormat("en-GB", { maximumFractionDigits: 0 });
+  var usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  var num = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
   var roi = {
     leads: document.getElementById("roi-leads"),
@@ -96,11 +96,11 @@
     document.getElementById("roi-leads-out").textContent = num.format(leads);
     document.getElementById("roi-missed-out").textContent = Math.round(missed * 100) + "%";
     document.getElementById("roi-close-out").textContent = Math.round(close * 100) + "%";
-    document.getElementById("roi-value-out").textContent = gbp.format(value);
+    document.getElementById("roi-value-out").textContent = usd.format(value);
 
     document.getElementById("roi-lost-leads").textContent = num.format(lost);
     document.getElementById("roi-customers").textContent = num.format(customers) + " / month";
-    document.getElementById("roi-revenue").textContent = gbp.format(customers * value * 12);
+    document.getElementById("roi-revenue").textContent = usd.format(customers * value * 12);
 
     Object.keys(roi).forEach(function (k) { fill(roi[k]); });
   }
