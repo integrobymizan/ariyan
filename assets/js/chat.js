@@ -222,6 +222,7 @@
       { label: "I run a local business", run: function () { go(forBusiness); }, primary: true },
       { label: "I run an agency", run: function () { go(forAgency); }, primary: true },
       { label: "Show me all services", run: function () { go(showAll); } },
+      { label: "How much does it cost?", run: function () { go(showPricing); } },
       { label: "Just looking around", run: browse }
     ]);
   }
@@ -248,14 +249,24 @@
     choices(painChoices("agency"));
   }
 
+  function priceLine(s) {
+    var p = s.price;
+    if (!p) return "";
+    var line = "Prices start from " + p.from + p.per;
+    if (p.setup.indexOf("+ ") === 0) line += ", plus " + p.setup.slice(2).split(" · ")[0];
+    else if (p.setup === "No setup fee") line += ", with no setup fee";
+    return line + ".";
+  }
+
   function recommend(pain) {
     var recs = SERVICES.filter(function (s) { return s.chatPain === pain; });
     if (recs.length === 1) {
       bot("Then I'd start with " + recs[0].name + ".");
       bot(recs[0].short);
+      bot(priceLine(recs[0]));
     } else {
       bot("Two good options there. " + recs.map(function (r) { return r.name; }).join(" or ") + ".");
-      recs.forEach(function (r) { bot(r.name + ": " + r.short); });
+      recs.forEach(function (r) { bot(r.name + ": " + r.short + " " + priceLine(r)); });
     }
     var list = recs.map(function (r) {
       return { label: "Show me " + r.name + " →", say: "Show me " + r.name, run: function () { openService(r.slug); }, primary: true };
@@ -274,6 +285,21 @@
       });
     });
     choices(list, { grid: true });
+  }
+
+  function showPricing() {
+    bot("Every service has a clear starting price, and your strategy call ends with a fixed quote.");
+    bot("Here's the full price list.").then(function () {
+      setTimeout(function () {
+        if (page === "home") {
+          close();
+          var sec = document.getElementById("pricing");
+          if (sec) sec.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+        } else {
+          window.location.href = base + "index.html#pricing";
+        }
+      }, 600);
+    });
   }
 
   function browse() {

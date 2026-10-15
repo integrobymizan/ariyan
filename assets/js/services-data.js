@@ -7,7 +7,13 @@ window.OMNI_SERVICES = [
     "catLabel": "AI agents",
     "audience": "business",
     "chatPain": "We miss phone calls",
-    "short": "A natural-sounding AI receptionist answers every call 24/7, qualifies the caller and books them straight into your calendar."
+    "short": "A natural-sounding AI receptionist answers every call 24/7, qualifies the caller and books them straight into your calendar.",
+    "price": {
+      "from": "£197",
+      "per": "/mo",
+      "setup": "+ £497 setup",
+      "market": "£150–£500/mo + £250–£750 setup"
+    }
   },
   {
     "slug": "ai-chatbots",
@@ -16,7 +22,13 @@ window.OMNI_SERVICES = [
     "catLabel": "AI agents",
     "audience": "business",
     "chatPain": "Messages wait too long for a reply",
-    "short": "Conversation AI on your website, WhatsApp, Instagram, Facebook and SMS that replies in seconds and turns enquiries into bookings."
+    "short": "Conversation AI on your website, WhatsApp, Instagram, Facebook and SMS that replies in seconds and turns enquiries into bookings.",
+    "price": {
+      "from": "£97",
+      "per": "/mo",
+      "setup": "+ £297 setup",
+      "market": "£60–£800/mo"
+    }
   },
   {
     "slug": "reputation-management",
@@ -25,7 +37,13 @@ window.OMNI_SERVICES = [
     "catLabel": "AI agents",
     "audience": "business",
     "chatPain": "We need more reviews",
-    "short": "Automatic review requests after every job, AI replies to new reviews, and alerts when a customer is unhappy."
+    "short": "Automatic review requests after every job, AI replies to new reviews, and alerts when a customer is unhappy.",
+    "price": {
+      "from": "£97",
+      "per": "/mo",
+      "setup": "No setup fee",
+      "market": "£75–£250/mo for review software alone"
+    }
   },
   {
     "slug": "google-ads",
@@ -34,7 +52,13 @@ window.OMNI_SERVICES = [
     "catLabel": "Ads and funnels",
     "audience": "business",
     "chatPain": "We need more leads",
-    "short": "Search, Local Services and Performance Max campaigns built around buyers who are ready now, with every lead tracked back to the keyword."
+    "short": "Search, Local Services and Performance Max campaigns built around buyers who are ready now, with every lead tracked back to the keyword.",
+    "price": {
+      "from": "£397",
+      "per": "/mo",
+      "setup": "+ £297 setup · ad spend paid to Google",
+      "market": "£500–£3,000/mo or 10–20% of spend"
+    }
   },
   {
     "slug": "meta-ads",
@@ -43,7 +67,13 @@ window.OMNI_SERVICES = [
     "catLabel": "Ads and funnels",
     "audience": "business",
     "chatPain": "We need more leads",
-    "short": "Facebook and Instagram campaigns with scroll-stopping creative and instant-form leads that get a reply in under a minute."
+    "short": "Facebook and Instagram campaigns with scroll-stopping creative and instant-form leads that get a reply in under a minute.",
+    "price": {
+      "from": "£397",
+      "per": "/mo",
+      "setup": "+ £297 setup · ad spend paid to Meta",
+      "market": "£1,500+/mo for full service"
+    }
   },
   {
     "slug": "funnels-websites",
@@ -52,7 +82,13 @@ window.OMNI_SERVICES = [
     "catLabel": "Ads and funnels",
     "audience": "business",
     "chatPain": "Our website doesn't bring enquiries",
-    "short": "Fast landing pages, booking funnels and websites built to convert ad traffic, with forms and calendars wired into your automations."
+    "short": "Fast landing pages, booking funnels and websites built to convert ad traffic, with forms and calendars wired into your automations.",
+    "price": {
+      "from": "£997",
+      "per": " one-off",
+      "setup": "Hosting included on our CRM plans",
+      "market": "£1,500–£10,000 per site"
+    }
   },
   {
     "slug": "gohighlevel-crm",
@@ -61,7 +97,13 @@ window.OMNI_SERVICES = [
     "catLabel": "CRM and automation",
     "audience": "business",
     "chatPain": "Our CRM is a mess",
-    "short": "Pipelines, calendars, workflows and dashboards configured for how you sell, so your team sees every lead and what to do next."
+    "short": "Pipelines, calendars, workflows and dashboards configured for how you sell, so your team sees every lead and what to do next.",
+    "price": {
+      "from": "£797",
+      "per": " one-off",
+      "setup": "HighLevel subscription billed separately",
+      "market": "£1,100–£3,800 done-for-you"
+    }
   },
   {
     "slug": "lead-follow-up",
@@ -70,7 +112,13 @@ window.OMNI_SERVICES = [
     "catLabel": "CRM and automation",
     "audience": "business",
     "chatPain": "Leads go cold",
-    "short": "Speed-to-lead SMS and email within seconds, nurture sequences that run for months, and campaigns that wake up your old customer list."
+    "short": "Speed-to-lead SMS and email within seconds, nurture sequences that run for months, and campaigns that wake up your old customer list.",
+    "price": {
+      "from": "£197",
+      "per": "/mo",
+      "setup": "+ £397 setup",
+      "market": "£200–£400/mo, or retainers from £2,300/mo"
+    }
   },
   {
     "slug": "white-label-fulfilment",
@@ -79,7 +127,13 @@ window.OMNI_SERVICES = [
     "catLabel": "For agencies",
     "audience": "agency",
     "chatPain": "I want to resell AI and automation",
-    "short": "We deliver AI agents, GoHighLevel builds, funnels and ad campaigns under your brand. You keep the client and the margin; we do the work."
+    "short": "We deliver AI agents, GoHighLevel builds, funnels and ad campaigns under your brand. You keep the client and the margin; we do the work.",
+    "price": {
+      "from": "£397",
+      "per": "/mo",
+      "setup": "Builds quoted per project",
+      "market": "£3,800+ for a one-off SaaS build"
+    }
   },
   {
     "slug": "white-label-paid-ads",
@@ -88,7 +142,13 @@ window.OMNI_SERVICES = [
     "catLabel": "For agencies",
     "audience": "agency",
     "chatPain": "I want to sell paid ads to my clients",
-    "short": "Google and Meta ad campaigns run under your agency's brand. We build, manage and report; you keep the client and the margin."
+    "short": "Google and Meta ad campaigns run under your agency's brand. We build, manage and report; you keep the client and the margin.",
+    "price": {
+      "from": "£247",
+      "per": "/mo per account",
+      "setup": "Google or Meta, your branded reports",
+      "market": "£260–£600 per account"
+    }
   },
   {
     "slug": "knock-knock-ai",
@@ -97,6 +157,12 @@ window.OMNI_SERVICES = [
     "catLabel": "For agencies",
     "audience": "agency",
     "chatPain": "I want to offer Knock Knock AI",
-    "short": "As an official Knock Knock AI partner, we launch and support AI chat, call and video sales agents on your clients' websites, under your brand."
+    "short": "As an official Knock Knock AI partner, we launch and support AI chat, call and video sales agents on your clients' websites, under your brand.",
+    "price": {
+      "from": "£147",
+      "per": "/mo",
+      "setup": "Knock Knock licence from $197/mo, paid to Knock Knock",
+      "market": ""
+    }
   }
 ];

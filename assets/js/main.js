@@ -284,6 +284,18 @@
     a.addEventListener("click", function () { store("omni-service", a.getAttribute("data-pick")); });
   });
 
+  /* ---------- Pricing: business / agency tabs ---------- */
+  var priceTabs = document.querySelectorAll(".chip[data-price-tab]");
+  function showPrices(audience) {
+    priceTabs.forEach(function (t) { t.setAttribute("aria-pressed", String(t.getAttribute("data-price-tab") === audience)); });
+    document.querySelectorAll(".price-card").forEach(function (c) { c.hidden = c.getAttribute("data-audience") !== audience; });
+  }
+  priceTabs.forEach(function (t) {
+    t.addEventListener("click", function () { showPrices(t.getAttribute("data-price-tab")); });
+  });
+  if (priceTabs.length) showPrices("business");
+  window.OmniPrices = showPrices;
+
   window.OmniPrefill = function () {
     var slug = read("omni-service");
     var list = window.OMNI_SERVICES || [];

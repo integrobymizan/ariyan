@@ -81,7 +81,13 @@
       "ai-chatbots",
       "lead-follow-up",
       "gohighlevel-crm"
-    ]
+    ],
+    "price": {
+      "from": "£197",
+      "per": "/mo",
+      "setup": "+ £497 setup",
+      "market": "£150–£500/mo + £250–£750 setup"
+    }
   },
   {
     "slug": "ai-chatbots",
@@ -165,7 +171,13 @@
       "ai-voice-agents",
       "reputation-management",
       "lead-follow-up"
-    ]
+    ],
+    "price": {
+      "from": "£97",
+      "per": "/mo",
+      "setup": "+ £297 setup",
+      "market": "£60–£800/mo"
+    }
   },
   {
     "slug": "reputation-management",
@@ -249,7 +261,13 @@
       "ai-chatbots",
       "lead-follow-up",
       "funnels-websites"
-    ]
+    ],
+    "price": {
+      "from": "£97",
+      "per": "/mo",
+      "setup": "No setup fee",
+      "market": "£75–£250/mo for review software alone"
+    }
   },
   {
     "slug": "google-ads",
@@ -333,7 +351,13 @@
       "meta-ads",
       "funnels-websites",
       "lead-follow-up"
-    ]
+    ],
+    "price": {
+      "from": "£397",
+      "per": "/mo",
+      "setup": "+ £297 setup · ad spend paid to Google",
+      "market": "£500–£3,000/mo or 10–20% of spend"
+    }
   },
   {
     "slug": "meta-ads",
@@ -417,7 +441,13 @@
       "google-ads",
       "lead-follow-up",
       "funnels-websites"
-    ]
+    ],
+    "price": {
+      "from": "£397",
+      "per": "/mo",
+      "setup": "+ £297 setup · ad spend paid to Meta",
+      "market": "£1,500+/mo for full service"
+    }
   },
   {
     "slug": "funnels-websites",
@@ -501,7 +531,13 @@
       "google-ads",
       "meta-ads",
       "gohighlevel-crm"
-    ]
+    ],
+    "price": {
+      "from": "£997",
+      "per": " one-off",
+      "setup": "Hosting included on our CRM plans",
+      "market": "£1,500–£10,000 per site"
+    }
   },
   {
     "slug": "gohighlevel-crm",
@@ -588,7 +624,13 @@
     ],
     "runsOn": [
       "ghl"
-    ]
+    ],
+    "price": {
+      "from": "£797",
+      "per": " one-off",
+      "setup": "HighLevel subscription billed separately",
+      "market": "£1,100–£3,800 done-for-you"
+    }
   },
   {
     "slug": "lead-follow-up",
@@ -675,7 +717,13 @@
     ],
     "runsOn": [
       "ghl"
-    ]
+    ],
+    "price": {
+      "from": "£197",
+      "per": "/mo",
+      "setup": "+ £397 setup",
+      "market": "£200–£400/mo, or retainers from £2,300/mo"
+    }
   },
   {
     "slug": "white-label-fulfilment",
@@ -762,7 +810,13 @@
     ],
     "runsOn": [
       "ghl"
-    ]
+    ],
+    "price": {
+      "from": "£397",
+      "per": "/mo",
+      "setup": "Builds quoted per project",
+      "market": "£3,800+ for a one-off SaaS build"
+    }
   },
   {
     "slug": "white-label-paid-ads",
@@ -849,7 +903,13 @@
     ],
     "runsOn": [
       "ghl"
-    ]
+    ],
+    "price": {
+      "from": "£247",
+      "per": "/mo per account",
+      "setup": "Google or Meta, your branded reports",
+      "market": "£260–£600 per account"
+    }
   },
   {
     "slug": "knock-knock-ai",
@@ -937,6 +997,12 @@
     "runsOn": [
       "knock-knock",
       "ghl"
-    ]
+    ],
+    "price": {
+      "from": "£147",
+      "per": "/mo",
+      "setup": "Knock Knock licence from $197/mo, paid to Knock Knock",
+      "market": ""
+    }
   }
 ]

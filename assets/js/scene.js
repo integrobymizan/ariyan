@@ -265,6 +265,7 @@
     kk:         { d: [5.9, 2.7, 0.4, -0.5, -1],   m: CORNER },
     process:    { d: [3.9, -1.95, 0.55, -0.45, 1], m: CORNER },
     calculator: { d: [3.5, 2.2, 0.55, -0.4, 1],   m: CORNER },
+    pricing:    { d: [3.5, 2.2, 0.55, -0.4, 1],   m: CORNER },
     faq:        { d: [-4.4, -1.6, 0.7, 0.45, -1], m: CORNER },
     finale:     { d: [0, 1.4, 0.85, 0, 1],        m: [-0.9, 1.6, 0.45, 0.3, 1] },
     contact:    { d: [-4.5, -1.6, 0.6, 0.45, -1], m: CORNER }
@@ -276,12 +277,13 @@
     kk: "Run an agency? Knock Knock AI puts sales agents on your clients' websites.",
     process: "From first call to live in about three weeks.",
     calculator: "Let's see what slow replies are costing you.",
+    pricing: "Clear starting prices. Click me if you want help choosing.",
     faq: "Got a question? The answers are below, or ask me in the chat.",
     finale: "Ready when you are. Let's build your AI workforce.",
     contact: "Tell the team what you'd like to automate first.",
     poke: "Hi again! Open the chat and I'll show you around."
   };
-  var POSE = { core: "wave", finale: "wave", services: "present", audiences: "present", kk: "present", process: "present", calculator: "think", faq: "think", contact: "present" };
+  var POSE = { core: "wave", finale: "wave", services: "present", audiences: "present", kk: "present", process: "present", calculator: "think", pricing: "present", faq: "think", contact: "present" };
   // Service detail pages reuse the home page spots
   LAYOUT.svc = LAYOUT.core; POSE.svc = "wave";
   LAYOUT["svc-features"] = LAYOUT.services; POSE["svc-features"] = "present";

@@ -31,7 +31,7 @@ assets/js/chat.js       Omni's conversation: greeting, questions, recommendation
 assets/js/services-data.js  Generated service list used by the chat
 data/services.json      All service content (single source of truth)
 services/*.html         Generated service detail pages
-tools/build_services.py Regenerates services/*.html and services-data.js
+tools/build_services.py Regenerates services/*.html, services-data.js and the pricing section
 ```
 
 ## Editing services
@@ -42,7 +42,21 @@ All service copy lives in `data/services.json`: names, descriptions, features, s
 python3 tools/build_services.py
 ```
 
-This rewrites `services/*.html` and `assets/js/services-data.js`. Don't edit the generated files by hand.
+This rewrites `services/*.html`, `assets/js/services-data.js` and the pricing section in `index.html` (between the `PRICING:START` and `PRICING:END` markers). Don't edit the generated parts by hand.
+
+### Prices
+
+Each service has a `price` object in `data/services.json`:
+
+```json
+"price": { "from": "£197", "per": "/mo", "setup": "+ £497 setup", "market": "£150–£500/mo + £250–£750 setup" }
+```
+
+- `from` and `per` make the big price ("From £197/mo").
+- `setup` is the line under it. Start it with `+ ` and Omni will read it out in the chat ("plus £497 setup").
+- `market` is the "Typical UK agency" comparison. Leave it empty (`""`) to hide it.
+
+The price shows on the pricing section, on each service page, and in Omni's recommendations.
 
 ## Customise
 
