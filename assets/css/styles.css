@@ -695,6 +695,36 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius
   .kkw-transcript { width: 64%; left: 4%; }
 }
 
+/* ---------- AI agent speech bubble ---------- */
+.agent-bubble {
+  position: fixed; left: 0; top: 0; z-index: 1;
+  display: grid; gap: 4px;
+  width: max-content; max-width: min(220px, 60vw);
+  padding: 10px 14px 12px;
+  border: 1px solid color-mix(in srgb, var(--amber) 45%, var(--line));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 20px 40px -20px rgb(0 0 0 / 0.7);
+  font-size: 0.9rem; line-height: 1.4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.agent-bubble.is-on { opacity: 1; }
+.agent-name { font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber); }
+#agent-text { min-height: 1.4em; }
+.agent-bubble::after {
+  content: ""; position: absolute; width: 12px; height: 12px;
+  background: inherit; border: inherit; border-width: 0 0 1px 1px;
+  backdrop-filter: none;
+}
+.agent-bubble[data-tail="left"]::after { left: -7px; top: 60%; transform: rotate(45deg); }
+.agent-bubble[data-tail="right"]::after { right: -7px; top: 60%; transform: rotate(-135deg); }
+.agent-bubble[data-tail="down"]::after { left: calc(50% - 6px); bottom: -7px; transform: rotate(-45deg); }
+.agent-bubble[data-tail="up"]::after { left: calc(50% - 6px); top: -7px; transform: rotate(135deg); }
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }

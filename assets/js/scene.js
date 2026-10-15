@@ -1,16 +1,11 @@
 /*
- * Full-page 3D particle system for Omni AI Builders.
+ * "Omni", the 3D AI agent who guides visitors down the page.
  *
- * One cloud of glowing particles morphs into a different 3D form for each
- * section as the visitor scrolls (sections declare it with data-shape):
- *   core        a glowing AI orb                      (hero, Knock Knock, contact)
- *   services    a ring of 10 clusters, one per service
- *   audiences   two orbs joined by a data stream      (businesses + agencies)
- *   process     a turning double helix                (the pipeline)
- *   calculator  a rolling data surface
- *   faq         a slow spiral galaxy
- *   finale      the word OMNI
- * Particles scatter mid-transition and push away from the cursor.
+ * A glossy robot receptionist with a headset, a glass visor face, blinking
+ * eyes and a voice-waveform mouth. It flies to open space beside each
+ * section (sections declare themselves with data-agent), turns its head to
+ * follow the cursor, waves, and types a line into a speech bubble.
+ * Click it to make it wave and spin.
  * Requires Three.js r128 loaded as the global THREE.
  */
 (function () {
@@ -21,7 +16,7 @@
 
   var renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: true, powerPreference: "high-performance" });
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
   } catch (e) {
     canvas.remove();
     return;
@@ -29,294 +24,269 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var small = window.innerWidth < 760;
-  var N = small ? 9000 : 18000;
-  var PR = Math.min(window.devicePixelRatio || 1, 1.75);
+  var AMBER = 0xffb04a, STEEL = 0x7fa7d9;
 
-  renderer.setPixelRatio(PR);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setClearColor(0x000000, 0);
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
 
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
   camera.position.set(0, 0, 10);
 
-  var group = new THREE.Group();
-  scene.add(group);
-
-  /* ---------- Shape generators ---------- */
-  var TAU = Math.PI * 2;
-  function rand(a, b) { return a + Math.random() * (b - a); }
-  function gauss() {
-    var u = 1 - Math.random(), v = Math.random();
-    return Math.sqrt(-2 * Math.log(u)) * Math.cos(TAU * v);
-  }
-  function unit() {
-    var z = rand(-1, 1), t = rand(0, TAU), r = Math.sqrt(1 - z * z);
-    return [r * Math.cos(t), z, r * Math.sin(t)];
-  }
-  function set(arr, i, x, y, z) { arr[i * 3] = x; arr[i * 3 + 1] = y; arr[i * 3 + 2] = z; }
-
-  function shapeCore() {
-    var a = new Float32Array(N * 3), golden = Math.PI * (3 - Math.sqrt(5));
-    for (var i = 0; i < N; i++) {
-      if (i % 5 === 0) {
-        var u = unit(), r = 2.25 * Math.cbrt(Math.random());
-        set(a, i, u[0] * r, u[1] * r, u[2] * r);
-      } else {
-        var y = 1 - (i / (N - 1)) * 2, rad = Math.sqrt(1 - y * y), th = i * golden, R = 2.6 + gauss() * 0.03;
-        set(a, i, Math.cos(th) * rad * R, y * R, Math.sin(th) * rad * R);
-      }
+  /* ---------- Studio reflections (generated, no image files) ---------- */
+  (function () {
+    var env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.BoxGeometry(12, 12, 12), new THREE.MeshBasicMaterial({ color: 0x0d151d, side: THREE.BackSide })));
+    function panel(color, w, h, x, y, z) {
+      var m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: color, side: THREE.DoubleSide }));
+      m.position.set(x, y, z);
+      m.lookAt(0, 0, 0);
+      env.add(m);
     }
-    return a;
-  }
+    panel(0xffffff, 6, 3, 0, 5.5, 2);   // soft top light
+    panel(0xffc27a, 3, 6, -5.5, 0, 2);  // warm side
+    panel(0x8fb4e6, 3, 6, 5.5, 1, -2);  // cool rim
+    panel(0xffffff, 4, 2, 2, 1, 5.5);   // front fill
+    var pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(env, 0.04).texture;
+    pmrem.dispose();
+  })();
 
-  function shapeServices() {
-    var a = new Float32Array(N * 3), R = 3.7;
-    for (var i = 0; i < N; i++) {
-      if (Math.random() < 0.2) {
-        var t = rand(0, TAU), rr = R + gauss() * 0.05;
-        set(a, i, Math.cos(t) * rr, Math.sin(t) * rr, gauss() * 0.05);
-      } else {
-        var k = i % 10, ang = (k / 10) * TAU + Math.PI / 2;
-        var u = unit(), r = 0.55 * Math.cbrt(Math.random());
-        set(a, i, Math.cos(ang) * R + u[0] * r, Math.sin(ang) * R + u[1] * r, u[2] * r);
-      }
-    }
-    return a;
-  }
+  scene.add(new THREE.AmbientLight(0x9fb3c8, 0.35));
+  var key = new THREE.DirectionalLight(0xfff1e0, 1.4);
+  key.position.set(-4, 6, 6);
+  scene.add(key);
+  var rim = new THREE.DirectionalLight(STEEL, 1.1);
+  rim.position.set(5, 3, -4);
+  scene.add(rim);
 
-  function shapeAudiences() {
-    var a = new Float32Array(N * 3);
-    for (var i = 0; i < N; i++) {
-      var roll = Math.random();
-      if (roll < 0.8) {
-        var cx = roll < 0.4 ? -3.4 : 3.4, u = unit(), R = (i % 4 === 0 ? 1.55 * Math.cbrt(Math.random()) : 1.55);
-        set(a, i, cx + u[0] * R, u[1] * R, u[2] * R);
-      } else {
-        var x = rand(-1.9, 1.9), ph = (i % 3) * 2.1;
-        set(a, i, x, Math.sin(x * 1.6 + ph) * 0.35 + gauss() * 0.06, Math.cos(x * 1.6 + ph) * 0.35 + gauss() * 0.06);
-      }
-    }
-    return a;
-  }
+  /* ---------- Materials ---------- */
+  var shell = new THREE.MeshPhysicalMaterial({ color: 0xeef1f4, roughness: 0.3, metalness: 0.05, clearcoat: 1, clearcoatRoughness: 0.12 });
+  var dark = new THREE.MeshPhysicalMaterial({ color: 0x111a23, roughness: 0.25, metalness: 0.5, clearcoat: 1, clearcoatRoughness: 0.2 });
+  var glass = new THREE.MeshPhysicalMaterial({ color: 0x04070b, roughness: 0.06, metalness: 0.5, clearcoat: 1, clearcoatRoughness: 0.03 });
+  var amberGlow = new THREE.MeshBasicMaterial({ color: AMBER, toneMapped: false });
+  var steelGlow = new THREE.MeshBasicMaterial({ color: STEEL, toneMapped: false });
 
-  function shapeProcess() {
-    var a = new Float32Array(N * 3);
-    for (var i = 0; i < N; i++) {
-      if (Math.random() < 0.12) {
-        var rx = -5.5 + Math.floor(rand(0, 23)) * 0.5, ra = rx * 1.2, t = rand(-1, 1);
-        set(a, i, rx, Math.cos(ra) * 1.1 * t, Math.sin(ra) * 1.1 * t);
-      } else {
-        var x = rand(-5.5, 5.5), ang = x * 1.2 + (i % 2) * Math.PI;
-        set(a, i, x + gauss() * 0.03, Math.cos(ang) * 1.1 + gauss() * 0.05, Math.sin(ang) * 1.1 + gauss() * 0.05);
-      }
-    }
-    return a;
-  }
-
-  function shapeCalculator() {
-    var a = new Float32Array(N * 3);
-    var cols = Math.round(Math.sqrt(N * 13 / 7)), rows = Math.ceil(N / cols), tilt = 0.6;
-    for (var i = 0; i < N; i++) {
-      var gx = -6.5 + ((i % cols) / (cols - 1)) * 13;
-      var gz = -3.5 + (Math.floor(i / cols) / (rows - 1)) * 7;
-      var gy = Math.sin(gx * 0.9) * 0.45 + Math.cos(gz * 1.3 + gx * 0.4) * 0.35;
-      set(a, i, gx, gy * Math.cos(tilt) - gz * Math.sin(tilt), gy * Math.sin(tilt) + gz * Math.cos(tilt));
-    }
-    return a;
-  }
-
-  function shapeFaq() {
-    var a = new Float32Array(N * 3), tilt = 1.0;
-    for (var i = 0; i < N; i++) {
-      var r = Math.pow(Math.random(), 1.5) * 4.2, ang = ((i % 3) / 3) * TAU + r * 1.1;
-      var spread = 0.35 * (1 - r / 5);
-      var x = Math.cos(ang) * r + gauss() * spread, y = gauss() * 0.12, z = Math.sin(ang) * r + gauss() * spread;
-      set(a, i, x, y * Math.cos(tilt) - z * Math.sin(tilt), y * Math.sin(tilt) + z * Math.cos(tilt));
-    }
-    return a;
-  }
-
-  function shapeText(word, target) {
-    var a = target || new Float32Array(N * 3);
-    var W = 1400, H = 360, c = document.createElement("canvas");
-    c.width = W; c.height = H;
-    var g = c.getContext("2d");
-    g.fillStyle = "#fff";
-    g.textAlign = "center";
-    g.textBaseline = "middle";
-    g.font = '800 280px "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif';
-    var tw = g.measureText(word).width || W * 0.8;
-    g.fillText(word, W / 2, H / 2 + 10);
-    var data = g.getImageData(0, 0, W, H).data, pts = [];
-    for (var py = 0; py < H; py += 3) {
-      for (var px = 0; px < W; px += 3) {
-        if (data[(py * W + px) * 4 + 3] > 140) pts.push(px, py);
-      }
-    }
-    var span = 10.5 / tw;
-    for (var i = 0; i < N; i++) {
-      if (!pts.length) { set(a, i, 0, 0, 0); continue; }
-      var k = Math.floor(Math.random() * (pts.length / 2)) * 2;
-      set(a, i,
-        (pts[k] - W / 2) * span + gauss() * 0.015,
-        -(pts[k + 1] - H / 2) * span + gauss() * 0.015,
-        gauss() * 0.12);
-    }
-    return a;
-  }
-
-  /* ---------- Geometry and material ---------- */
-  var SHAPES = { core: 0, services: 1, audiences: 2, process: 3, calculator: 4, faq: 5, finale: 6 };
-  var geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.BufferAttribute(shapeCore(), 3));
-  geo.setAttribute("aS1", new THREE.BufferAttribute(shapeServices(), 3));
-  geo.setAttribute("aS2", new THREE.BufferAttribute(shapeAudiences(), 3));
-  geo.setAttribute("aS3", new THREE.BufferAttribute(shapeProcess(), 3));
-  geo.setAttribute("aS4", new THREE.BufferAttribute(shapeCalculator(), 3));
-  geo.setAttribute("aS5", new THREE.BufferAttribute(shapeFaq(), 3));
-  geo.setAttribute("aS6", new THREE.BufferAttribute(shapeText("OMNI"), 3));
-  var rnd = new Float32Array(N);
-  for (var r = 0; r < N; r++) rnd[r] = Math.random();
-  geo.setAttribute("aRand", new THREE.BufferAttribute(rnd, 1));
-  geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 50);
-
-  // The word needs the display face; re-sample once fonts have loaded.
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(function () {
-      var attr = geo.getAttribute("aS6");
-      shapeText("OMNI", attr.array);
-      attr.needsUpdate = true;
-      if (reduceMotion) render();
-    });
-  }
-
-  var uniforms = {
-    uTime: { value: 0 },
-    uFrom: { value: 0 },
-    uTo: { value: 0 },
-    uT: { value: 0 },
-    uSize: { value: small ? 0.13 : 0.12 },
-    uPR: { value: PR },
-    uOpacity: { value: 1 },
-    uMouse: { value: new THREE.Vector2(99, 99) },
-    uMouseOn: { value: 0 }
-  };
-
-  var material = new THREE.ShaderMaterial({
-    uniforms: uniforms,
-    transparent: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    vertexShader: [
-      "uniform float uTime, uFrom, uTo, uT, uSize, uPR, uOpacity, uMouseOn;",
-      "uniform vec2 uMouse;",
-      "attribute vec3 aS1, aS2, aS3, aS4, aS5, aS6;",
-      "attribute float aRand;",
-      "varying vec3 vColor;",
-      "varying float vAlpha;",
-      "mat2 rot(float a) { float c = cos(a), s = sin(a); return mat2(c, -s, s, c); }",
-      "float wt(float k) {",
-      "  return (1.0 - step(0.5, abs(uFrom - k))) * (1.0 - uT) + (1.0 - step(0.5, abs(uTo - k))) * uT;",
-      "}",
-      "void main() {",
-      "  vec3 s0 = position; s0.xz = rot(uTime * 0.18) * s0.xz;",
-      "  vec3 s1 = aS1;      s1.xy = rot(uTime * 0.07) * s1.xy;",
-      "  vec3 s2 = aS2;      s2.yz = rot(uTime * 0.25 * sign(s2.x)) * s2.yz;",
-      "  vec3 s3 = aS3;      s3.yz = rot(uTime * 0.45) * s3.yz;",
-      "  vec3 s4 = aS4;      s4.y += sin(s4.x * 0.8 + uTime * 0.9) * 0.18;",
-      "  vec3 s5 = aS5;      s5.xz = rot(uTime * 0.05) * s5.xz;",
-      "  vec3 p = s0 * wt(0.0) + s1 * wt(1.0) + s2 * wt(2.0) + s3 * wt(3.0) + s4 * wt(4.0) + s5 * wt(5.0) + aS6 * wt(6.0);",
-      "  float burst = sin(3.14159 * uT);",
-      "  float n = aRand * 6.2831;",
-      "  vec3 wob = vec3(sin(p.y * 1.7 + uTime * 0.8 + n), sin(p.z * 1.5 + uTime * 0.7 + n * 1.3), sin(p.x * 1.3 + uTime * 0.6 + n * 0.7));",
-      "  p += wob * (0.03 + burst * 1.1 * aRand);",
-      "  vec4 world = modelMatrix * vec4(p, 1.0);",
-      "  vec2 d = world.xy - uMouse;",
-      "  float dl = length(d);",
-      "  float f = uMouseOn * smoothstep(1.7, 0.0, dl);",
-      "  world.xy += (d / max(dl, 0.001)) * f * 0.75;",
-      "  world.z += f * 0.6;",
-      "  vec4 mv = viewMatrix * world;",
-      "  gl_Position = projectionMatrix * mv;",
-      "  float textW = wt(6.0);",
-      "  gl_PointSize = uSize * (0.45 + aRand) * uPR * (300.0 / -mv.z) * (1.0 + f * 0.9) * (1.0 + textW * 0.5);",
-      "  vec3 steel = vec3(0.50, 0.65, 0.85);",
-      "  vec3 amber = vec3(1.0, 0.69, 0.29);",
-      "  vec3 hot = vec3(1.0, 0.94, 0.84);",
-      "  vec3 c = mix(steel, amber, step(0.74, aRand));",
-      "  c = mix(c, hot, step(0.975, aRand));",
-      "  c = mix(c, amber, clamp(f * 0.9 + burst * 0.3, 0.0, 1.0));",
-      "  vColor = c;",
-      "  vAlpha = uOpacity * (0.6 + 0.4 * (0.5 + 0.5 * sin(uTime * 1.6 + n * 3.0))) * (1.0 + textW * 0.6);",
-      "}"
-    ].join("\n"),
-    fragmentShader: [
-      "varying vec3 vColor;",
-      "varying float vAlpha;",
-      "void main() {",
-      "  float d = length(gl_PointCoord - 0.5);",
-      "  float a = smoothstep(0.5, 0.0, d);",
-      "  a *= a;",
-      "  gl_FragColor = vec4(vColor * a * vAlpha, a * vAlpha);",
-      "}"
-    ].join("\n")
-  });
-
-  var points = new THREE.Points(geo, material);
-  points.frustumCulled = false;
-  group.add(points);
-
-  /* ---------- Orb glow (only around the core shape) ---------- */
-  var glow = (function () {
+  var glowTex = (function () {
     var c = document.createElement("canvas");
     c.width = c.height = 128;
     var g = c.getContext("2d");
     var grad = g.createRadialGradient(64, 64, 0, 64, 64, 64);
-    grad.addColorStop(0, "rgba(255,176,74,0.55)");
-    grad.addColorStop(0.35, "rgba(255,176,74,0.14)");
-    grad.addColorStop(1, "rgba(255,176,74,0)");
+    grad.addColorStop(0, "rgba(255,255,255,1)");
+    grad.addColorStop(0.3, "rgba(255,255,255,0.35)");
+    grad.addColorStop(1, "rgba(255,255,255,0)");
     g.fillStyle = grad;
     g.fillRect(0, 0, 128, 128);
-    var s = new THREE.Sprite(new THREE.SpriteMaterial({
-      map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
-    }));
-    s.scale.set(9, 9, 1);
-    return s;
+    return new THREE.CanvasTexture(c);
   })();
-  group.add(glow);
+  function glowSprite(color, size, opacity) {
+    var s = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: glowTex, color: color, transparent: true, opacity: opacity,
+      depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false
+    }));
+    s.scale.set(size, size, 1);
+    return s;
+  }
+
+  /* ---------- Build the agent ---------- */
+  var agent = new THREE.Group();   // section position, scale, facing
+  var rig = new THREE.Group();     // hover bob and lean
+  agent.add(rig);
+  scene.add(agent);
+  var pickables = [];
+  function add(parent, mesh) { parent.add(mesh); pickables.push(mesh); return mesh; }
+
+  // Body: a rounded bean
+  var bodyProfile = [
+    [0, -0.8], [0.42, -0.78], [0.66, -0.62], [0.76, -0.25], [0.75, 0.25], [0.64, 0.62], [0.42, 0.8], [0, 0.83]
+  ].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
+  add(rig, new THREE.Mesh(new THREE.LatheGeometry(bodyProfile, 64), shell));
+  var belt = new THREE.Mesh(new THREE.TorusGeometry(0.755, 0.025, 12, 80), dark);
+  belt.rotation.x = Math.PI / 2;
+  belt.position.y = -0.2;
+  rig.add(belt);
+
+  // Chest: the Omni diamond inside a glowing ring
+  var chest = new THREE.Group();
+  chest.position.set(0, 0.22, 0.73);
+  chest.rotation.x = -0.12;
+  rig.add(chest);
+  chest.add(new THREE.Mesh(new THREE.CircleGeometry(0.26, 48), glass));
+  chest.add(new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.028, 12, 64), amberGlow));
+  var diamond = new THREE.Mesh(new THREE.OctahedronGeometry(0.12, 0), amberGlow);
+  diamond.position.z = 0.04;
+  diamond.scale.set(1, 1, 0.4);
+  chest.add(diamond);
+  var chestGlow = glowSprite(AMBER, 1.1, 0.45);
+  chestGlow.position.z = 0.05;
+  chest.add(chestGlow);
+
+  // Neck
+  var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.26, 0.2, 32), dark);
+  neck.position.y = 0.9;
+  rig.add(neck);
+
+  // Head
+  var head = new THREE.Group();
+  head.position.y = 1.62;
+  rig.add(head);
+  var skull = add(head, new THREE.Mesh(new THREE.SphereGeometry(1, 64, 48), shell));
+  skull.scale.set(0.95, 0.76, 0.82);
+
+  // Visor: the front cap of a sphere (phi = PI/2 faces +z)
+  var visor = add(head, new THREE.Mesh(
+    new THREE.SphereGeometry(1, 64, 48, Math.PI * 0.13, Math.PI * 0.74, Math.PI * 0.24, Math.PI * 0.5),
+    glass
+  ));
+  visor.scale.set(0.87, 0.74, 0.88);
+  visor.position.z = 0.02;
+
+  // Eyes
+  var eyes = [];
+  [-0.3, 0.3].forEach(function (x) {
+    var eye = new THREE.Mesh(new THREE.SphereGeometry(0.1, 24, 16), amberGlow);
+    eye.scale.set(1, 1.45, 0.35);
+    eye.position.set(x, 0.1, 0.9);
+    head.add(eye);
+    eyes.push(eye);
+  });
+  var eyeGlow = glowSprite(AMBER, 1.5, 0.3);
+  eyeGlow.position.set(0, 0.1, 0.95);
+  head.add(eyeGlow);
+
+  // Mouth: a 5-bar voice waveform
+  var mouth = [];
+  for (var b = 0; b < 5; b++) {
+    var bar = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.1, 0.02), amberGlow);
+    bar.position.set((b - 2) * 0.085, -0.22, 0.875);
+    bar.rotation.x = -0.28;
+    head.add(bar);
+    mouth.push(bar);
+  }
+
+  // Ear pods with glowing rings
+  [-1, 1].forEach(function (side) {
+    var pod = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.16, 32), dark);
+    pod.rotation.z = Math.PI / 2;
+    pod.position.set(side * 0.93, 0, 0);
+    head.add(pod);
+    var ring = new THREE.Mesh(new THREE.TorusGeometry(0.15, 0.022, 10, 40), amberGlow);
+    ring.rotation.y = Math.PI / 2;
+    ring.position.set(side * 1.02, 0, 0);
+    head.add(ring);
+  });
+
+  // Headset band and microphone boom
+  var band = new THREE.Mesh(new THREE.TorusGeometry(0.97, 0.035, 12, 64, Math.PI), dark);
+  band.position.set(0, 0.02, -0.08);
+  band.rotation.x = -0.12;
+  head.add(band);
+  var boomCurve = new THREE.QuadraticBezierCurve3(
+    new THREE.Vector3(-1.0, -0.05, 0.08),
+    new THREE.Vector3(-1.02, -0.42, 0.55),
+    new THREE.Vector3(-0.42, -0.36, 0.84)
+  );
+  head.add(new THREE.Mesh(new THREE.TubeGeometry(boomCurve, 24, 0.022, 8, false), dark));
+  var mic = new THREE.Mesh(new THREE.SphereGeometry(0.06, 16, 12), dark);
+  mic.position.copy(boomCurve.v2);
+  head.add(mic);
+  var micLight = new THREE.Mesh(new THREE.SphereGeometry(0.022, 10, 8), amberGlow);
+  micLight.position.copy(boomCurve.v2).add(new THREE.Vector3(0.02, 0.02, 0.05));
+  head.add(micLight);
+
+  // Antenna
+  var stalk = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.035, 0.32, 12), dark);
+  stalk.position.set(0, 0.9, 0);
+  head.add(stalk);
+  var tip = new THREE.Mesh(new THREE.SphereGeometry(0.075, 20, 16), amberGlow);
+  tip.position.set(0, 1.1, 0);
+  head.add(tip);
+  var tipGlow = glowSprite(AMBER, 0.9, 0.6);
+  tipGlow.position.copy(tip.position);
+  head.add(tipGlow);
+
+  // Floating hands
+  function makeHand() {
+    var h = new THREE.Group();
+    var palm = add(h, new THREE.Mesh(new THREE.SphereGeometry(0.24, 32, 24), shell));
+    palm.scale.set(1, 1.08, 0.85);
+    var cuff = new THREE.Mesh(new THREE.TorusGeometry(0.19, 0.035, 10, 40), dark);
+    cuff.rotation.x = Math.PI / 2;
+    cuff.position.y = -0.17;
+    h.add(cuff);
+    rig.add(h);
+    return h;
+  }
+  var handL = makeHand(), handR = makeHand();
+  handL.position.set(-1.05, -0.15, 0.2);
+  handR.position.set(1.05, -0.15, 0.2);
+
+  // Hover base
+  var base = new THREE.Group();
+  base.position.y = -1.2;
+  agent.add(base);
+  var baseRing = new THREE.Mesh(new THREE.TorusGeometry(0.6, 0.03, 12, 80), steelGlow);
+  baseRing.rotation.x = Math.PI / 2;
+  base.add(baseRing);
+  var baseRing2 = new THREE.Mesh(new THREE.TorusGeometry(0.85, 0.012, 8, 80), amberGlow);
+  baseRing2.rotation.x = Math.PI / 2;
+  base.add(baseRing2);
+  var baseGlow = glowSprite(STEEL, 2.6, 0.35);
+  baseGlow.scale.set(2.6, 0.9, 1);
+  base.add(baseGlow);
 
   /* ---------- Background dust ---------- */
-  (function () {
-    var count = small ? 400 : 900, arr = new Float32Array(count * 3);
+  var dust = (function () {
+    var count = small ? 350 : 800, arr = new Float32Array(count * 3);
     for (var i = 0; i < count; i++) {
-      var u = unit(), rr = rand(14, 40);
-      set(arr, i, u[0] * rr, u[1] * rr * 0.6, u[2] * rr - 12);
+      var z = Math.random() * 2 - 1, t = Math.random() * Math.PI * 2, r = 14 + Math.random() * 26, q = Math.sqrt(1 - z * z);
+      arr[i * 3] = q * Math.cos(t) * r;
+      arr[i * 3 + 1] = z * r * 0.6;
+      arr[i * 3 + 2] = q * Math.sin(t) * r - 12;
     }
     var g = new THREE.BufferGeometry();
     g.setAttribute("position", new THREE.BufferAttribute(arr, 3));
-    var dust = new THREE.Points(g, new THREE.PointsMaterial({ color: 0x7fa7d9, size: 0.07, transparent: true, opacity: 0.45, depthWrite: false }));
-    scene.add(dust);
-    scene.userData.dust = dust;
+    var d = new THREE.Points(g, new THREE.PointsMaterial({ color: STEEL, size: 0.07, transparent: true, opacity: 0.45, depthWrite: false }));
+    scene.add(d);
+    return d;
   })();
 
-  /* ---------- Per-section layout: [x, y, scale, opacity] ---------- */
+  /* ---------- Per-section placement, pose and lines ---------- */
+  // [x, visual-centre y, scale, facing, bubble side] in world units.
+  // Facing turns the agent toward the content. Bubble side: 1 right of the head, -1 left, 0 hidden.
+  var CORNER = [1.25, -3.05, 0.27, -0.3, 0];
   var LAYOUT = {
-    core:       { d: [3.3, 0, 1, 1],          m: [0, 2.05, 0.55, 1] },
-    services:   { d: [0, 0.2, 1.35, 0.75],    m: [0, 0, 0.5, 0.4] },
-    audiences:  { d: [3.6, 2.4, 0.55, 0.95],  m: [0, 2.6, 0.32, 0.6] },
-    kk:         { d: [-4.3, 0.3, 0.7, 0.5],   m: [0, 2.6, 0.35, 0.5] },
-    process:    { d: [0, 2.3, 0.85, 0.85],    m: [0, 2.7, 0.35, 0.6] },
-    calculator: { d: [2.8, 2.35, 0.44, 0.95],  m: [0, 2.6, 0.3, 0.6] },
-    faq:        { d: [-3.6, -1.6, 0.7, 0.85], m: [0, 0, 0.5, 0.35] },
-    finale:     { d: [0, 1.25, 0.82, 1],      m: [0, 1.6, 0.34, 1] },
-    contact:    { d: [-4.2, -1.6, 0.6, 0.6],  m: [0, -2.5, 0.4, 0.35] }
+    core:       { d: [3.2, 0, 1, -0.3, 1],        m: [-0.9, 2.15, 0.45, 0.3, 1] },
+    services:   { d: [3.5, 2.0, 0.5, -0.45, 1],   m: CORNER },
+    audiences:  { d: [3.5, 2.35, 0.48, -0.4, 1],  m: CORNER },
+    kk:         { d: [5.9, 2.7, 0.4, -0.5, -1],   m: CORNER },
+    process:    { d: [3.5, 2.2, 0.55, -0.4, 1],   m: CORNER },
+    calculator: { d: [3.5, 2.2, 0.55, -0.4, 1],   m: CORNER },
+    faq:        { d: [-4.4, -1.6, 0.7, 0.45, -1], m: CORNER },
+    finale:     { d: [0, 1.4, 0.85, 0, 1],        m: [-0.9, 1.6, 0.45, 0.3, 1] },
+    contact:    { d: [-4.5, -2.0, 0.6, 0.45, -1], m: CORNER }
   };
-  function shapeIndex(key) { return key === "contact" || key === "kk" ? 0 : SHAPES[key]; }
+  var LINES = {
+    core: "Hi, I'm your AI agent. I answer calls, chats and DMs 24/7.",
+    services: "Ten services, one system. Drag the ring to explore them.",
+    audiences: "Local business or agency? I work for both.",
+    kk: "I can live on your clients' websites too, with Knock Knock AI.",
+    process: "From first call to live in about three weeks.",
+    calculator: "Let's see what slow replies are costing you.",
+    faq: "Ask me anything, or open a question below.",
+    finale: "Ready when you are. Let's build your AI workforce.",
+    contact: "Tell me what you'd like to automate first.",
+    poke: "That tickles! Book a call and I'll get to work."
+  };
+  var POSE = { core: "wave", finale: "wave", services: "present", audiences: "present", kk: "present", process: "present", calculator: "think", faq: "think", contact: "present" };
 
-  var sections = Array.prototype.slice.call(document.querySelectorAll("[data-shape]"));
+  var sections = Array.prototype.slice.call(document.querySelectorAll("[data-agent]"));
 
   // Scroll position in "section units": 2.4 means 40% of the way from section 2 to 3.
-  // Each shape holds steady while its section is centred, then morphs.
+  // The agent holds still while a section is centred, then flies to the next spot.
   function scrollTarget() {
     if (!sections.length) return 0;
     var vc = window.innerHeight / 2, centers = sections.map(function (el) {
@@ -327,36 +297,182 @@
     for (var i = 0; i < centers.length - 1; i++) {
       if (vc < centers[i + 1]) {
         var t = (vc - centers[i]) / (centers[i + 1] - centers[i]);
-        t = Math.min(1, Math.max(0, (t - 0.2) / 0.6));
+        t = Math.min(1, Math.max(0, (t - 0.25) / 0.5));
         return i + t * t * (3 - 2 * t);
       }
     }
     return centers.length - 1;
   }
 
+  /* ---------- State ---------- */
+  var elapsed = 0;
   var pos = scrollTarget();
-  var pointer = { x: 0, y: 0, tx: 0, ty: 0, on: 0, ton: 0 };
-  var ndc = new THREE.Vector3(), dir = new THREE.Vector3();
+  var pointer = { x: 0, y: 0, tx: 0, ty: 0, active: false };
+  var lastX = null, lean = 0;
+  var blink = { next: 2, t: -1 };
+  var wave = { until: 2.6 };
+  var spin = { t: -1 };
+  var current = { key: "", pose: "wave" };
+  var v3 = new THREE.Vector3(), hL = new THREE.Vector3(), hR = new THREE.Vector3();
 
-  function apply(p) {
-    if (!sections.length) return;
+  /* ---------- Speech bubble ---------- */
+  var bubble = document.getElementById("agent-bubble");
+  var bubbleText = document.getElementById("agent-text");
+  var said = "", typing = { text: "", shown: 0, clock: 0 }, talkUntil = 0, pokeTimer = 0;
+
+  function say(keyName) {
+    var line = LINES[keyName] || "";
+    if (line === said) return;
+    said = line;
+    typing.text = line;
+    typing.shown = reduceMotion ? line.length : 0;
+    typing.clock = 0;
+    if (bubbleText) bubbleText.textContent = reduceMotion ? line : "";
+    talkUntil = elapsed + line.length * 0.03 + 0.5;
+  }
+
+  function placement(p) {
     var i = Math.min(sections.length - 1, Math.floor(p));
     var j = Math.min(sections.length - 1, i + 1);
     var t = p - i;
-    var a = sections[i].getAttribute("data-shape"), b = sections[j].getAttribute("data-shape");
-    uniforms.uFrom.value = shapeIndex(a);
-    uniforms.uTo.value = shapeIndex(b);
-    uniforms.uT.value = t;
-
-    var la = LAYOUT[a][small ? "m" : "d"], lb = LAYOUT[b][small ? "m" : "d"];
+    var a = sections[i].getAttribute("data-agent"), b = sections[j].getAttribute("data-agent");
+    var la = (LAYOUT[a] || LAYOUT.core)[small ? "m" : "d"], lb = (LAYOUT[b] || LAYOUT.core)[small ? "m" : "d"];
     function mix(k) { return la[k] + (lb[k] - la[k]) * t; }
-    group.position.set(mix(0), mix(1), 0);
-    group.scale.setScalar(mix(2));
-    uniforms.uOpacity.value = mix(3);
-
-    var coreW = (shapeIndex(a) === 0 ? 1 - t : 0) + (shapeIndex(b) === 0 ? t : 0);
-    glow.material.opacity = coreW * mix(3);
+    var near = t < 0.5 ? la : lb;
+    return { x: mix(0), y: mix(1), s: mix(2), f: mix(3), side: near[4], key: t < 0.5 ? a : b, moving: t > 0.04 && t < 0.96 };
   }
+
+  function update(dt) {
+    elapsed += dt;
+    if (sections.length) pos += (scrollTarget() - pos) * Math.min(1, dt * 3.2);
+    var pl = sections.length ? placement(pos) : { x: 3.2, y: 0, s: 1, f: -0.3, side: 1, key: "core", moving: false };
+
+    // Flight: lean into the direction of travel
+    if (lastX !== null && dt > 0) lean += (((pl.x - lastX) / dt) * -0.04 - lean) * Math.min(1, dt * 4);
+    lastX = pl.x;
+
+    agent.position.set(pl.x, pl.y - 0.8 * pl.s, 0);
+    agent.scale.setScalar(pl.s);
+    rig.position.y = reduceMotion ? 0 : Math.sin(elapsed * 1.6) * 0.08;
+    rig.rotation.z = Math.max(-0.35, Math.min(0.35, lean)) + (reduceMotion ? 0 : Math.sin(elapsed * 0.9) * 0.025);
+
+    if (pl.key !== current.key) {
+      current.key = pl.key;
+      current.pose = POSE[pl.key] || "idle";
+      if (current.pose === "wave") wave.until = elapsed + 2.6;
+      if (!pokeTimer) say(pl.key);
+    }
+
+    // Facing, plus a spin when clicked
+    var spinAngle = 0;
+    if (spin.t >= 0) {
+      spin.t += dt;
+      var k = Math.min(1, spin.t / 1.1);
+      spinAngle = Math.PI * 2 * (1 - Math.pow(1 - k, 3));
+      if (k >= 1) spin.t = -1;
+    }
+    agent.rotation.y = pl.f + spinAngle;
+
+    // Head follows the cursor, relative to where the agent is on screen
+    head.localToWorld(v3.set(0, 0, 0));
+    v3.project(camera);
+    pointer.x += (pointer.tx - pointer.x) * Math.min(1, dt * 5);
+    pointer.y += (pointer.ty - pointer.y) * Math.min(1, dt * 5);
+    var lookX = pointer.active ? Math.max(-0.75, Math.min(0.75, (pointer.x - v3.x) * 1.1)) : Math.sin(elapsed * 0.4) * 0.15;
+    var lookY = pointer.active ? Math.max(-0.4, Math.min(0.45, (pointer.y - v3.y) * 0.8)) : 0;
+    var ease = reduceMotion ? 1 : Math.min(1, dt * 6);
+    head.rotation.y += ((lookX - pl.f) - head.rotation.y) * ease;
+    head.rotation.x += (-lookY - head.rotation.x) * ease;
+    head.rotation.z = -head.rotation.y * 0.08;
+
+    // Blink
+    if (elapsed > blink.next && blink.t < 0 && !reduceMotion) blink.t = 0;
+    var eyeY = 1.45;
+    if (blink.t >= 0) {
+      blink.t += dt;
+      eyeY = 1.45 * Math.abs(Math.cos(Math.min(1, blink.t / 0.16) * Math.PI));
+      if (blink.t > 0.16) { blink.t = -1; blink.next = elapsed + 2 + Math.random() * 3.5; }
+    }
+    eyes.forEach(function (e, i) {
+      e.scale.y = Math.max(0.12, eyeY);
+      e.position.x = (i ? 0.3 : -0.3) + lookX * 0.03;
+    });
+
+    // Mouth: talk while typing, gentle hum otherwise
+    var talking = elapsed < talkUntil && !reduceMotion;
+    mouth.forEach(function (m, i) {
+      m.scale.y = talking
+        ? 0.35 + Math.abs(Math.sin(elapsed * 14 + i * 1.7) * Math.sin(elapsed * 5.3 + i)) * 1.6
+        : 0.5 + Math.sin(elapsed * 2 + i * 0.8) * 0.15;
+    });
+
+    // Glows breathe
+    var pulse = 0.5 + 0.5 * Math.sin(elapsed * 2.2);
+    chestGlow.material.opacity = 0.3 + pulse * 0.3 + (talking ? 0.2 : 0);
+    tipGlow.material.opacity = 0.4 + pulse * 0.4;
+    diamond.rotation.z = elapsed * 0.8;
+    baseRing.rotation.z = elapsed * 0.5;
+    baseRing2.scale.setScalar(1 + pulse * 0.08);
+    baseGlow.material.opacity = 0.25 + pulse * 0.15;
+
+    // Hands by pose, in local space. Screen-left is the agent's right hand.
+    var waving = elapsed < wave.until && !reduceMotion;
+    var contentSide = pl.x > 0.5 ? -1 : 1;
+    var t2 = elapsed;
+    hL.set(-1.05, -0.15 + Math.sin(t2 * 1.6 + 1) * 0.05, 0.2);
+    hR.set(1.05, -0.15 + Math.sin(t2 * 1.6) * 0.05, 0.2);
+    if (current.pose === "present") {
+      (contentSide < 0 ? hL : hR).set(contentSide * 1.35, 0.35 + Math.sin(t2 * 1.4) * 0.05, 0.75);
+    } else if (current.pose === "think") {
+      (contentSide < 0 ? hL : hR).set(contentSide * 0.42, 0.95 + Math.sin(t2 * 1.2) * 0.02, 0.85);
+    }
+    var waveHand = contentSide < 0 ? hR : hL, waveSign = contentSide < 0 ? 1 : -1;
+    if (waving || current.pose === "wave") {
+      var w = waving ? 1 : 0.35;
+      waveHand.set(waveSign * (1.2 + Math.sin(t2 * 9) * 0.18 * w), 1.35 + Math.cos(t2 * 9) * 0.05 * w, 0.35);
+    }
+    var hk = reduceMotion ? 1 : Math.min(1, dt * 7);
+    handL.position.lerp(hL, hk);
+    handR.position.lerp(hR, hk);
+    var rock = (waving || current.pose === "wave") ? Math.sin(t2 * 9) * 0.5 : 0;
+    (contentSide < 0 ? handR : handL).rotation.z = rock;
+
+    dust.rotation.y = elapsed * 0.01 + pos * 0.06;
+
+    // Typewriter
+    if (typing.shown < typing.text.length) {
+      typing.clock += dt;
+      var n = Math.min(typing.text.length, Math.floor(typing.clock / 0.028));
+      if (n !== typing.shown) {
+        typing.shown = n;
+        if (bubbleText) bubbleText.textContent = typing.text.slice(0, n);
+      }
+    }
+
+    placeBubble(pl);
+  }
+
+  function placeBubble(pl) {
+    if (!bubble) return;
+    var show = !pl.moving && said.length > 0 && pl.side !== 0;
+    bubble.classList.toggle("is-on", show);
+    if (!show) return;
+    head.localToWorld(v3.set(0, 0.45, 0));
+    v3.project(camera);
+    var sx = (v3.x * 0.5 + 0.5) * window.innerWidth;
+    var sy = (-v3.y * 0.5 + 0.5) * window.innerHeight;
+    var unitPx = window.innerHeight / (2 * Math.tan(Math.PI / 8) * 10);
+    var headPx = 0.95 * pl.s * unitPx;
+    var bw = bubble.offsetWidth, bh = bubble.offsetHeight;
+    var left = pl.side > 0 ? sx + headPx * 1.05 : sx - headPx * 1.05 - bw;
+    var top = sy - bh * 0.7;
+    bubble.setAttribute("data-tail", pl.side > 0 ? "left" : "right");
+    left = Math.max(12, Math.min(window.innerWidth - bw - 12, left));
+    top = Math.max(70, Math.min(window.innerHeight - bh - 12, top));
+    bubble.style.transform = "translate(" + Math.round(left) + "px," + Math.round(top) + "px)";
+  }
+
+  function render() { renderer.render(scene, camera); }
 
   function resize() {
     var w = window.innerWidth, h = window.innerHeight;
@@ -364,62 +480,51 @@
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    if (reduceMotion) { apply(scrollTarget()); render(); }
+    if (reduceMotion) { pos = scrollTarget(); update(0); render(); }
   }
 
+  /* ---------- Input ---------- */
   window.addEventListener("resize", resize);
   window.addEventListener("pointermove", function (e) {
     if (e.pointerType !== "mouse") return;
     pointer.tx = (e.clientX / window.innerWidth) * 2 - 1;
     pointer.ty = -((e.clientY / window.innerHeight) * 2 - 1);
-    pointer.ton = 1;
+    pointer.active = true;
   }, { passive: true });
-  document.addEventListener("pointerleave", function () { pointer.ton = 0; });
-  if (reduceMotion) {
-    window.addEventListener("scroll", function () { apply(scrollTarget()); render(); }, { passive: true });
-  }
+  document.addEventListener("pointerleave", function () { pointer.active = false; });
 
-  function render() { renderer.render(scene, camera); }
+  var raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  window.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest("a, button, input, select, textarea, summary, label, .card, .carousel-stage, .kk-card, .audience")) return;
+    ndc.set((e.clientX / window.innerWidth) * 2 - 1, -((e.clientY / window.innerHeight) * 2 - 1));
+    raycaster.setFromCamera(ndc, camera);
+    if (!raycaster.intersectObjects(pickables, false).length) return;
+    wave.until = elapsed + 2.2;
+    if (!reduceMotion) spin.t = 0;
+    said = "";
+    say("poke");
+    clearTimeout(pokeTimer);
+    pokeTimer = setTimeout(function () { pokeTimer = 0; said = ""; say(current.key); }, 3200);
+    if (reduceMotion) { update(0); render(); }
+  });
 
-  /* ---------- Animation ---------- */
-  var last = performance.now(), rafId = 0, elapsed = 0;
-
+  /* ---------- Loop ---------- */
+  var last = performance.now(), rafId = 0;
   function frame(now) {
     var dt = Math.min(0.05, (now - last) / 1000);
     last = now;
-    elapsed += dt;
-    uniforms.uTime.value = elapsed;
-
-    // Ease toward the scroll position so jumps (nav links) still morph smoothly.
-    pos += (scrollTarget() - pos) * Math.min(1, dt * 4);
-    apply(pos);
-
-    pointer.x += (pointer.tx - pointer.x) * Math.min(1, dt * 4);
-    pointer.y += (pointer.ty - pointer.y) * Math.min(1, dt * 4);
-    pointer.on += (pointer.ton - pointer.on) * Math.min(1, dt * 3);
-
-    group.rotation.y = pointer.x * 0.22;
-    group.rotation.x = -pointer.y * 0.12;
-
-    // Cursor position on the z = 0 plane, for the repel effect.
-    ndc.set(pointer.x, pointer.y, 0.5).unproject(camera);
-    dir.copy(ndc).sub(camera.position).normalize();
-    var dist = -camera.position.z / dir.z;
-    uniforms.uMouse.value.set(camera.position.x + dir.x * dist, camera.position.y + dir.y * dist);
-    uniforms.uMouseOn.value = pointer.on;
-
-    var dust = scene.userData.dust;
-    if (dust) dust.rotation.y = elapsed * 0.01 + pos * 0.08;
-
+    update(dt);
     render();
     rafId = requestAnimationFrame(frame);
   }
 
   resize();
-  apply(pos);
 
   if (reduceMotion) {
+    pos = scrollTarget();
+    update(0);
     render();
+    window.addEventListener("scroll", function () { pos = scrollTarget(); update(0); render(); }, { passive: true });
   } else {
     rafId = requestAnimationFrame(frame);
     document.addEventListener("visibilitychange", function () {

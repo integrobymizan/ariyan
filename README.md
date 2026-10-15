@@ -2,7 +2,7 @@
 
 A single-page 3D marketing site for Omni AI Builders.
 
-- **Scroll-driven particle morph:** 18,000 GPU particles (9,000 on phones) change into a new 3D form for each section: an AI orb, a ring of nine service clusters, two linked orbs, a double helix, a data wave, a galaxy, and finally the word OMNI. They scatter between shapes and push away from the cursor.
+- **3D AI agent mascot:** "Omni", a glossy robot receptionist with a headset, visor face, blinking eyes and a voice-waveform mouth, built entirely in Three.js (no model files). It flies to open space beside each section, follows the cursor with its head, waves, points at content, and types a line into a speech bubble for each section. Click it for a spin. On phones it greets you above the hero, then rides along as a small corner companion.
 - **3D services carousel:** nine service cards on a rotating ring you can drag, step through, filter or use with the keyboard. It becomes a plain grid below 900px.
 - Cursor glow, scroll progress bar, 3D tilt panels, missed-lead calculator.
 
@@ -23,7 +23,7 @@ python3 -m http.server 8080
 ```
 index.html              Page content and sections
 assets/css/styles.css   Design tokens (top of file) and all styles
-assets/js/scene.js      Three.js particle system that morphs per section
+assets/js/scene.js      Three.js 3D AI agent: model, poses, flight path and speech bubble
 assets/js/main.js       Run log, 3D carousel, filters, calculator, cursor, contact form
 ```
 
@@ -33,8 +33,9 @@ assets/js/main.js       Run log, 3D carousel, filters, calculator, cursor, conta
 | --- | --- |
 | Brand name, copy, services, sections | `index.html` |
 | Colours and fonts | `:root` tokens at the top of `assets/css/styles.css` |
-| Shape and position per section | `data-shape` on each section, `LAYOUT` in `assets/js/scene.js` |
-| Word the particles spell | `shapeText("OMNI")` in `assets/js/scene.js` |
+| Where the agent stands per section | `data-agent` on each section, `LAYOUT` in `assets/js/scene.js` |
+| What the agent says | `LINES` in `assets/js/scene.js` |
+| Agent gestures (wave, present, think) | `POSE` in `assets/js/scene.js` |
 | Sample run log lines | `RUNS` array in `assets/js/main.js` |
 | Missed-lead calculator maths | `calc()` in `assets/js/main.js` |
 | Contact email | `#contact-email` in `index.html` |
@@ -50,6 +51,6 @@ Any static host works. Drag the folder into Netlify, import the repo in Vercel, 
 
 ## Accessibility and performance
 
-- `prefers-reduced-motion` freezes the 3D scene to a still frame and stops the marquee, log and pipeline animations.
+- `prefers-reduced-motion` keeps the agent still (no bobbing, waving or typing) and stops the marquee, log and pipeline animations.
 - The scene pauses when the tab is hidden and caps pixel ratio at 2.
 - If WebGL is unavailable the canvas is removed and the page still works.
