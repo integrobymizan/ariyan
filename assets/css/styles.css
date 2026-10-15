@@ -727,9 +727,10 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius
 
 /* ---------- Chat with Omni ---------- */
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Omni lives bottom-left; the bottom-right corner is kept free for another chat widget. */
 .omni-chat {
   position: fixed; z-index: 30;
-  right: max(20px, env(safe-area-inset-right, 0px));
+  left: max(20px, env(safe-area-inset-left, 0px));
   bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   width: min(380px, calc(100vw - 32px));
   max-height: min(600px, calc(100vh - 110px));
@@ -743,7 +744,7 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius
   overflow: hidden;
   opacity: 0;
   transform: translateY(16px) scale(0.98);
-  transform-origin: 100% 100%;
+  transform-origin: 0 100%;
   transition: opacity 0.25s, transform 0.3s cubic-bezier(.2,.7,.2,1);
 }
 .omni-chat.is-open { opacity: 1; transform: none; }
@@ -800,7 +801,7 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius
 .oc-choice.is-primary { border-color: color-mix(in srgb, var(--amber) 60%, var(--line)); background: color-mix(in srgb, var(--amber) 12%, transparent); }
 .omni-launch {
   position: fixed; z-index: 30;
-  right: max(20px, env(safe-area-inset-right, 0px));
+  left: max(20px, env(safe-area-inset-left, 0px));
   bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   display: inline-flex; align-items: center; gap: 10px;
   padding: 8px 18px 8px 10px; border-radius: 999px;
@@ -816,7 +817,8 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius
 .omni-launch:hover { transform: translateY(-2px); border-color: var(--amber); }
 @media (max-width: 640px) {
   .omni-chat {
-    left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    /* Leave the bottom-right corner free for the site's other chat widget */
+    left: max(8px, env(safe-area-inset-left, 0px)); right: 76px; bottom: calc(8px + env(safe-area-inset-bottom, 0px));
     width: auto;
     max-height: 56vh;
     border-radius: 18px;

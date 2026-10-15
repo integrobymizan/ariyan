@@ -257,7 +257,7 @@
   /* ---------- Per-section placement, pose and lines ---------- */
   // [x, visual-centre y, scale, facing, bubble side] in world units.
   // Facing turns the agent toward the content. Bubble side: 1 right of the head, -1 left, 0 hidden.
-  var CORNER = [1.25, -3.05, 0.27, -0.3, 0];
+  var CORNER = [-1.25, -3.05, 0.27, 0.3, 0];  // phones: bottom-left, clear of the other chat widget
   var LAYOUT = {
     core:       { d: [3.2, 0, 1, -0.3, 1],        m: [-0.9, 2.15, 0.45, 0.3, 1] },
     services:   { d: [3.5, 2.0, 0.5, -0.45, 1],   m: CORNER },
@@ -267,7 +267,7 @@
     calculator: { d: [3.5, 2.2, 0.55, -0.4, 1],   m: CORNER },
     faq:        { d: [-4.4, -1.6, 0.7, 0.45, -1], m: CORNER },
     finale:     { d: [0, 1.4, 0.85, 0, 1],        m: [-0.9, 1.6, 0.45, 0.3, 1] },
-    contact:    { d: [-4.5, -2.0, 0.6, 0.45, -1], m: CORNER }
+    contact:    { d: [-4.5, -1.6, 0.6, 0.45, -1], m: CORNER }
   };
   var LINES = {
     core: "Hi, I'm Omni, your guide to this website. Ask me about any of our services.",
@@ -352,24 +352,17 @@
     };
   }
 
-  // Where to stand when the chat panel is open: beside it on desktop, on top of it on phones.
+  // Where to stand when the chat panel (bottom-left) is open: on top of the panel,
+  // near its left edge, so it stays clear of the page text and the other chat widget.
   function dockTarget() {
     if (!dock.fn) return null;
     var r = dock.fn();
     if (!r || !r.width) return null;
     var w = window.innerWidth, h = window.innerHeight, u = h / (2 * Math.tan(Math.PI / 8) * 10);
-    var sc, sx, sy, f;
-    if (r.left > 320) {
-      sc = 0.55;
-      sx = r.left - 1.45 * sc * u;
-      sy = Math.max(r.top + 150, 80 + 2.1 * sc * u);
-      f = 0.35;
-    } else {
-      sc = 0.3;
-      sx = r.right - 1.3 * sc * u;
-      sy = r.top - 2.1 * sc * u;
-      f = -0.2;
-    }
+    var sc = w - r.width > 320 ? 0.38 : 0.3;
+    var sx = r.left + 1.45 * sc * u;
+    var sy = Math.max(r.top - 2.1 * sc * u, 70 + 2.0 * sc * u);
+    var f = 0.25;
     return { x: (sx - w / 2) / u, y: (h / 2 - sy) / u, s: sc, f: f };
   }
 

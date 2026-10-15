@@ -59,6 +59,10 @@ This rewrites `services/*.html` and `assets/js/services-data.js`. Don't edit the
 | Contact email | `#contact-email` in `index.html` |
 | Contact form destination | `FORM_ENDPOINT` in `assets/js/main.js` |
 
+### Sharing the page with another chat widget
+
+Omni's chat panel and "Talk to Omni" button sit in the bottom-left corner, so a second chat widget (for example a GoHighLevel or Knock Knock widget) can use the bottom-right. On phones the chat sheet stops 76px short of the right edge to keep that widget's button visible. To move Omni, change `left` on `.omni-chat` and `.omni-launch` in `assets/css/styles.css` and `CORNER` in `assets/js/scene.js`.
+
 ### Connecting the contact form
 
 The form posts JSON (`name`, `email`, `phone`, `type`, `service`, `task`) to `FORM_ENDPOINT`. Until that is set it tells visitors to email you instead. Any service that accepts a JSON POST works: Formspree, Basin, a Netlify/Vercel function, or a GoHighLevel inbound webhook (so enquiries land straight in your pipeline).
