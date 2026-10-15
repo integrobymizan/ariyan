@@ -119,6 +119,7 @@
   var chips = document.querySelectorAll(".chip[data-filter]");
   var countEl = document.getElementById("car-count");
   var STEP = 360 / serviceCards.length;
+  if (carousel) carousel.style.setProperty("--card-step", STEP + "deg");
   var wide = window.matchMedia("(min-width: 900px)");
   var car = { angle: 0, target: 0, dragging: false, startX: 0, startAngle: 0, lastInput: 0, hover: false, raf: 0 };
   var activeFilter = "all";
@@ -280,6 +281,8 @@
     btn.addEventListener("click", function () {
       var select = document.getElementById("cf-type");
       if (select) select.value = btn.getAttribute("data-audience");
+      var service = document.getElementById("cf-service");
+      if (service && btn.getAttribute("data-service")) service.value = btn.getAttribute("data-service");
     });
   });
 

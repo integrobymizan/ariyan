@@ -3,8 +3,8 @@
  *
  * One cloud of glowing particles morphs into a different 3D form for each
  * section as the visitor scrolls (sections declare it with data-shape):
- *   core        a glowing AI orb                      (hero, contact)
- *   services    a ring of 9 clusters, one per service
+ *   core        a glowing AI orb                      (hero, Knock Knock, contact)
+ *   services    a ring of 10 clusters, one per service
  *   audiences   two orbs joined by a data stream      (businesses + agencies)
  *   process     a turning double helix                (the pipeline)
  *   calculator  a rolling data surface
@@ -76,7 +76,7 @@
         var t = rand(0, TAU), rr = R + gauss() * 0.05;
         set(a, i, Math.cos(t) * rr, Math.sin(t) * rr, gauss() * 0.05);
       } else {
-        var k = i % 9, ang = (k / 9) * TAU + Math.PI / 2;
+        var k = i % 10, ang = (k / 10) * TAU + Math.PI / 2;
         var u = unit(), r = 0.55 * Math.cbrt(Math.random());
         set(a, i, Math.cos(ang) * R + u[0] * r, Math.sin(ang) * R + u[1] * r, u[2] * r);
       }
@@ -304,13 +304,14 @@
     core:       { d: [3.3, 0, 1, 1],          m: [0, 2.05, 0.55, 1] },
     services:   { d: [0, 0.2, 1.35, 0.75],    m: [0, 0, 0.5, 0.4] },
     audiences:  { d: [3.6, 2.4, 0.55, 0.95],  m: [0, 2.6, 0.32, 0.6] },
+    kk:         { d: [-4.3, 0.3, 0.7, 0.5],   m: [0, 2.6, 0.35, 0.5] },
     process:    { d: [0, 2.3, 0.85, 0.85],    m: [0, 2.7, 0.35, 0.6] },
     calculator: { d: [2.8, 2.35, 0.44, 0.95],  m: [0, 2.6, 0.3, 0.6] },
     faq:        { d: [-3.6, -1.6, 0.7, 0.85], m: [0, 0, 0.5, 0.35] },
     finale:     { d: [0, 1.25, 0.82, 1],      m: [0, 1.6, 0.34, 1] },
     contact:    { d: [-4.2, -1.6, 0.6, 0.6],  m: [0, -2.5, 0.4, 0.35] }
   };
-  function shapeIndex(key) { return key === "contact" ? 0 : SHAPES[key]; }
+  function shapeIndex(key) { return key === "contact" || key === "kk" ? 0 : SHAPES[key]; }
 
   var sections = Array.prototype.slice.call(document.querySelectorAll("[data-shape]"));
 
