@@ -307,6 +307,8 @@
   ["pointerenter", "pointerdown", "focusin"].forEach(function (ev) { panel.addEventListener(ev, engage); });
 
   function open(byUser) {
+    // The automatic greeting must not take over a chat the visitor already opened.
+    if (!byUser && panel.classList.contains("is-open")) return;
     engaged = !!byUser;
     clearTimeout(autoHideTimer);
     panel.hidden = false;
@@ -350,7 +352,27 @@
     if (e.key === "Escape") { close(); launcher.focus({ preventScroll: true }); }
   });
 
-  window.OmniChat = { open: open, close: close };
+  // Open the chat straight at the business or agency question (hero buttons).
+  function openAt(route) {
+    var agency = route === "agency";
+    if (!started) {
+      started = true;
+      trail.push(startHome); // so "Back" returns to the opening question
+      bot("Hi, I'm Omni, the helper for this website.");
+    }
+    open(true);
+    user(agency ? "I run an agency" : "I run a local business");
+    go(agency ? forAgency : forBusiness);
+  }
+
+  document.querySelectorAll("[data-omni-route]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      openAt(el.getAttribute("data-omni-route"));
+    });
+  });
+
+  window.OmniChat = { open: open, close: close, openAt: openAt };
 
   // Greet automatically: once per visit on the home page, and on a service
   // page reached by choosing it in the chat.
