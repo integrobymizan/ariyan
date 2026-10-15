@@ -12,26 +12,76 @@
     "lede": "An AI receptionist that answers every call in a natural voice, day or night. It answers questions about your services and prices, qualifies the caller and books them straight into your calendar, then saves the whole conversation to your CRM.",
     "agentLine": "I'm a voice agent myself, so this one's personal. Here's how I'd answer your calls.",
     "features": [
-      { "t": "Answers every call, 24/7", "d": "No more voicemail. Calls are answered on the first ring, including evenings, weekends and your busiest hours." },
-      { "t": "Books appointments", "d": "Checks your live calendar, offers times and books the slot while the caller is still on the line." },
-      { "t": "Qualifies and routes", "d": "Asks your qualifying questions and transfers urgent or high-value callers to the right person." },
-      { "t": "Missed-call text back", "d": "If a call is ever missed, the caller gets a text within seconds so the conversation keeps going." },
-      { "t": "Outbound calls", "d": "Calls new leads within minutes, confirms appointments and follows up on quotes." },
-      { "t": "Transcripts in your CRM", "d": "Every call is recorded, summarised and saved to the contact, so your team always has the context." }
+      {
+        "t": "Answers every call, 24/7",
+        "d": "No more voicemail. Calls are answered on the first ring, including evenings, weekends and your busiest hours."
+      },
+      {
+        "t": "Books appointments",
+        "d": "Checks your live calendar, offers times and books the slot while the caller is still on the line."
+      },
+      {
+        "t": "Qualifies and routes",
+        "d": "Asks your qualifying questions and transfers urgent or high-value callers to the right person."
+      },
+      {
+        "t": "Missed-call text back",
+        "d": "If a call is ever missed, the caller gets a text within seconds so the conversation keeps going."
+      },
+      {
+        "t": "Outbound calls",
+        "d": "Calls new leads within minutes, confirms appointments and follows up on quotes."
+      },
+      {
+        "t": "Transcripts in your CRM",
+        "d": "Every call is recorded, summarised and saved to the contact, so your team always has the context."
+      }
     ],
     "steps": [
-      { "t": "Discovery call", "d": "We learn your services, prices, booking rules and the way you like to speak to customers." },
-      { "t": "Script and voice", "d": "We write the call flow, set the handover rules and choose a voice that suits your brand." },
-      { "t": "Test on real scenarios", "d": "We test against real call types and awkward questions before anything goes live." },
-      { "t": "Go live and improve", "d": "We forward your number, listen to calls in the first weeks and tune the agent every week." }
+      {
+        "t": "Discovery call",
+        "d": "We learn your services, prices, booking rules and the way you like to speak to customers."
+      },
+      {
+        "t": "Script and voice",
+        "d": "We write the call flow, set the handover rules and choose a voice that suits your brand."
+      },
+      {
+        "t": "Test on real scenarios",
+        "d": "We test against real call types and awkward questions before anything goes live."
+      },
+      {
+        "t": "Go live and improve",
+        "d": "We forward your number, listen to calls in the first weeks and tune the agent every week."
+      }
     ],
-    "goodFor": ["Clinics and dentists", "Opticians", "Trades and home services", "Salons and spas", "Estate and letting agents", "Law and accounting firms"],
+    "goodFor": [
+      "Clinics and dentists",
+      "Opticians",
+      "Trades and home services",
+      "Salons and spas",
+      "Estate and letting agents",
+      "Law and accounting firms"
+    ],
     "faqs": [
-      { "q": "Will callers know they're talking to AI?", "a": "The agent can introduce itself as an AI assistant, and we recommend that it does. Most callers care more about a quick, clear answer than about who gives it." },
-      { "q": "Can it transfer to a real person?", "a": "Yes. You decide when it hands over, for example for complaints, urgent jobs or VIP clients, and which number it transfers to." },
-      { "q": "Do I need a new phone number?", "a": "No. We can forward your existing number, or set up a new local number if you prefer." }
+      {
+        "q": "Will callers know they're talking to AI?",
+        "a": "The agent can introduce itself as an AI assistant, and we recommend that it does. Most callers care more about a quick, clear answer than about who gives it."
+      },
+      {
+        "q": "Can it transfer to a real person?",
+        "a": "Yes. You decide when it hands over, for example for complaints, urgent jobs or VIP clients, and which number it transfers to."
+      },
+      {
+        "q": "Do I need a new phone number?",
+        "a": "No. We can forward your existing number, or set up a new local number if you prefer."
+      }
     ],
-    "related": ["ai-chatbots", "lead-follow-up", "gohighlevel-crm"]
+    "related": [
+      "ai-chatbots",
+      "lead-follow-up",
+      "gohighlevel-crm"
+    ]
   },
   {
     "slug": "ai-chatbots",
@@ -46,26 +96,76 @@
     "lede": "Conversation AI that replies in seconds on your website, WhatsApp, Instagram, Facebook Messenger and SMS. It's trained on your business, answers questions, captures contact details and books appointments, and hands over to your team whenever it should.",
     "agentLine": "Chat is where I'm quickest. Let me show you what I can do in the DMs.",
     "features": [
-      { "t": "Every channel, one inbox", "d": "Website chat, WhatsApp, Instagram DMs, Messenger and SMS, all answered by the same agent and saved in one place." },
-      { "t": "Trained on your business", "d": "We train it on your services, prices, FAQs and policies so answers are accurate and sound like you." },
-      { "t": "Books and qualifies", "d": "Asks the right questions, then books the appointment or sends the right link at the right moment." },
-      { "t": "Live hand-off", "d": "Your team can step into any conversation and the bot steps aside automatically." },
-      { "t": "Lead capture", "d": "Collects name, phone and email naturally during the chat and creates the contact in your CRM." },
-      { "t": "Replies in their language", "d": "Can answer customers in the language they write in, when your business needs it." }
+      {
+        "t": "Every channel, one inbox",
+        "d": "Website chat, WhatsApp, Instagram DMs, Messenger and SMS, all answered by the same agent and saved in one place."
+      },
+      {
+        "t": "Trained on your business",
+        "d": "We train it on your services, prices, FAQs and policies so answers are accurate and sound like you."
+      },
+      {
+        "t": "Books and qualifies",
+        "d": "Asks the right questions, then books the appointment or sends the right link at the right moment."
+      },
+      {
+        "t": "Live hand-off",
+        "d": "Your team can step into any conversation and the bot steps aside automatically."
+      },
+      {
+        "t": "Lead capture",
+        "d": "Collects name, phone and email naturally during the chat and creates the contact in your CRM."
+      },
+      {
+        "t": "Replies in their language",
+        "d": "Can answer customers in the language they write in, when your business needs it."
+      }
     ],
     "steps": [
-      { "t": "Collect your knowledge", "d": "We gather your FAQs, price lists, policies and booking rules." },
-      { "t": "Build and train", "d": "We build the conversation flows and train the agent on your information." },
-      { "t": "Connect your channels", "d": "We connect your website, WhatsApp, Instagram, Facebook and SMS." },
-      { "t": "Launch and review", "d": "We go live and review conversations every week to keep answers sharp." }
+      {
+        "t": "Collect your knowledge",
+        "d": "We gather your FAQs, price lists, policies and booking rules."
+      },
+      {
+        "t": "Build and train",
+        "d": "We build the conversation flows and train the agent on your information."
+      },
+      {
+        "t": "Connect your channels",
+        "d": "We connect your website, WhatsApp, Instagram, Facebook and SMS."
+      },
+      {
+        "t": "Launch and review",
+        "d": "We go live and review conversations every week to keep answers sharp."
+      }
     ],
-    "goodFor": ["Clinics", "Shopify and online stores", "Restaurants and cafés", "Gyms and studios", "Property and lettings", "Courses and education"],
+    "goodFor": [
+      "Clinics",
+      "Shopify and online stores",
+      "Restaurants and cafés",
+      "Gyms and studios",
+      "Property and lettings",
+      "Courses and education"
+    ],
     "faqs": [
-      { "q": "What if it gives a wrong answer?", "a": "We set guardrails so it only answers from information you approve, and it hands over to your team when it isn't sure. We review conversations weekly and correct anything that's off." },
-      { "q": "Which channels can it work on?", "a": "Your website chat widget, WhatsApp, Instagram DMs, Facebook Messenger and SMS. Google Business Profile chat can be added where it's available." },
-      { "q": "Can it take bookings?", "a": "Yes. It connects to your calendar, offers available times and books the appointment inside the chat." }
+      {
+        "q": "What if it gives a wrong answer?",
+        "a": "We set guardrails so it only answers from information you approve, and it hands over to your team when it isn't sure. We review conversations weekly and correct anything that's off."
+      },
+      {
+        "q": "Which channels can it work on?",
+        "a": "Your website chat widget, WhatsApp, Instagram DMs, Facebook Messenger and SMS. Google Business Profile chat can be added where it's available."
+      },
+      {
+        "q": "Can it take bookings?",
+        "a": "Yes. It connects to your calendar, offers available times and books the appointment inside the chat."
+      }
     ],
-    "related": ["ai-voice-agents", "reputation-management", "lead-follow-up"]
+    "related": [
+      "ai-voice-agents",
+      "reputation-management",
+      "lead-follow-up"
+    ]
   },
   {
     "slug": "reputation-management",
@@ -80,26 +180,76 @@
     "lede": "Get more 5-star reviews without chasing anyone. We automate review requests after every job, reply to new reviews with AI in your tone of voice, and alert you when a customer is unhappy so you can put it right.",
     "agentLine": "Good reviews bring good customers. Here's how I help you collect them.",
     "features": [
-      { "t": "Automatic review requests", "d": "A friendly SMS or email after every appointment or job, with a gentle reminder if they forget." },
-      { "t": "AI replies to reviews", "d": "Every new review gets a thoughtful reply in your tone of voice, which you can approve or let post automatically." },
-      { "t": "Unhappy customer alerts", "d": "Low ratings and negative feedback trigger an instant alert so you can follow up personally." },
-      { "t": "Review widgets", "d": "Show your best recent reviews on your website and landing pages, updated automatically." },
-      { "t": "One dashboard", "d": "See Google and Facebook reviews in one place, with ratings tracked over time." },
-      { "t": "Monthly report", "d": "New reviews, average rating and response times, sent to you every month." }
+      {
+        "t": "Automatic review requests",
+        "d": "A friendly SMS or email after every appointment or job, with a gentle reminder if they forget."
+      },
+      {
+        "t": "AI replies to reviews",
+        "d": "Every new review gets a thoughtful reply in your tone of voice, which you can approve or let post automatically."
+      },
+      {
+        "t": "Unhappy customer alerts",
+        "d": "Low ratings and negative feedback trigger an instant alert so you can follow up personally."
+      },
+      {
+        "t": "Review widgets",
+        "d": "Show your best recent reviews on your website and landing pages, updated automatically."
+      },
+      {
+        "t": "One dashboard",
+        "d": "See Google and Facebook reviews in one place, with ratings tracked over time."
+      },
+      {
+        "t": "Monthly report",
+        "d": "New reviews, average rating and response times, sent to you every month."
+      }
     ],
     "steps": [
-      { "t": "Connect your profiles", "d": "We connect your Google Business Profile and Facebook page." },
-      { "t": "Set up request flows", "d": "We write the messages and trigger them after each appointment or completed job." },
-      { "t": "Approve the reply style", "d": "You approve sample replies so the AI matches how you talk to customers." },
-      { "t": "Monitor and report", "d": "We watch new reviews and send you a monthly summary." }
+      {
+        "t": "Connect your profiles",
+        "d": "We connect your Google Business Profile and Facebook page."
+      },
+      {
+        "t": "Set up request flows",
+        "d": "We write the messages and trigger them after each appointment or completed job."
+      },
+      {
+        "t": "Approve the reply style",
+        "d": "You approve sample replies so the AI matches how you talk to customers."
+      },
+      {
+        "t": "Monitor and report",
+        "d": "We watch new reviews and send you a monthly summary."
+      }
     ],
-    "goodFor": ["Clinics and dentists", "Trades", "Restaurants", "Salons", "Garages", "Hotels and B&Bs"],
+    "goodFor": [
+      "Clinics and dentists",
+      "Trades",
+      "Restaurants",
+      "Salons",
+      "Garages",
+      "Hotels and B&Bs"
+    ],
     "faqs": [
-      { "q": "Is it allowed to ask customers for reviews?", "a": "Yes. Asking every customer for an honest review is fine. We ask all customers equally rather than filtering out unhappy ones, which keeps you within Google's review policies." },
-      { "q": "Will the AI replies sound generic?", "a": "No. We train them on your tone and include details from each review, and you can switch to approve-before-posting at any time." },
-      { "q": "Which review sites do you cover?", "a": "Google and Facebook as standard. Other sites can be added if they matter in your industry." }
+      {
+        "q": "Is it allowed to ask customers for reviews?",
+        "a": "Yes. Asking every customer for an honest review is fine. We ask all customers equally rather than filtering out unhappy ones, which keeps you within Google's review policies."
+      },
+      {
+        "q": "Will the AI replies sound generic?",
+        "a": "No. We train them on your tone and include details from each review, and you can switch to approve-before-posting at any time."
+      },
+      {
+        "q": "Which review sites do you cover?",
+        "a": "Google and Facebook as standard. Other sites can be added if they matter in your industry."
+      }
     ],
-    "related": ["ai-chatbots", "lead-follow-up", "funnels-websites"]
+    "related": [
+      "ai-chatbots",
+      "lead-follow-up",
+      "funnels-websites"
+    ]
   },
   {
     "slug": "google-ads",
@@ -114,26 +264,76 @@
     "lede": "Show up when people are searching for exactly what you offer. We build and manage Search, Local Services and Performance Max campaigns, track every call and form back to the keyword, and connect the leads to instant follow-up so none go to waste.",
     "agentLine": "Want customers who are already searching for you? Let me show you Google Ads.",
     "features": [
-      { "t": "Search campaigns", "d": "Ads for the exact searches your best customers make, written to get the click and the call." },
-      { "t": "Local Services Ads", "d": "Appear at the very top of Google with the Google Guaranteed or Screened badge, where your category allows it." },
-      { "t": "Performance Max", "d": "Reach buyers across Search, YouTube, Maps and Display from one campaign when it suits your goals." },
-      { "t": "Proper conversion tracking", "d": "Calls, forms and bookings tracked correctly, so budget goes to what actually brings customers." },
-      { "t": "Matching landing pages", "d": "Pages built for each campaign so the visitor sees exactly what the ad promised." },
-      { "t": "Clear monthly reporting", "d": "Spend, leads, cost per lead and booked appointments, explained in plain English." }
+      {
+        "t": "Search campaigns",
+        "d": "Ads for the exact searches your best customers make, written to get the click and the call."
+      },
+      {
+        "t": "Local Services Ads",
+        "d": "Appear at the very top of Google with the Google Guaranteed or Screened badge, where your category allows it."
+      },
+      {
+        "t": "Performance Max",
+        "d": "Reach buyers across Search, YouTube, Maps and Display from one campaign when it suits your goals."
+      },
+      {
+        "t": "Proper conversion tracking",
+        "d": "Calls, forms and bookings tracked correctly, so budget goes to what actually brings customers."
+      },
+      {
+        "t": "Matching landing pages",
+        "d": "Pages built for each campaign so the visitor sees exactly what the ad promised."
+      },
+      {
+        "t": "Clear monthly reporting",
+        "d": "Spend, leads, cost per lead and booked appointments, explained in plain English."
+      }
     ],
     "steps": [
-      { "t": "Audit and research", "d": "We review any existing account and research the keywords and competitors in your area." },
-      { "t": "Build and track", "d": "We build the campaigns, write the ads and set up conversion tracking." },
-      { "t": "Launch", "d": "Campaigns go live with leads flowing straight into your CRM and follow-up." },
-      { "t": "Optimise weekly", "d": "We cut waste, test new ads and move budget to what's working." }
+      {
+        "t": "Audit and research",
+        "d": "We review any existing account and research the keywords and competitors in your area."
+      },
+      {
+        "t": "Build and track",
+        "d": "We build the campaigns, write the ads and set up conversion tracking."
+      },
+      {
+        "t": "Launch",
+        "d": "Campaigns go live with leads flowing straight into your CRM and follow-up."
+      },
+      {
+        "t": "Optimise weekly",
+        "d": "We cut waste, test new ads and move budget to what's working."
+      }
     ],
-    "goodFor": ["Emergency trades", "Private healthcare", "Legal and professional services", "Home improvement", "Local retail", "B2B services"],
+    "goodFor": [
+      "Emergency trades",
+      "Private healthcare",
+      "Legal and professional services",
+      "Home improvement",
+      "Local retail",
+      "B2B services"
+    ],
     "faqs": [
-      { "q": "How much should I spend?", "a": "It depends on your area and competition. We'll recommend a starting budget on the strategy call, and you can change it at any time." },
-      { "q": "Who owns the ad account?", "a": "You do. Ad spend is paid directly to Google from your own account, so you keep the data and the history." },
-      { "q": "How soon will I see leads?", "a": "Search campaigns can bring enquiries in the first week. Results usually improve over the first one to three months as data builds." }
+      {
+        "q": "How much should I spend?",
+        "a": "It depends on your area and competition. We'll recommend a starting budget on the strategy call, and you can change it at any time."
+      },
+      {
+        "q": "Who owns the ad account?",
+        "a": "You do. Ad spend is paid directly to Google from your own account, so you keep the data and the history."
+      },
+      {
+        "q": "How soon will I see leads?",
+        "a": "Search campaigns can bring enquiries in the first week. Results usually improve over the first one to three months as data builds."
+      }
     ],
-    "related": ["meta-ads", "funnels-websites", "lead-follow-up"]
+    "related": [
+      "meta-ads",
+      "funnels-websites",
+      "lead-follow-up"
+    ]
   },
   {
     "slug": "meta-ads",
@@ -148,26 +348,76 @@
     "lede": "Facebook and Instagram campaigns that stop the scroll and turn attention into booked appointments. Instant-form leads land in your CRM and get a reply in under a minute, so you're first to every new prospect.",
     "agentLine": "Let's get you seen on Facebook and Instagram. Here's how it works.",
     "features": [
-      { "t": "Scroll-stopping creative", "d": "Static, carousel and short video ad concepts, written and designed for your offer." },
-      { "t": "Audience targeting", "d": "Local audiences, interests, lookalikes and retargeting of people who already know you." },
-      { "t": "Instant forms and lead ads", "d": "Short, mobile-friendly forms that collect the details you need without leaving the app." },
-      { "t": "Reply in under a minute", "d": "Every new lead gets a text straight away and a follow-up sequence until they book." },
-      { "t": "Continuous testing", "d": "We test headlines, images and offers so performance keeps improving." },
-      { "t": "Cost per booked appointment", "d": "Reporting that shows what each booked customer costs, not just clicks." }
+      {
+        "t": "Scroll-stopping creative",
+        "d": "Static, carousel and short video ad concepts, written and designed for your offer."
+      },
+      {
+        "t": "Audience targeting",
+        "d": "Local audiences, interests, lookalikes and retargeting of people who already know you."
+      },
+      {
+        "t": "Instant forms and lead ads",
+        "d": "Short, mobile-friendly forms that collect the details you need without leaving the app."
+      },
+      {
+        "t": "Reply in under a minute",
+        "d": "Every new lead gets a text straight away and a follow-up sequence until they book."
+      },
+      {
+        "t": "Continuous testing",
+        "d": "We test headlines, images and offers so performance keeps improving."
+      },
+      {
+        "t": "Cost per booked appointment",
+        "d": "Reporting that shows what each booked customer costs, not just clicks."
+      }
     ],
     "steps": [
-      { "t": "Offer and audience", "d": "We shape an offer people want and decide who should see it." },
-      { "t": "Creative production", "d": "We write the copy and design the ads, or edit videos you film on your phone." },
-      { "t": "Launch", "d": "Campaigns go live with leads flowing into your CRM and instant follow-up." },
-      { "t": "Test and scale", "d": "We keep what works, replace what doesn't and scale the winners." }
+      {
+        "t": "Offer and audience",
+        "d": "We shape an offer people want and decide who should see it."
+      },
+      {
+        "t": "Creative production",
+        "d": "We write the copy and design the ads, or edit videos you film on your phone."
+      },
+      {
+        "t": "Launch",
+        "d": "Campaigns go live with leads flowing into your CRM and instant follow-up."
+      },
+      {
+        "t": "Test and scale",
+        "d": "We keep what works, replace what doesn't and scale the winners."
+      }
     ],
-    "goodFor": ["Aesthetics clinics", "Gyms and fitness", "Home services", "Events and hospitality", "Coaches and courses", "Online stores"],
+    "goodFor": [
+      "Aesthetics clinics",
+      "Gyms and fitness",
+      "Home services",
+      "Events and hospitality",
+      "Coaches and courses",
+      "Online stores"
+    ],
     "faqs": [
-      { "q": "Do you make the ads?", "a": "Yes. We write the copy and design the creative, and we can edit videos you record on your phone." },
-      { "q": "Do Facebook leads actually convert?", "a": "They can, when they're contacted fast. That's why every lead gets an instant reply and a follow-up sequence." },
-      { "q": "Who owns the ad account?", "a": "You do. Ad spend is paid directly to Meta from your own account." }
+      {
+        "q": "Do you make the ads?",
+        "a": "Yes. We write the copy and design the creative, and we can edit videos you record on your phone."
+      },
+      {
+        "q": "Do Facebook leads actually convert?",
+        "a": "They can, when they're contacted fast. That's why every lead gets an instant reply and a follow-up sequence."
+      },
+      {
+        "q": "Who owns the ad account?",
+        "a": "You do. Ad spend is paid directly to Meta from your own account."
+      }
     ],
-    "related": ["google-ads", "lead-follow-up", "funnels-websites"]
+    "related": [
+      "google-ads",
+      "lead-follow-up",
+      "funnels-websites"
+    ]
   },
   {
     "slug": "funnels-websites",
@@ -182,26 +432,76 @@
     "lede": "Fast, mobile-first landing pages, booking funnels and websites built to turn visitors into enquiries. Every form and calendar connects to your CRM and automations, so new leads are followed up straight away.",
     "agentLine": "A good page turns clicks into customers. Here's what we build.",
     "features": [
-      { "t": "Copy that converts", "d": "Clear headlines, proof and a single next step, written for your customers." },
-      { "t": "Booking funnels", "d": "Pages that take visitors from ad to booked appointment in a few taps." },
-      { "t": "Mobile-first and fast", "d": "Built for phones first, because that's where most of your visitors are." },
-      { "t": "Tracking built in", "d": "Analytics and ad pixels set up so you know which pages bring customers." },
-      { "t": "Connected to your CRM", "d": "Forms and calendars feed your CRM and trigger follow-up automatically." },
-      { "t": "A/B testing", "d": "Test headlines and layouts to keep improving your conversion rate." }
+      {
+        "t": "Copy that converts",
+        "d": "Clear headlines, proof and a single next step, written for your customers."
+      },
+      {
+        "t": "Booking funnels",
+        "d": "Pages that take visitors from ad to booked appointment in a few taps."
+      },
+      {
+        "t": "Mobile-first and fast",
+        "d": "Built for phones first, because that's where most of your visitors are."
+      },
+      {
+        "t": "Tracking built in",
+        "d": "Analytics and ad pixels set up so you know which pages bring customers."
+      },
+      {
+        "t": "Connected to your CRM",
+        "d": "Forms and calendars feed your CRM and trigger follow-up automatically."
+      },
+      {
+        "t": "A/B testing",
+        "d": "Test headlines and layouts to keep improving your conversion rate."
+      }
     ],
     "steps": [
-      { "t": "Plan", "d": "We agree the offer, the audience and the one action each page should drive." },
-      { "t": "Write and design", "d": "We write the copy and design the pages in your brand." },
-      { "t": "Build and connect", "d": "We build the pages and connect forms, calendars and tracking." },
-      { "t": "Launch and test", "d": "We go live and test changes to lift conversions." }
+      {
+        "t": "Plan",
+        "d": "We agree the offer, the audience and the one action each page should drive."
+      },
+      {
+        "t": "Write and design",
+        "d": "We write the copy and design the pages in your brand."
+      },
+      {
+        "t": "Build and connect",
+        "d": "We build the pages and connect forms, calendars and tracking."
+      },
+      {
+        "t": "Launch and test",
+        "d": "We go live and test changes to lift conversions."
+      }
     ],
-    "goodFor": ["Ad campaigns", "Clinics", "Trades", "Coaches and consultants", "Agencies", "Product launches"],
+    "goodFor": [
+      "Ad campaigns",
+      "Clinics",
+      "Trades",
+      "Coaches and consultants",
+      "Agencies",
+      "Product launches"
+    ],
     "faqs": [
-      { "q": "Where is it hosted?", "a": "We can build on GoHighLevel, so hosting, forms and calendars live in one place, or work with your existing website." },
-      { "q": "Can you improve my existing site?", "a": "Yes. We can rebuild key pages or add new landing pages alongside your current site." },
-      { "q": "Do I own the pages?", "a": "Yes. Everything is built in your own account." }
+      {
+        "q": "Where is it hosted?",
+        "a": "We can build on GoHighLevel, so hosting, forms and calendars live in one place, or work with your existing website."
+      },
+      {
+        "q": "Can you improve my existing site?",
+        "a": "Yes. We can rebuild key pages or add new landing pages alongside your current site."
+      },
+      {
+        "q": "Do I own the pages?",
+        "a": "Yes. Everything is built in your own account."
+      }
     ],
-    "related": ["google-ads", "meta-ads", "gohighlevel-crm"]
+    "related": [
+      "google-ads",
+      "meta-ads",
+      "gohighlevel-crm"
+    ]
   },
   {
     "slug": "gohighlevel-crm",
@@ -216,26 +516,76 @@
     "lede": "One place for every lead, conversation and appointment. We set up GoHighLevel around how you actually sell: pipelines, calendars, workflows, dashboards and the integrations you need, then train your team to use it.",
     "agentLine": "GoHighLevel is where I live and work. Let me show you how we set it up.",
     "features": [
-      { "t": "Pipelines that match your sales", "d": "Stages that reflect how deals really move, so nothing sits forgotten." },
-      { "t": "Calendars and booking", "d": "Booking links, round-robin calendars, reminders and confirmations." },
-      { "t": "Workflows and automations", "d": "Follow-ups, task reminders and notifications that run themselves." },
-      { "t": "One inbox", "d": "SMS, email, WhatsApp, Facebook and Instagram messages in one conversation view." },
-      { "t": "Dashboards", "d": "See leads, bookings and revenue at a glance." },
-      { "t": "Migration", "d": "We move your contacts and history from spreadsheets or your old CRM." }
+      {
+        "t": "Pipelines that match your sales",
+        "d": "Stages that reflect how deals really move, so nothing sits forgotten."
+      },
+      {
+        "t": "Calendars and booking",
+        "d": "Booking links, round-robin calendars, reminders and confirmations."
+      },
+      {
+        "t": "Workflows and automations",
+        "d": "Follow-ups, task reminders and notifications that run themselves."
+      },
+      {
+        "t": "One inbox",
+        "d": "SMS, email, WhatsApp, Facebook and Instagram messages in one conversation view."
+      },
+      {
+        "t": "Dashboards",
+        "d": "See leads, bookings and revenue at a glance."
+      },
+      {
+        "t": "Migration",
+        "d": "We move your contacts and history from spreadsheets or your old CRM."
+      }
     ],
     "steps": [
-      { "t": "Map your process", "d": "We map how leads come in, who handles them and what happens next." },
-      { "t": "Build and migrate", "d": "We configure the account and bring your data across." },
-      { "t": "Train your team", "d": "Short, practical sessions so everyone knows what to do." },
-      { "t": "Support", "d": "We stay on hand for changes and questions as you grow." }
+      {
+        "t": "Map your process",
+        "d": "We map how leads come in, who handles them and what happens next."
+      },
+      {
+        "t": "Build and migrate",
+        "d": "We configure the account and bring your data across."
+      },
+      {
+        "t": "Train your team",
+        "d": "Short, practical sessions so everyone knows what to do."
+      },
+      {
+        "t": "Support",
+        "d": "We stay on hand for changes and questions as you grow."
+      }
     ],
-    "goodFor": ["Local businesses", "Clinics", "Agencies", "Coaches and consultants", "Sales teams", "SaaS resellers"],
+    "goodFor": [
+      "Local businesses",
+      "Clinics",
+      "Agencies",
+      "Coaches and consultants",
+      "Sales teams",
+      "SaaS resellers"
+    ],
     "faqs": [
-      { "q": "Do I need my own GoHighLevel account?", "a": "We can set one up for you or work inside the account you already have. We'll explain the options on the call." },
-      { "q": "Can you move my data from another CRM?", "a": "Yes. We migrate contacts, pipelines and key history from spreadsheets and most common CRMs." },
-      { "q": "Will my team be able to use it?", "a": "Yes. We train your team and leave simple guides for the tasks they do every day." }
+      {
+        "q": "Do I need my own GoHighLevel account?",
+        "a": "We can set one up for you or work inside the account you already have. We'll explain the options on the call."
+      },
+      {
+        "q": "Can you move my data from another CRM?",
+        "a": "Yes. We migrate contacts, pipelines and key history from spreadsheets and most common CRMs."
+      },
+      {
+        "q": "Will my team be able to use it?",
+        "a": "Yes. We train your team and leave simple guides for the tasks they do every day."
+      }
     ],
-    "related": ["lead-follow-up", "white-label-fulfilment", "funnels-websites"]
+    "related": [
+      "lead-follow-up",
+      "white-label-fulfilment",
+      "funnels-websites"
+    ]
   },
   {
     "slug": "lead-follow-up",
@@ -250,26 +600,76 @@
     "lede": "Reply to every new lead within seconds and keep following up until they book. We build SMS, email and WhatsApp sequences, appointment reminders, and campaigns that bring old leads and past customers back.",
     "agentLine": "I never forget to follow up. Here's how this works.",
     "features": [
-      { "t": "Speed to lead", "d": "Every new enquiry gets a personal reply within seconds, any time of day." },
-      { "t": "Long-term nurture", "d": "Helpful messages over weeks and months for leads who aren't ready yet." },
-      { "t": "Database reactivation", "d": "Campaigns that restart conversations with old leads and past customers." },
-      { "t": "Appointment reminders", "d": "Confirmations and reminders that cut no-shows." },
-      { "t": "Two-way conversations", "d": "Replies go to an AI agent or straight to your team, never into a void." },
-      { "t": "Automatic pipeline updates", "d": "Leads move through your pipeline as they reply, book and buy." }
+      {
+        "t": "Speed to lead",
+        "d": "Every new enquiry gets a personal reply within seconds, any time of day."
+      },
+      {
+        "t": "Long-term nurture",
+        "d": "Helpful messages over weeks and months for leads who aren't ready yet."
+      },
+      {
+        "t": "Database reactivation",
+        "d": "Campaigns that restart conversations with old leads and past customers."
+      },
+      {
+        "t": "Appointment reminders",
+        "d": "Confirmations and reminders that cut no-shows."
+      },
+      {
+        "t": "Two-way conversations",
+        "d": "Replies go to an AI agent or straight to your team, never into a void."
+      },
+      {
+        "t": "Automatic pipeline updates",
+        "d": "Leads move through your pipeline as they reply, book and buy."
+      }
     ],
     "steps": [
-      { "t": "Map the journey", "d": "We plan what each type of lead should hear and when." },
-      { "t": "Write the sequences", "d": "We write messages that sound like you, not a robot." },
-      { "t": "Build and test", "d": "We build the automations and test every path." },
-      { "t": "Launch and refine", "d": "We go live and improve messages based on replies." }
+      {
+        "t": "Map the journey",
+        "d": "We plan what each type of lead should hear and when."
+      },
+      {
+        "t": "Write the sequences",
+        "d": "We write messages that sound like you, not a robot."
+      },
+      {
+        "t": "Build and test",
+        "d": "We build the automations and test every path."
+      },
+      {
+        "t": "Launch and refine",
+        "d": "We go live and improve messages based on replies."
+      }
     ],
-    "goodFor": ["Businesses running ads", "Clinics with no-shows", "Companies with old lead lists", "Quote-based trades", "Gyms and memberships", "Estate agents"],
+    "goodFor": [
+      "Businesses running ads",
+      "Clinics with no-shows",
+      "Companies with old lead lists",
+      "Quote-based trades",
+      "Gyms and memberships",
+      "Estate agents"
+    ],
     "faqs": [
-      { "q": "Will this annoy my leads?", "a": "No. Messages are spaced out, personal and stop the moment someone replies or books." },
-      { "q": "What is database reactivation?", "a": "A short campaign to people already in your records, like past enquiries and customers, to restart the conversation and book them back in." },
-      { "q": "Which channels do you use?", "a": "SMS, email and WhatsApp, chosen to suit your customers." }
+      {
+        "q": "Will this annoy my leads?",
+        "a": "No. Messages are spaced out, personal and stop the moment someone replies or books."
+      },
+      {
+        "q": "What is database reactivation?",
+        "a": "A short campaign to people already in your records, like past enquiries and customers, to restart the conversation and book them back in."
+      },
+      {
+        "q": "Which channels do you use?",
+        "a": "SMS, email and WhatsApp, chosen to suit your customers."
+      }
     ],
-    "related": ["ai-voice-agents", "ai-chatbots", "gohighlevel-crm"]
+    "related": [
+      "ai-voice-agents",
+      "ai-chatbots",
+      "gohighlevel-crm"
+    ]
   },
   {
     "slug": "white-label-fulfilment",
@@ -284,26 +684,160 @@
     "lede": "Sell AI agents, GoHighLevel builds, funnels and ad campaigns under your own brand. We do the delivery behind the scenes while you keep the client relationship and the margin.",
     "agentLine": "I can work under your brand too. Here's how our white-label service works.",
     "features": [
-      { "t": "Fully white-label", "d": "Your logo, your domain, your name on everything your clients see." },
-      { "t": "AI agent builds", "d": "Voice agents and chatbots built and trained for each of your clients." },
-      { "t": "GoHighLevel snapshots and SaaS", "d": "Account builds, snapshots and SaaS mode set up for your offer." },
-      { "t": "Funnels and ads", "d": "Landing pages and ad campaigns delivered for your clients." },
-      { "t": "Client onboarding", "d": "We handle the setup calls and paperwork in your name." },
-      { "t": "Dedicated support", "d": "One point of contact for you, with clear turnaround times." }
+      {
+        "t": "Fully white-label",
+        "d": "Your logo, your domain, your name on everything your clients see."
+      },
+      {
+        "t": "AI agent builds",
+        "d": "Voice agents and chatbots built and trained for each of your clients."
+      },
+      {
+        "t": "GoHighLevel snapshots and SaaS",
+        "d": "Account builds, snapshots and SaaS mode set up for your offer."
+      },
+      {
+        "t": "Funnels and ads",
+        "d": "Landing pages and ad campaigns delivered for your clients."
+      },
+      {
+        "t": "Client onboarding",
+        "d": "We handle the setup calls and paperwork in your name."
+      },
+      {
+        "t": "Dedicated support",
+        "d": "One point of contact for you, with clear turnaround times."
+      }
     ],
     "steps": [
-      { "t": "Partner call", "d": "We learn about your agency, clients and what you want to sell." },
-      { "t": "Agree scope and pricing", "d": "We agree what we deliver and your wholesale rates upfront." },
-      { "t": "Onboard your clients", "d": "We set up each client account under your brand." },
-      { "t": "Deliver and report", "d": "We deliver the work and send you reports to share with your clients." }
+      {
+        "t": "Partner call",
+        "d": "We learn about your agency, clients and what you want to sell."
+      },
+      {
+        "t": "Agree scope and pricing",
+        "d": "We agree what we deliver and your wholesale rates upfront."
+      },
+      {
+        "t": "Onboard your clients",
+        "d": "We set up each client account under your brand."
+      },
+      {
+        "t": "Deliver and report",
+        "d": "We deliver the work and send you reports to share with your clients."
+      }
     ],
-    "goodFor": ["Marketing agencies", "GoHighLevel SaaS owners", "Web design studios", "Consultants", "Freelancers who are scaling", "Lead generation agencies"],
+    "goodFor": [
+      "Marketing agencies",
+      "GoHighLevel SaaS owners",
+      "Web design studios",
+      "Consultants",
+      "Freelancers who are scaling",
+      "Lead generation agencies"
+    ],
     "faqs": [
-      { "q": "Will my clients know you exist?", "a": "No. We work under your brand and never contact your clients unless you ask us to." },
-      { "q": "How is pricing set?", "a": "You set your own prices. We agree wholesale rates with you upfront, so you know your margin on every client." },
-      { "q": "Will you sign an NDA?", "a": "Yes, before we see any client details." }
+      {
+        "q": "Will my clients know you exist?",
+        "a": "No. We work under your brand and never contact your clients unless you ask us to."
+      },
+      {
+        "q": "How is pricing set?",
+        "a": "You set your own prices. We agree wholesale rates with you upfront, so you know your margin on every client."
+      },
+      {
+        "q": "Will you sign an NDA?",
+        "a": "Yes, before we see any client details."
+      }
     ],
-    "related": ["knock-knock-ai", "gohighlevel-crm", "ai-voice-agents"]
+    "related": [
+      "white-label-paid-ads",
+      "knock-knock-ai",
+      "gohighlevel-crm"
+    ]
+  },
+  {
+    "slug": "white-label-paid-ads",
+    "name": "White-label paid ads",
+    "cat": "agency",
+    "catLabel": "For agencies",
+    "icon": "i-ads",
+    "audience": "agency",
+    "chatPain": "I want to sell paid ads to my clients",
+    "short": "Google and Meta ad campaigns run under your agency's brand. We build, manage and report; you keep the client and the margin.",
+    "includes": "Google Ads, Meta ads, creative, branded reports",
+    "lede": "Offer Google and Meta advertising to your clients without hiring media buyers. We plan, build and manage the campaigns behind the scenes, connect the leads to your clients' CRM and follow-up, and send reports with your branding, so you keep the client relationship and the margin.",
+    "agentLine": "Want to sell ads without hiring media buyers? Here's how we run them under your brand.",
+    "features": [
+      {
+        "t": "Google Ads under your brand",
+        "d": "Search, Local Services and Performance Max campaigns built and managed for each of your clients."
+      },
+      {
+        "t": "Meta ads under your brand",
+        "d": "Facebook and Instagram campaigns with audiences, retargeting and ongoing testing."
+      },
+      {
+        "t": "Ad creative and copy",
+        "d": "We write the ads and design the creative, ready for your client's approval."
+      },
+      {
+        "t": "Branded reporting",
+        "d": "Monthly reports with your logo and colours, ready to send to clients as your own."
+      },
+      {
+        "t": "Lead follow-up included",
+        "d": "Leads flow into GoHighLevel with instant replies, so your clients see booked appointments, not just clicks."
+      },
+      {
+        "t": "Invisible to your clients",
+        "d": "We stay behind the scenes and never contact your clients unless you ask us to."
+      }
+    ],
+    "steps": [
+      {
+        "t": "Partner call",
+        "d": "We learn about your clients, their niches and the results they expect."
+      },
+      {
+        "t": "Agree scope and pricing",
+        "d": "We agree a wholesale rate per client upfront, so you know your margin."
+      },
+      {
+        "t": "Launch campaigns",
+        "d": "We set up tracking and build the campaigns in each client's ad account."
+      },
+      {
+        "t": "Optimise and report",
+        "d": "We optimise every week and send you branded monthly reports to forward."
+      }
+    ],
+    "goodFor": [
+      "Marketing agencies",
+      "GoHighLevel agencies",
+      "Web design agencies",
+      "Social media agencies",
+      "Consultants",
+      "Lead generation agencies"
+    ],
+    "faqs": [
+      {
+        "q": "Will my clients know you run the ads?",
+        "a": "No. We work under your brand and you stay the point of contact. If you want, we can join client calls as part of your team."
+      },
+      {
+        "q": "Who owns the ad accounts?",
+        "a": "Your client or your agency. We're added as a partner on the account and never take ownership."
+      },
+      {
+        "q": "How is pricing set?",
+        "a": "You set your own prices. We agree a wholesale rate per client upfront, and ad spend is paid directly to Google or Meta."
+      }
+    ],
+    "related": [
+      "white-label-fulfilment",
+      "google-ads",
+      "meta-ads"
+    ]
   },
   {
     "slug": "knock-knock-ai",
@@ -318,25 +852,75 @@
     "lede": "As an official Knock Knock AI white-label support partner, we set up and support Knock Knock AI for agencies. It adds chat, call and live video sales agents to your clients' websites, scores each visitor's buying intent and syncs every lead to GoHighLevel or HubSpot, all under your brand.",
     "agentLine": "Knock Knock lets agents like me live on your clients' websites. Here's how we support it.",
     "features": [
-      { "t": "Chat agent", "d": "Answers website visitors instantly and captures their details." },
-      { "t": "Call and live video agent", "d": "Visitors can call or start a live video from the website widget." },
-      { "t": "Auto Connect", "d": "Proactively invites high-intent visitors into a call or chat." },
-      { "t": "Visitor intent score", "d": "Scores each visitor from 0 to 100 so your clients know who to call first." },
-      { "t": "Live takeover", "d": "Listen in to AI calls with live transcripts and take over at any moment." },
-      { "t": "GoHighLevel and HubSpot sync", "d": "Leads, conversations and scores flow straight into the CRM." }
+      {
+        "t": "Chat agent",
+        "d": "Answers website visitors instantly and captures their details."
+      },
+      {
+        "t": "Call and live video agent",
+        "d": "Visitors can call or start a live video from the website widget."
+      },
+      {
+        "t": "Auto Connect",
+        "d": "Proactively invites high-intent visitors into a call or chat."
+      },
+      {
+        "t": "Visitor intent score",
+        "d": "Scores each visitor from 0 to 100 so your clients know who to call first."
+      },
+      {
+        "t": "Live takeover",
+        "d": "Listen in to AI calls with live transcripts and take over at any moment."
+      },
+      {
+        "t": "GoHighLevel and HubSpot sync",
+        "d": "Leads, conversations and scores flow straight into the CRM."
+      }
     ],
     "steps": [
-      { "t": "Branding and setup", "d": "Your logo, domain and colours across the platform and every widget." },
-      { "t": "Client onboarding", "d": "We train each client's agents on their website, offers and FAQs." },
-      { "t": "CRM connection", "d": "We connect GoHighLevel or HubSpot with workflows ready to go." },
-      { "t": "Support and training", "d": "We support you and your clients day to day and train your team to sell it." }
+      {
+        "t": "Branding and setup",
+        "d": "Your logo, domain and colours across the platform and every widget."
+      },
+      {
+        "t": "Client onboarding",
+        "d": "We train each client's agents on their website, offers and FAQs."
+      },
+      {
+        "t": "CRM connection",
+        "d": "We connect GoHighLevel or HubSpot with workflows ready to go."
+      },
+      {
+        "t": "Support and training",
+        "d": "We support you and your clients day to day and train your team to sell it."
+      }
     ],
-    "goodFor": ["Marketing agencies", "GoHighLevel agencies", "Web design agencies", "Lead generation agencies", "SaaS resellers", "Consultants"],
+    "goodFor": [
+      "Marketing agencies",
+      "GoHighLevel agencies",
+      "Web design agencies",
+      "Lead generation agencies",
+      "SaaS resellers",
+      "Consultants"
+    ],
     "faqs": [
-      { "q": "What is Knock Knock AI?", "a": "A white-label AI sales platform for agencies. It adds chat, call and live video agents to a website, scores visitor intent and hands hot leads to your team." },
-      { "q": "What do you handle as a support partner?", "a": "Setup and branding, client onboarding, CRM connection, day-to-day support and training for your team, all behind your brand." },
-      { "q": "Does it work with GoHighLevel?", "a": "Yes. It installs through the GoHighLevel marketplace, and leads, conversations and scores flow into the CRM." }
+      {
+        "q": "What is Knock Knock AI?",
+        "a": "A white-label AI sales platform for agencies. It adds chat, call and live video agents to a website, scores visitor intent and hands hot leads to your team."
+      },
+      {
+        "q": "What do you handle as a support partner?",
+        "a": "Setup and branding, client onboarding, CRM connection, day-to-day support and training for your team, all behind your brand."
+      },
+      {
+        "q": "Does it work with GoHighLevel?",
+        "a": "Yes. It installs through the GoHighLevel marketplace, and leads, conversations and scores flow into the CRM."
+      }
     ],
-    "related": ["white-label-fulfilment", "ai-chatbots", "ai-voice-agents"]
+    "related": [
+      "white-label-fulfilment",
+      "ai-chatbots",
+      "ai-voice-agents"
+    ]
   }
 ]

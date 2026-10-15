@@ -31,6 +31,7 @@
     <symbol id="i-reviews" viewBox="0 0 24 24"><path class="accent" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
     <symbol id="i-whitelabel" viewBox="0 0 24 24"><path d="M3 12.5V3.5h9l9 9-9 9z"/><circle class="accent" cx="8" cy="8.5" r="1.6"/></symbol>
     <symbol id="i-door" viewBox="0 0 24 24"><path d="M5 21V4.5A1.5 1.5 0 0 1 6.5 3h7A1.5 1.5 0 0 1 15 4.5V21M3 21h14"/><circle class="accent" cx="12" cy="12.5" r="0.9"/><path class="accent" d="M18 9a4 4 0 0 1 0 6M20.5 7a7 7 0 0 1 0 10"/></symbol>
+    <symbol id="i-ads" viewBox="0 0 24 24"><circle cx="11" cy="13" r="8"/><circle cx="11" cy="13" r="4.2"/><path class="accent" d="M11 13l8.5-8.5M16.5 4.5h3v3"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
   </defs>
 </svg>
@@ -105,11 +106,11 @@
       </header>
 
       <div class="filters" role="group" aria-label="Filter services">
-        <button type="button" class="chip" data-filter="all" aria-pressed="true">All <span>10</span></button>
+        <button type="button" class="chip" data-filter="all" aria-pressed="true">All <span>11</span></button>
         <button type="button" class="chip" data-filter="ai" aria-pressed="false">AI agents <span>3</span></button>
         <button type="button" class="chip" data-filter="growth" aria-pressed="false">Ads and funnels <span>3</span></button>
         <button type="button" class="chip" data-filter="crm" aria-pressed="false">CRM and automation <span>2</span></button>
-        <button type="button" class="chip" data-filter="agency" aria-pressed="false">For agencies <span>2</span></button>
+        <button type="button" class="chip" data-filter="agency" aria-pressed="false">For agencies <span>3</span></button>
       </div>
 
       <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Services">
@@ -179,6 +180,13 @@
           <a class="card-link" href="services/white-label-fulfilment.html">Learn more <span aria-hidden="true">→</span></a>
         </article>
         <article class="card card-agency" tabindex="0" style="--i:9" data-cat="agency">
+          <div class="card-top"><svg class="card-icon"><use href="#i-ads"/></svg><span class="card-cat">For agencies</span></div>
+          <h3>White-label paid ads</h3>
+          <p>Google and Meta ad campaigns run under your agency's brand. We build, manage and report; you keep the client and the margin.</p>
+          <p class="card-meta"><span>Includes</span> Google Ads, Meta ads, creative, branded reports</p>
+          <a class="card-link" href="services/white-label-paid-ads.html">Learn more <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="card card-agency" tabindex="0" style="--i:10" data-cat="agency">
           <div class="card-top"><svg class="card-icon"><use href="#i-door"/></svg><span class="card-cat">For agencies</span></div>
           <h3>Knock Knock AI white-label support</h3>
           <p>As an official Knock Knock AI partner, we launch and support AI chat, call and video sales agents on your clients' websites, under your brand.</p>
@@ -189,7 +197,7 @@
         </div>
         <div class="carousel-controls">
           <button type="button" class="round-btn" id="car-prev" aria-label="Previous service"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <p class="carousel-count" id="car-count" aria-live="polite">01 / 10 · AI voice agents</p>
+          <p class="carousel-count" id="car-count" aria-live="polite">01 / 11 · AI voice agents</p>
           <button type="button" class="round-btn" id="car-next" aria-label="Next service"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
@@ -223,6 +231,7 @@
           <ul class="ticks">
             <li><svg><use href="#i-check"/></svg>Your logo, your domain, your pricing</li>
             <li><svg><use href="#i-check"/></svg>AI agents, snapshots and funnels delivered for you</li>
+            <li><svg><use href="#i-check"/></svg>Google and Meta ads run under your brand</li>
             <li><svg><use href="#i-check"/></svg>Knock Knock AI set up and supported under your brand</li>
             <li><svg><use href="#i-check"/></svg>We stay behind the scenes; you own the relationship</li>
           </ul>
@@ -488,6 +497,7 @@
             <option>GoHighLevel CRM setup</option>
             <option>Lead follow-up and reactivation</option>
             <option>White-label fulfilment</option>
+            <option>White-label paid ads</option>
             <option>Knock Knock AI white-label support</option>
           </select>
         </div>

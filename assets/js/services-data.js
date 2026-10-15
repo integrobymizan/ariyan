@@ -82,6 +82,15 @@ window.OMNI_SERVICES = [
     "short": "We deliver AI agents, GoHighLevel builds, funnels and ad campaigns under your brand. You keep the client and the margin; we do the work."
   },
   {
+    "slug": "white-label-paid-ads",
+    "name": "White-label paid ads",
+    "cat": "agency",
+    "catLabel": "For agencies",
+    "audience": "agency",
+    "chatPain": "I want to sell paid ads to my clients",
+    "short": "Google and Meta ad campaigns run under your agency's brand. We build, manage and report; you keep the client and the margin."
+  },
+  {
     "slug": "knock-knock-ai",
     "name": "Knock Knock AI white-label support",
     "cat": "agency",

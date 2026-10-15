@@ -271,7 +271,7 @@
   };
   var LINES = {
     core: "Hi, I'm your AI agent. I answer calls, chats and DMs 24/7.",
-    services: "Ten services, one system. Drag the ring to explore them.",
+    services: "Eleven services, one system. Drag the ring to explore them.",
     audiences: "Local business or agency? I work for both.",
     kk: "I can live on your clients' websites too, with Knock Knock AI.",
     process: "From first call to live in about three weeks.",
