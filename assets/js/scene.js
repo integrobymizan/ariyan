@@ -1,5 +1,5 @@
 /*
- * "Omni", the 3D AI agent who guides visitors down the page.
+ * "Omni", the 3D website helper who guides visitors down the page.
  *
  * A glossy robot receptionist with a headset, a glass visor face, blinking
  * eyes and a voice-waveform mouth. It flies to open space beside each
@@ -270,16 +270,16 @@
     contact:    { d: [-4.5, -2.0, 0.6, 0.45, -1], m: CORNER }
   };
   var LINES = {
-    core: "Hi, I'm your AI agent. I answer calls, chats and DMs 24/7.",
+    core: "Hi, I'm Omni, your guide to this website. Ask me about any of our services.",
     services: "Eleven services, one system. Drag the ring to explore them.",
-    audiences: "Local business or agency? I work for both.",
-    kk: "I can live on your clients' websites too, with Knock Knock AI.",
+    audiences: "Local business or agency? Omni AI Builders helps both.",
+    kk: "Run an agency? Knock Knock AI puts sales agents on your clients' websites.",
     process: "From first call to live in about three weeks.",
     calculator: "Let's see what slow replies are costing you.",
-    faq: "Ask me anything, or open a question below.",
+    faq: "Got a question? The answers are below, or ask me in the chat.",
     finale: "Ready when you are. Let's build your AI workforce.",
-    contact: "Tell me what you'd like to automate first.",
-    poke: "That tickles! Book a call and I'll get to work."
+    contact: "Tell the team what you'd like to automate first.",
+    poke: "Hi again! Open the chat and I'll show you around."
   };
   var POSE = { core: "wave", finale: "wave", services: "present", audiences: "present", kk: "present", process: "present", calculator: "think", faq: "think", contact: "present" };
   // Service detail pages reuse the home page spots

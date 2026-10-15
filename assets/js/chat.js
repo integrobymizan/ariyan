@@ -28,12 +28,12 @@
   var panel = document.createElement("section");
   panel.className = "omni-chat";
   panel.id = "omni-chat";
-  panel.setAttribute("aria-label", "Chat with Omni, our AI agent");
+  panel.setAttribute("aria-label", "Chat with Omni, our website helper");
   panel.hidden = true;
   panel.innerHTML =
     '<header class="oc-head">' +
       '<span class="oc-avatar" aria-hidden="true"><i></i><i></i></span>' +
-      '<div class="oc-who"><p class="oc-name">Omni</p><p class="oc-status">AI agent · online</p></div>' +
+      '<div class="oc-who"><p class="oc-name">Omni</p><p class="oc-status">Website helper · online</p></div>' +
       '<button type="button" class="oc-icon" id="oc-voice" aria-pressed="false" title="Turn voice on">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5z"/><path class="oc-wave" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/><path class="oc-mute" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>' +
         '<span class="visually-hidden">Voice</span>' +
@@ -207,8 +207,8 @@
 
   /* ---------- Conversation ---------- */
   function startHome() {
-    bot("Hi, I'm Omni, the AI agent at Omni AI Builders.");
-    bot("I can show you everything we automate. Which describes you best?");
+    bot("Hi, I'm Omni, the helper for this website.");
+    bot("I can show you everything Omni AI Builders automates. Which describes you best?");
     choices([
       { label: "I run a local business", run: forBusiness, primary: true },
       { label: "I run an agency", run: forAgency, primary: true },
@@ -279,7 +279,7 @@
       bot("Here it is: " + s.name + ".");
       bot("Scroll down to see what's included and how it works. I'll walk along with you.");
     } else {
-      bot("Hi, I'm Omni. This page is all about " + s.name + ".");
+      bot("Hi, I'm Omni, the helper for this website. This page is all about " + s.name + ".");
       bot(s.short);
     }
     choices([

@@ -2,7 +2,7 @@
 
 A single-page 3D marketing site for Omni AI Builders.
 
-- **3D AI agent mascot:** "Omni", a glossy robot receptionist with a headset, visor face, blinking eyes and a voice-waveform mouth, built entirely in Three.js (no model files). It flies to open space beside each section, follows the cursor with its head, waves, points at content, and types a line into a speech bubble for each section. Click it for a spin. On phones it greets you above the hero, then rides along as a small corner companion.
+- **3D website helper:** "Omni", a glossy robot guide with a headset, visor face, blinking eyes and a voice-waveform mouth, built entirely in Three.js (no model files). It flies to open space beside each section, follows the cursor with its head, waves, points at content, and types a line into a speech bubble for each section. Click it for a spin. On phones it greets you above the hero, then rides along as a small corner companion.
 - **Talking guide:** when someone visits, Omni flies in, opens a chat and asks whether they run a local business or an agency and what's costing them most. It recommends the right service (or shows all eleven) and opens that service's detail page. Optional voice uses the browser's speech synthesis, with the robot's mouth moving as it talks. The chosen service is pre-selected in the contact form.
 - **Service detail pages:** one page per service in `services/`, each with what's included, how it works, who it's for, FAQs and related services. The agent guides visitors down these pages too.
 - **3D services carousel:** eleven service cards on a rotating ring you can drag, step through, filter or use with the keyboard. It becomes a plain grid below 900px.

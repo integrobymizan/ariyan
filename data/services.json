@@ -10,7 +10,7 @@
     "short": "A natural-sounding AI receptionist answers every call 24/7, qualifies the caller and books them straight into your calendar.",
     "includes": "inbound and outbound calls, missed-call text back",
     "lede": "An AI receptionist that answers every call in a natural voice, day or night. It answers questions about your services and prices, qualifies the caller and books them straight into your calendar, then saves the whole conversation to your CRM.",
-    "agentLine": "I'm a voice agent myself, so this one's personal. Here's how I'd answer your calls.",
+    "agentLine": "Here's how an AI voice agent would answer your business calls.",
     "features": [
       {
         "t": "Answers every call, 24/7",
@@ -94,7 +94,7 @@
     "short": "Conversation AI on your website, WhatsApp, Instagram, Facebook and SMS that replies in seconds and turns enquiries into bookings.",
     "includes": "trained on your FAQs, live hand-off to staff",
     "lede": "Conversation AI that replies in seconds on your website, WhatsApp, Instagram, Facebook Messenger and SMS. It's trained on your business, answers questions, captures contact details and books appointments, and hands over to your team whenever it should.",
-    "agentLine": "Chat is where I'm quickest. Let me show you what I can do in the DMs.",
+    "agentLine": "Here's how an AI chatbot replies to your customers in seconds.",
     "features": [
       {
         "t": "Every channel, one inbox",
@@ -178,7 +178,7 @@
     "short": "Automatic review requests after every job, AI replies to new reviews, and alerts when a customer is unhappy.",
     "includes": "Google and Facebook reviews, review widgets",
     "lede": "Get more 5-star reviews without chasing anyone. We automate review requests after every job, reply to new reviews with AI in your tone of voice, and alert you when a customer is unhappy so you can put it right.",
-    "agentLine": "Good reviews bring good customers. Here's how I help you collect them.",
+    "agentLine": "Good reviews bring good customers. Here's how we help you collect them.",
     "features": [
       {
         "t": "Automatic review requests",
@@ -514,7 +514,7 @@
     "short": "Pipelines, calendars, workflows and dashboards configured for how you sell, so your team sees every lead and what to do next.",
     "includes": "migration, workflows, team training",
     "lede": "One place for every lead, conversation and appointment. We set up GoHighLevel around how you actually sell: pipelines, calendars, workflows, dashboards and the integrations you need, then train your team to use it.",
-    "agentLine": "GoHighLevel is where I live and work. Let me show you how we set it up.",
+    "agentLine": "Here's how we set up GoHighLevel around the way you sell.",
     "features": [
       {
         "t": "Pipelines that match your sales",
@@ -598,7 +598,7 @@
     "short": "Speed-to-lead SMS and email within seconds, nurture sequences that run for months, and campaigns that wake up your old customer list.",
     "includes": "SMS, email, WhatsApp, appointment reminders",
     "lede": "Reply to every new lead within seconds and keep following up until they book. We build SMS, email and WhatsApp sequences, appointment reminders, and campaigns that bring old leads and past customers back.",
-    "agentLine": "I never forget to follow up. Here's how this works.",
+    "agentLine": "Here's how we make sure no lead is ever forgotten.",
     "features": [
       {
         "t": "Speed to lead",
@@ -682,7 +682,7 @@
     "short": "We deliver AI agents, GoHighLevel builds, funnels and ad campaigns under your brand. You keep the client and the margin; we do the work.",
     "includes": "snapshots, SaaS setup, client onboarding",
     "lede": "Sell AI agents, GoHighLevel builds, funnels and ad campaigns under your own brand. We do the delivery behind the scenes while you keep the client relationship and the margin.",
-    "agentLine": "I can work under your brand too. Here's how our white-label service works.",
+    "agentLine": "Run an agency? Here's how we deliver behind the scenes under your brand.",
     "features": [
       {
         "t": "Fully white-label",
@@ -850,7 +850,7 @@
     "short": "As an official Knock Knock AI partner, we launch and support AI chat, call and video sales agents on your clients' websites, under your brand.",
     "includes": "setup, branding, CRM sync, ongoing support",
     "lede": "As an official Knock Knock AI white-label support partner, we set up and support Knock Knock AI for agencies. It adds chat, call and live video sales agents to your clients' websites, scores each visitor's buying intent and syncs every lead to GoHighLevel or HubSpot, all under your brand.",
-    "agentLine": "Knock Knock lets agents like me live on your clients' websites. Here's how we support it.",
+    "agentLine": "Here's how we set up and support Knock Knock AI for your clients.",
     "features": [
       {
         "t": "Chat agent",
